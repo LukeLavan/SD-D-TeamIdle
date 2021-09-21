@@ -1,5 +1,6 @@
 {
   "name": "beegame",
+  "homepage": "https://LukeLavan.github.io/SD-D-TeamIdle",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,6 +19,8 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +52,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.2",
     "prettier": "^2.4.1"
   }
