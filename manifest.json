@@ -1,0 +1,25 @@
+{
+  "short_name": "bee game",
+  "name": "bee game",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "256x246",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "bee.png",
+      "type": "image/png",
+      "sizes": "500x480"
+    },
+    {
+      "src": "bee_no_grad.png",
+      "type": "image/png",
+      "sizes": "500x480"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#FCB43A"
+}
