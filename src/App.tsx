@@ -1,11 +1,24 @@
+import { usePersistentState } from './PersistentState';
 import { useState, useEffect } from 'react';
 import './App.css';
 
 function App(): JSX.Element {
-  const [honey, setHoney] = useState(0);
-  const [bees, setBees] = useState(0);
-  const [costOfNextBee, setCostOfNextBee] = useState(1);
+  const variableDefaults = {
+    honey: 0,
+    bees: 0,
+    costOfNextBee: 1
+  };
 
+  // persistent variables
+  const [honey, setHoney] = usePersistentState('honey', variableDefaults.honey);
+  const [bees, setBees] = usePersistentState('bees', variableDefaults.bees);
+
+  // non-persistent varaibles (can be recalculated on page load)
+  const [costOfNextBee, setCostOfNextBee] = useState(
+    variableDefaults.costOfNextBee
+  );
+
+  // mutators
   const incrementHoney = () => {
     setHoney(honey + 1);
   };
@@ -17,24 +30,31 @@ function App(): JSX.Element {
     }
   };
 
+  const calcCostOfNextBee = () => {
+    setCostOfNextBee((bees + 1) ** 2);
+  };
+
   // calculate new bee cost when bee count updates
   useEffect(() => {
     calcCostOfNextBee();
   }, [bees]);
 
-  const calcCostOfNextBee = () => {
-    console.log('current bee count: ' + bees);
-    setCostOfNextBee((bees + 1) ** 2);
-  };
-
+  // handle the logic for one tick
   const processTick = () => {
     setHoney(honey + bees);
   };
 
+  // process a tick every 1 second
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
     return () => clearInterval(timer);
   });
+
+  // reset the state and clear local storage
+  const reset = () => {
+    setHoney(variableDefaults.honey);
+    setBees(variableDefaults.bees);
+  };
 
   return (
     <div className="App">
@@ -45,8 +65,14 @@ function App(): JSX.Element {
       </p>
       <p>
         bees: {bees} <br />
-        <button onClick={incrementBees}>gain a bee!</button> <br />
+        <button disabled={honey < costOfNextBee} onClick={incrementBees}>
+          gain a bee!
+        </button>
+        <br />
         cost of next bee: {costOfNextBee} <br />
+      </p>
+      <p>
+        <button onClick={reset}>reset</button>
       </p>
     </div>
   );
