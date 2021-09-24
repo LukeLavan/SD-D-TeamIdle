@@ -26,7 +26,8 @@
     "test": "react-scripts test",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc ./src/**/*.tsx --write",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "checkForLicense": "sh checkForLicense.sh"
   },
   "eslintConfig": {
     "extends": [

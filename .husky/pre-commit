@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "[husky] linting... " && yarn lint && echo "[husky] formatting..." && yarn prettier-format && echo "[husky] testing..." && yarn test --watchAll=false && echo "[husky] done!"
+echo "[husky] linting... " && yarn lint &&
+echo "[husky] formatting..." && yarn prettier-format &&
+echo "[husky] checking for license headers..." && yarn checkForLicense &&
+echo "[husky] testing..." && yarn test --watchAll=false &&
+echo "[husky] done!"
