@@ -43,4 +43,4 @@ then:
 
 ## license
 
-this repo is licensed under the [Mozilla Public License v2.0](https://www.mozilla.org/en-US/MPL/2.0/) - see [their FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/) for what that means.
+this repo is licensed under the [Mozilla Public License v2.0](https://www.mozilla.org/en-US/MPL/2.0/) - see [their FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/) for what that means
