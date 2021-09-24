@@ -3,16 +3,23 @@
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint",
+      "react",
       "prettier"
     ],
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
       "prettier"
     ],
     "rules": {
         "no-console": 0,
         "prettier/prettier": 2
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
     }
 }
