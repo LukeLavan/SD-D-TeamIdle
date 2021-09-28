@@ -23,7 +23,7 @@ function App(): JSX.Element {
 
   // mutators
   const incrementNectar = () => {
-    setNectar(nectar + bees * NECTAR_BY_BEE);
+    setNectar((previousNectar) => previousNectar + bees * NECTAR_BY_BEE);
   };
 
   const incrementHoney = () => {
@@ -48,12 +48,8 @@ function App(): JSX.Element {
 
   // handle the logic for one tick
   const processTick = () => {
-<<<<<<< HEAD:src/react_apps/App.tsx
-    incrementNectar();
-    setHoney(honey + bees);
-=======
     setHoney((previousHoney) => previousHoney + bees);
->>>>>>> main:src/App.tsx
+    incrementNectar();
   };
 
   // process a tick every 1 second
