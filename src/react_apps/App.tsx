@@ -2,19 +2,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import { usePersistentState } from './PersistentState';
+import { usePersistentState } from '../PersistentState';
 import { useState, useEffect } from 'react';
-import './App.css';
+import { variableDefaults, NECTAR_BY_BEE } from '../game_mechanics/constants';
+import '../App.css';
 
 function App(): JSX.Element {
-  const variableDefaults = {
-    honey: 0,
-    bees: 0,
-    costOfNextBee: 1
-  };
-
   // persistent variables
   const [honey, setHoney] = usePersistentState('honey', variableDefaults.honey);
+  const [nectar, setNectar] = usePersistentState(
+    'nectar',
+    variableDefaults.nectar
+  );
   const [bees, setBees] = usePersistentState('bees', variableDefaults.bees);
 
   // non-persistent varaibles (can be recalculated on page load)
@@ -23,6 +22,10 @@ function App(): JSX.Element {
   );
 
   // mutators
+  const incrementNectar = () => {
+    setNectar(nectar + bees * NECTAR_BY_BEE);
+  };
+
   const incrementHoney = () => {
     setHoney(honey + 1);
   };
@@ -45,6 +48,7 @@ function App(): JSX.Element {
 
   // handle the logic for one tick
   const processTick = () => {
+    incrementNectar();
     setHoney(honey + bees);
   };
 
@@ -58,14 +62,18 @@ function App(): JSX.Element {
   const reset = () => {
     setHoney(variableDefaults.honey);
     setBees(variableDefaults.bees);
+    setNectar(variableDefaults.nectar);
   };
 
   return (
     <div className="App">
       <h1>bee game</h1>
       <p>
-        Honey: {honey} <br />
+        honey: {honey} <br />
         <button onClick={incrementHoney}>buzz buzz buzz</button>
+      </p>
+      <p>
+        nectar: {nectar} <br />
       </p>
       <p>
         bees: {bees} <br />
