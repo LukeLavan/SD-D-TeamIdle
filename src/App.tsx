@@ -52,7 +52,7 @@ function App(): JSX.Element {
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [bees]); // TODO: come up with a better way to do this
 
   // reset the state and clear local storage
   const reset = () => {
