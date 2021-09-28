@@ -5,6 +5,8 @@
 import { usePersistentState } from './PersistentState';
 import { useState, useEffect } from 'react';
 import './App.css';
+import Button from './Button';
+import './Button.css';
 
 function App(): JSX.Element {
   const variableDefaults = {
@@ -62,22 +64,31 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <h1>bee game</h1>
-      <p>
-        Honey: {honey} <br />
-        <button onClick={incrementHoney}>buzz buzz buzz</button>
-      </p>
-      <p>
-        bees: {bees} <br />
-        <button disabled={honey < costOfNextBee} onClick={incrementBees}>
-          gain a bee!
-        </button>
-        <br />
-        cost of next bee: {costOfNextBee} <br />
-      </p>
-      <p>
-        <button onClick={reset}>reset</button>
-      </p>
+      <h1>Bee Game</h1>
+      <div className="row">
+        <div className="column left">
+          Honey: {honey}
+          <Button
+            textToDisplay="buzz buzz buzz"
+            clickFunction={incrementHoney}
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="column right">
+          bees: {bees}
+          <Button
+            textToDisplay="gain a bee!"
+            clickFunction={incrementBees}
+            disabledFunction={() => honey < costOfNextBee}
+          />
+          <br />
+          cost of next bee: {costOfNextBee}
+        </div>
+        <div className="column middle">
+          <Button textToDisplay="reset" clickFunction={reset} />
+        </div>
+      </div>
     </div>
   );
 }
