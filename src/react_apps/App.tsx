@@ -4,7 +4,7 @@
 
 import { usePersistentState } from '../PersistentState';
 import { useState, useEffect } from 'react';
-import { variableDefaults, NECTAR_BY_BEE } from '../game_mechanics/constants';
+import { variableDefaults, staticConstants } from '../game_mechanics/constants';
 import '../App.css';
 
 function App(): JSX.Element {
@@ -21,9 +21,17 @@ function App(): JSX.Element {
     variableDefaults.costOfNextBee
   );
 
+  const honeyCost = staticConstants.NECTAR_TO_HONEY_COST;
+
   // mutators
   const incrementNectar = () => {
-    setNectar((previousNectar) => previousNectar + bees * NECTAR_BY_BEE);
+    setNectar(
+      (previousNectar) => previousNectar + bees * staticConstants.NECTAR_BY_BEE
+    );
+  };
+
+  const incrementNectarClicked = () => {
+    setNectar((previousNectar) => previousNectar + 1);
   };
 
   const incrementHoney = () => {
@@ -34,6 +42,13 @@ function App(): JSX.Element {
     if (honey >= costOfNextBee) {
       setBees((previousBees) => previousBees + 1);
       setHoney((previousHoney) => previousHoney - costOfNextBee);
+    }
+  };
+
+  const refineNectar = () => {
+    if (nectar >= honeyCost) {
+      setNectar((previousNectar) => previousNectar - honeyCost);
+      incrementHoney();
     }
   };
 
@@ -69,16 +84,21 @@ function App(): JSX.Element {
     <div className="App">
       <h1>bee game</h1>
       <p>
-        honey: {honey} <br />
-        <button onClick={incrementHoney}>buzz buzz buzz</button>
+        nectar: {nectar} <br />
+        <button onClick={incrementNectarClicked}>buzz buzz buzz</button>
       </p>
       <p>
-        nectar: {nectar} <br />
+        honey: {honey} <br />
+        <button disabled={nectar < honeyCost} onClick={refineNectar}>
+          Refine that nectar!
+        </button>
+        <br />
+        cost of honey: {honeyCost} <br />
       </p>
       <p>
         bees: {bees} <br />
         <button disabled={honey < costOfNextBee} onClick={incrementBees}>
-          gain a bee!
+          Gain a bee!
         </button>
         <br />
         cost of next bee: {costOfNextBee} <br />

@@ -9,6 +9,9 @@ const variableDefaults = {
   nectar: 0
 };
 
-const NECTAR_BY_BEE = 3;
+const staticConstants = {
+  NECTAR_BY_BEE: 3,
+  NECTAR_TO_HONEY_COST: 5
+};
 
-export { variableDefaults, NECTAR_BY_BEE };
+export { variableDefaults, staticConstants };
