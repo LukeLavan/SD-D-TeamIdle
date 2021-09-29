@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import * as ReactDOM from 'react-dom';
-import App from '../react_apps/App';
+import App from '../components/App';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

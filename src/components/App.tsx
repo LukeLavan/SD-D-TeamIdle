@@ -4,7 +4,7 @@
 
 import { usePersistentState } from '../PersistentState';
 import { useState, useEffect } from 'react';
-import { variableDefaults, staticConstants } from '../game_mechanics/constants';
+import { variableDefaults, staticConstants } from '../constants/constants';
 import '../App.css';
 
 function App(): JSX.Element {
