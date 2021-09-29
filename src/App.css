@@ -21,10 +21,14 @@ h1 {
   text-align: center;
 }
 
+p {
+  height: 32.8px;
+}
+
 /* Create three unequal columns that floats next to each other */
 .column {
-  float: left;
-  padding: 10px;
+  display: inline-block;
+  vertical-align: middle;
   background-color: #fcb43a;
   color: #23212c;
   align-items: center;
@@ -32,21 +36,11 @@ h1 {
   text-align: center;
 }
 
-.left {
-  width: 50%;
-}
-
+.left,
 .right {
-  width: 150%;
+  width: 25%;
 }
 
 .middle {
-  width: 100%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: '';
-  display: table;
-  clear: both;
+  width: 50%;
 }

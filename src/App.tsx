@@ -64,29 +64,29 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <h1>Bee Game</h1>
       <div className="row">
+        <h1>Bee Game</h1>
         <div className="column left">
-          Honey: {honey}
+          <p> Honey: {honey} </p>
           <Button
             textToDisplay="buzz buzz buzz"
             clickFunction={incrementHoney}
           />
+          <p> </p>
         </div>
-      </div>
-      <div className="row">
+        <div className="column middle">
+          <p> </p>
+          <Button textToDisplay="reset" clickFunction={reset} />
+          <p> </p>
+        </div>
         <div className="column right">
-          bees: {bees}
+          <p> bees: {bees} </p>
           <Button
             textToDisplay="gain a bee!"
             clickFunction={incrementBees}
             disabledFunction={() => honey < costOfNextBee}
           />
-          <br />
-          cost of next bee: {costOfNextBee}
-        </div>
-        <div className="column middle">
-          <Button textToDisplay="reset" clickFunction={reset} />
+          <p> cost of next bee: {costOfNextBee} </p>
         </div>
       </div>
     </div>
