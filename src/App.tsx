@@ -6,12 +6,6 @@ import { usePersistentState } from './PersistentState';
 import { useState, useEffect } from 'react';
 import './App.css';
 
-// truncate number to n decimal places
-const trunc = (numberToTruncate: number, numberOfDecimalPlaces: number) => {
-  const tenexp = 10 ** numberOfDecimalPlaces;
-  return Math.trunc(numberToTruncate * tenexp) / tenexp;
-};
-
 function App(): JSX.Element {
   const variableDefaults = {
     honey: 0,
@@ -99,7 +93,7 @@ function App(): JSX.Element {
         <button onClick={incrementHoney}>buzz buzz buzz</button>
       </p>
       <p>
-        Royal Jelly: {trunc(royalJelly, 2)} <br />
+        Royal Jelly: {royalJelly.toFixed(2)} <br />
       </p>
       <p>
         bees: {bees} <br />
@@ -108,7 +102,7 @@ function App(): JSX.Element {
         </button>
         <br />
         cost of next bee: {costOfNextBeeHoney} honey,{' '}
-        {trunc(costOfNextBeeRoyalJelly, 2)} jelly
+        {costOfNextBeeRoyalJelly.toFixed(2)} jelly
         <br />
       </p>
       <p>
