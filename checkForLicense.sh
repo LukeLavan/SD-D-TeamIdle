@@ -21,6 +21,7 @@ FILES=$(echo "$FILES" | grep -v ".eslintrc")
 FILES=$(echo "$FILES" | grep -v ".prettierrc")
 FILES=$(echo "$FILES" | grep -v ".husky\/.*")
 FILES=$(echo "$FILES" | grep -v ".gitignore")
+FILES=$(echo "$FILES" | grep -v ".gitattributes")
 # Filter out generated files
 FILES=$(echo "$FILES" | grep -v "yarn.lock")
 
