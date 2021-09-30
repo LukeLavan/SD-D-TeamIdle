@@ -26,13 +26,13 @@ function App(): JSX.Element {
 
   // mutators
   const incrementHoney = () => {
-    setHoney(honey + 1);
+    setHoney((previousHoney) => previousHoney + 1);
   };
 
   const incrementBees = () => {
     if (honey >= costOfNextBee) {
-      setBees(bees + 1);
-      setHoney(honey - costOfNextBee);
+      setBees((previousBees) => previousBees + 1);
+      setHoney((previousHoney) => previousHoney - costOfNextBee);
     }
   };
 
@@ -47,14 +47,14 @@ function App(): JSX.Element {
 
   // handle the logic for one tick
   const processTick = () => {
-    setHoney(honey + bees);
+    setHoney((previousHoney) => previousHoney + bees);
   };
 
   // process a tick every 1 second
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
     return () => clearInterval(timer);
-  });
+  }, [bees]); // TODO: come up with a better way to do this
 
   // reset the state and clear local storage
   const reset = () => {

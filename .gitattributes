@@ -1,0 +1,8 @@
+# enforce LF line endings regardless of OS and global git config
+* text=auto eol=lf
+
+# make explicit that certain file types shouldn't be messed with (just in case)
+*.{png,ico} binary
+
+# have git automatically convert any CRLF line endings to LF on commit, but not vice versa on checkout
+core.autocrlf false
