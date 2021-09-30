@@ -24,7 +24,7 @@ function App(): JSX.Element {
   const honeyCost = staticConstants.NECTAR_TO_HONEY_COST;
 
   // mutators
-  const incrementNectar = () => {
+  const gatherNectar = () => {
     setNectar(
       (previousNectar) => previousNectar + bees * staticConstants.NECTAR_BY_BEE
     );
@@ -63,8 +63,7 @@ function App(): JSX.Element {
 
   // handle the logic for one tick
   const processTick = () => {
-    setHoney((previousHoney) => previousHoney + bees);
-    incrementNectar();
+    gatherNectar();
   };
 
   // process a tick every 1 second
