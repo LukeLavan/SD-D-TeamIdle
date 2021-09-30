@@ -10,12 +10,20 @@ function App(): JSX.Element {
   const variableDefaults = {
     honey: 0,
     bees: 0,
-    costOfNextBee: 1
+    costOfNextBee: 1,
+    honeycombs: 0
   };
+
+  //static constants
+  const HONEYCOMB_COST = 5;
 
   // persistent variables
   const [honey, setHoney] = usePersistentState('honey', variableDefaults.honey);
   const [bees, setBees] = usePersistentState('bees', variableDefaults.bees);
+  const [honeycombs, setHoneycombs] = usePersistentState(
+    'honeycombs',
+    variableDefaults.honeycombs
+  );
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBee, setCostOfNextBee] = useState(
@@ -31,6 +39,13 @@ function App(): JSX.Element {
     if (honey >= costOfNextBee) {
       setBees(bees + 1);
       setHoney(honey - costOfNextBee);
+    }
+  };
+
+  const incrementHoneyCombs = () => {
+    if (honey >= HONEYCOMB_COST) {
+      setHoneycombs(honeycombs + 1);
+      setHoney(honey - HONEYCOMB_COST);
     }
   };
 
@@ -58,6 +73,7 @@ function App(): JSX.Element {
   const reset = () => {
     setHoney(variableDefaults.honey);
     setBees(variableDefaults.bees);
+    setHoneycombs(variableDefaults.honeycombs);
   };
 
   return (
@@ -74,6 +90,14 @@ function App(): JSX.Element {
         </button>
         <br />
         cost of next bee: {costOfNextBee} <br />
+      </p>
+      <p>
+        honeycombs: {honeycombs} <br />
+        <button disabled={honey < HONEYCOMB_COST} onClick={incrementHoneyCombs}>
+          make some honeycombs!
+        </button>
+        <br />
+        cost of honeycombs: {HONEYCOMB_COST} <br />
       </p>
       <p>
         <button onClick={reset}>reset</button>
