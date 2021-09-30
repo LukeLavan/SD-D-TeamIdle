@@ -131,7 +131,7 @@ button:disabled {
 }
 
 /* Button reference */
-.btn-two {
+.btn {
   color: white;
   padding: 15px 25px;
   display: inline-block;
@@ -142,7 +142,7 @@ button:disabled {
     0 2px 0 -1px rgba(0, 0, 0, 0.13), 0 3px 0 -1px rgba(0, 0, 0, 0.08),
     0 3px 13px -1px rgba(0, 0, 0, 0.21);
 }
-.btn-two:active {
+.btn:active {
   top: 1px;
   border-color: rgba(0, 0, 0, 0.34) rgba(0, 0, 0, 0.21) rgba(0, 0, 0, 0.21);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.89), 0 1px rgba(0, 0, 0, 0.05) inset;
