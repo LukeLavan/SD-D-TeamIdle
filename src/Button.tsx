@@ -12,16 +12,15 @@ interface Props {
   disabledFunction?: () => boolean;
 }
 
-const setButtonName = (color: string, size: string) => {
+const constructButtonClass = (color: string, size: string) => {
   return color + ' ' + size;
 };
 
 function Button(props: Props): JSX.Element {
-  const b = setButtonName(props.color, props.size);
   return (
     <div className="Button">
       <button
-        className={b}
+        className={constructButtonClass(props.color, props.size)}
         disabled={props.disabledFunction && props.disabledFunction()}
         onClick={props.clickFunction}
       >
