@@ -8,12 +8,14 @@ const variableDefaults = {
   costOfNextBeeHoney: 1,
   costOfNextBeeRoyalJelly: 0,
   nectar: 0,
-  royalJelly: 0
+  royalJelly: 0,
+  honeycomb: 0
 };
 
 const staticConstants = {
   NECTAR_BY_BEE: 3,
-  NECTAR_TO_HONEY_COST: 5
+  NECTAR_TO_HONEY_COST: 5,
+  HONEY_TO_HONEYCOMB_COST: 5
 };
 
 export { variableDefaults, staticConstants };
