@@ -6,7 +6,6 @@ import { usePersistentState } from './PersistentState';
 import { useState, useEffect } from 'react';
 import './App.css';
 import Button from './Button';
-import './Button.css';
 
 function App(): JSX.Element {
   const variableDefaults = {
@@ -69,6 +68,8 @@ function App(): JSX.Element {
         <div className="column left">
           <p> Honey: {honey} </p>
           <Button
+            color="purple"
+            size="medium"
             textToDisplay="buzz buzz buzz"
             clickFunction={incrementHoney}
           />
@@ -76,12 +77,19 @@ function App(): JSX.Element {
         </div>
         <div className="column middle">
           <p> </p>
-          <Button textToDisplay="reset" clickFunction={reset} />
+          <Button
+            color="cyan"
+            size="small"
+            textToDisplay="reset"
+            clickFunction={reset}
+          />
           <p> </p>
         </div>
         <div className="column right">
           <p> bees: {bees} </p>
           <Button
+            color="green"
+            size="large"
             textToDisplay="gain a bee!"
             clickFunction={incrementBees}
             disabledFunction={() => honey < costOfNextBee}

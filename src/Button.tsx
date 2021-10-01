@@ -5,15 +5,23 @@
 import './Button.css';
 
 interface Props {
+  color: string;
+  size: string;
   textToDisplay: string;
   clickFunction: () => void;
   disabledFunction?: () => boolean;
 }
 
+const setButtonName = (color: string, size: string) => {
+  return color + ' ' + size;
+};
+
 function Button(props: Props): JSX.Element {
+  const b = setButtonName(props.color, props.size);
   return (
     <div className="Button">
       <button
+        className={b}
         disabled={props.disabledFunction && props.disabledFunction()}
         onClick={props.clickFunction}
       >
