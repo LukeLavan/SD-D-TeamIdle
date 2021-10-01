@@ -15,11 +15,19 @@ function App(): JSX.Element {
     variableDefaults.nectar
   );
   const [bees, setBees] = usePersistentState('bees', variableDefaults.bees);
+  const [royalJelly, setRoyalJelly] = usePersistentState(
+    'royalJelly',
+    variableDefaults.royalJelly
+  );
 
   // non-persistent varaibles (can be recalculated on page load)
-  const [costOfNextBee, setCostOfNextBee] = useState(
-    variableDefaults.costOfNextBee
+  const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
+    variableDefaults.costOfNextBeeHoney
   );
+  const [costOfNextBeeRoyalJelly, setCostOfNextBeeRoyalJelly] = useState(
+    variableDefaults.costOfNextBeeRoyalJelly
+  );
+  const [canBuyNextBee, setCanBuyNextBee] = useState(false);
 
   const honeyCost = staticConstants.NECTAR_TO_HONEY_COST;
 
@@ -38,10 +46,13 @@ function App(): JSX.Element {
     setHoney((previousHoney) => previousHoney + 1);
   };
 
-  const incrementBees = () => {
-    if (honey >= costOfNextBee) {
+  const buyNextBee = () => {
+    if (canBuyNextBee) {
       setBees((previousBees) => previousBees + 1);
-      setHoney((previousHoney) => previousHoney - costOfNextBee);
+      setHoney((previousHoney) => previousHoney - costOfNextBeeHoney);
+      setRoyalJelly(
+        (previousRoyalJelly) => previousRoyalJelly - costOfNextBeeRoyalJelly
+      );
     }
   };
 
@@ -53,13 +64,23 @@ function App(): JSX.Element {
   };
 
   const calcCostOfNextBee = () => {
-    setCostOfNextBee((bees + 1) ** 2);
+    setCostOfNextBeeHoney((bees + 1) ** 2);
+    setCostOfNextBeeRoyalJelly(1.3 ** bees - 1);
   };
 
   // calculate new bee cost when bee count updates
   useEffect(() => {
     calcCostOfNextBee();
   }, [bees]);
+
+  // re-evaluate if we can buy next bee when relevant vars change
+  const calcCanBuyNextBee = () => {
+    return honey >= costOfNextBeeHoney && royalJelly >= costOfNextBeeRoyalJelly;
+  };
+  useEffect(() => {
+    setCanBuyNextBee(calcCanBuyNextBee());
+    console.log(canBuyNextBee);
+  }, [honey, bees, royalJelly]);
 
   // handle the logic for one tick
   const processTick = () => {
@@ -77,6 +98,7 @@ function App(): JSX.Element {
     setHoney(variableDefaults.honey);
     setBees(variableDefaults.bees);
     setNectar(variableDefaults.nectar);
+    setRoyalJelly(variableDefaults.royalJelly);
   };
 
   return (
@@ -95,12 +117,17 @@ function App(): JSX.Element {
         cost of honey: {honeyCost} <br />
       </p>
       <p>
+        Royal Jelly: {royalJelly.toFixed(2)} <br />
+      </p>
+      <p>
         bees: {bees} <br />
-        <button disabled={honey < costOfNextBee} onClick={incrementBees}>
-          Gain a bee!
+        <button disabled={!canBuyNextBee} onClick={buyNextBee}>
+          gain a bee!
         </button>
         <br />
-        cost of next bee: {costOfNextBee} <br />
+        cost of next bee: {costOfNextBeeHoney} honey,{' '}
+        {costOfNextBeeRoyalJelly.toFixed(2)} jelly
+        <br />
       </p>
       <p>
         <button onClick={reset}>reset</button>
