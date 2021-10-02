@@ -5,7 +5,7 @@
 /* Generic/Neutral state for button */
 button {
   margin: 9px;
-  color: white; /* Color of text displayed */
+  /*color: white; /* Color of text displayed */
   border-radius: 10px; /* Makes button rounded */
   display: inline-block;
   vertical-align: middle;

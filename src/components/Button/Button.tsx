@@ -5,14 +5,14 @@
 import './Button.css';
 
 interface Props {
-  color: string;
-  size: string;
-  textToDisplay: string;
-  clickFunction: () => void;
-  disabledFunction?: () => boolean;
+  color?: string;
+  size?: string;
+  children: string;
+  onClick: () => void;
+  disabled?: boolean;
 }
 
-const constructButtonClass = (color: string, size: string) => {
+const calcButtonClass = (color = 'purple', size = 'medium') => {
   return color + ' ' + size;
 };
 
@@ -20,11 +20,11 @@ function Button(props: Props): JSX.Element {
   return (
     <div className="Button">
       <button
-        className={constructButtonClass(props.color, props.size)}
-        disabled={props.disabledFunction && props.disabledFunction()}
-        onClick={props.clickFunction}
+        className={calcButtonClass(props.color, props.size)}
+        disabled={props.disabled}
+        onClick={props.onClick}
       >
-        {props.textToDisplay}
+        {props.children}
       </button>
     </div>
   );

@@ -28,7 +28,7 @@ p {
 /* Create three unequal columns that floats next to each other */
 .column {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   background-color: #fcb43a;
   align-items: center;
   font-size: calc(10px + 2vmin);
