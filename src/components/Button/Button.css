@@ -1,0 +1,105 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+/* Generic/Neutral state for button */
+button {
+  margin: 9px;
+  /*color: white; /* Color of text displayed */
+  border-radius: 10px; /* Makes button rounded */
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom-color: rgba(0, 0, 0, 0.34);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.34) inset,
+    0 2px 0 -1px rgba(0, 0, 0, 0.13), 0 3px 0 -1px rgba(0, 0, 0, 0.08),
+    0 3px 13px -1px rgba(0, 0, 0, 0.21);
+  position: relative;
+}
+
+/* Active state for button */
+button:active {
+  top: 1px;
+  border-color: rgba(0, 0, 0, 0.34) rgba(0, 0, 0, 0.21) rgba(0, 0, 0, 0.21);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.89), 0 1px rgba(0, 0, 0, 0.05) inset;
+  position: relative;
+}
+
+/* Disabled state for button */
+button:disabled {
+  top: 1px;
+  border-color: rgba(0, 0, 0, 0.34) rgba(0, 0, 0, 0.21) rgba(0, 0, 0, 0.21);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.89), 0 1px rgba(0, 0, 0, 0.05) inset;
+  position: relative;
+  box-shadow: 0 0 #696569;
+  background-color: #4b444a;
+  color: black; /* color of text */
+}
+
+/* Colors for different buttons */
+.red {
+  background: #fa5a5a;
+}
+.red:active {
+  /* Active state coloring for red */
+  box-shadow: 0 0 #ff4c4b;
+  background-color: #ff4c4b;
+}
+.yellow {
+  background: #f0d264;
+}
+.yellow:active {
+  /* Active state coloring for yellow */
+  box-shadow: 0 0 #ff4c4b;
+  background-color: #d6bb59;
+}
+.green {
+  background: #82c8a0;
+}
+.green:active {
+  /* Active state coloring for green */
+  box-shadow: 0 0 #87a86f;
+  background-color: #87a86f;
+}
+.cyan {
+  background: #7fccde;
+}
+.cyan:active {
+  /* Active state coloring for cyan */
+  box-shadow: 0 0 #73b9c9;
+  background-color: #70b4c4;
+}
+.blue {
+  background: #6698cb;
+}
+.blue:active {
+  /* Active state coloring for blue */
+  box-shadow: 0 0 #74a3b0;
+  background-color: #709ca8;
+}
+.purple {
+  background: #cb99c5;
+}
+.purple:active {
+  /* Active state coloring for purple */
+  box-shadow: 0 0 #ba8cb5;
+  background-color: #ba8cb5;
+}
+
+/* Sizes for different buttons */
+.mini {
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.small {
+  padding: 8px 18px;
+  font-size: 14px;
+}
+.medium {
+  padding: 15px 25px;
+}
+.large {
+  padding: 20px 40px;
+  font-size: 22px;
+}

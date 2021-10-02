@@ -2,10 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import { usePersistentState } from '../PersistentState';
+import { usePersistentState } from '../../PersistentState';
 import { useState, useEffect } from 'react';
-import { variableDefaults, staticConstants } from '../constants/constants';
-import '../App.css';
+import { variableDefaults, staticConstants } from '../../constants/constants';
+
+import Button from '../Button/Button';
+
+import './App.css';
 
 function App(): JSX.Element {
   // persistent variables
@@ -140,43 +143,53 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <h1>bee game</h1>
-      <p>
-        nectar: {nectar} <br />
-        <button onClick={incrementNectarClicked}>buzz buzz buzz</button>
-      </p>
-      <p>
-        honey: {honey} <br />
-        <button disabled={!canRefineNectar} onClick={refineNectar}>
-          refine that nectar!
-        </button>
-        <br />
-        cost of honey: {staticConstants.NECTAR_TO_HONEY_COST} nectar <br />
-      </p>
-      <p>
-        royal jelly: {royalJelly.toFixed(2)} <br />
-      </p>
-      <p>
-        bees: {bees} <br />
-        <button disabled={!canBuyNextBee} onClick={buyNextBee}>
-          gain a bee!
-        </button>
-        <br />
-        cost of next bee: {costOfNextBeeHoney} honey,{' '}
-        {costOfNextBeeRoyalJelly.toFixed(2)} royal jelly
-        <br />
-      </p>
-      <p>
-        honeycombs: {honeycomb} <br />
-        <button disabled={!canBuyHoneycomb} onClick={buyHoneycomb}>
-          make some honeycombs!
-        </button>
-        <br />
-        cost of honeycombs: {staticConstants.HONEY_TO_HONEYCOMB_COST} honey
-        <br />
-      </p>
-      <p>
-        <button onClick={reset}>reset</button>
-      </p>
+      <div className="row">
+        <div className="column left">
+          nectar: {nectar} <br />
+          <Button onClick={incrementNectarClicked} color="yellow">
+            buzz buzz buzz
+          </Button>
+          <br />
+          <br />
+          honey: {honey} <br />
+          <Button disabled={!canRefineNectar} onClick={refineNectar}>
+            refine that nectar!
+          </Button>
+          cost of honey: {staticConstants.NECTAR_TO_HONEY_COST} nectar <br />
+        </div>
+        <div className="column middle">
+          bees: {bees} <br />
+          <Button disabled={!canBuyNextBee} onClick={buyNextBee}>
+            gain a bee!
+          </Button>
+          cost of next bee: {costOfNextBeeHoney} honey,{' '}
+          {costOfNextBeeRoyalJelly.toFixed(2)} royal jelly
+          <br /> <br /> <br />
+          royal jelly: {royalJelly.toFixed(2)}
+        </div>
+        <div className="column right">
+          honeycombs: {honeycomb} <br />
+          <Button
+            disabled={!canBuyHoneycomb}
+            onClick={buyHoneycomb}
+            color="yellow"
+          >
+            make some honeycombs!
+          </Button>
+          cost of honeycombs: {staticConstants.HONEY_TO_HONEYCOMB_COST} honey
+          <br />
+        </div>
+      </div>
+      <br />
+      <div className="row">
+        <div className="column left"></div>
+        <div className="column middle">
+          <Button onClick={reset} color={'red'} size={'small'}>
+            reset
+          </Button>
+        </div>
+        <div className="column right"></div>
+      </div>
     </div>
   );
 }
