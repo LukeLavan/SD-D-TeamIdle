@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "bee.png",
+      "src": "img/bee.png",
       "type": "image/png",
       "sizes": "500x480"
     },
     {
-      "src": "bee_no_grad.png",
+      "src": "img/bee_no_grad.png",
       "type": "image/png",
       "sizes": "500x480"
     }
