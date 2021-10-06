@@ -34,6 +34,7 @@ function App(): JSX.Element {
     'workers',
     variableDefaults.bees
   );
+  const [pupae, setPupae] = usePersistentState('pupae', variableDefaults.pupae);
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
@@ -167,6 +168,7 @@ function App(): JSX.Element {
     setHoneycomb(variableDefaults.honeycomb);
     setDrones(variableDefaults.drones);
     setWorkers(variableDefaults.workers);
+    setPupae(variableDefaults.pupae);
   };
 
   return (
@@ -194,15 +196,20 @@ function App(): JSX.Element {
           cost of next bee: {costOfNextBeeHoney} honey,{' '}
           {costOfNextBeeRoyalJelly.toFixed(2)} royal jelly
           <br /> <br />
-          <div>
-            <Button disabled={beesRemaining()} onClick={beeToDrone}>
-              assign a drone
-            </Button>
-            drones: {drones} <br /> <br />
-            <Button disabled={beesRemaining()} onClick={beeToWorker}>
-              assign a worker
-            </Button>
-            workers: {workers} <br />
+          <div className="row">
+            <div className="column left">
+              <Button disabled={beesRemaining()} onClick={beeToDrone}>
+                assign a drone
+              </Button>
+              drones: {drones} <br />
+              pupae: {pupae} <br />
+            </div>
+            <div className="column right">
+              <Button disabled={beesRemaining()} onClick={beeToWorker}>
+                assign a worker
+              </Button>
+              workers: {workers} <br />
+            </div>
           </div>
           <br /> <br />
           royal jelly: {royalJelly.toFixed(2)}
