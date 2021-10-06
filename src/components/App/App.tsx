@@ -46,6 +46,7 @@ function App(): JSX.Element {
   const [canBuyNextBee, setCanBuyNextBee] = useState(false);
   const [canBuyHoneycomb, setCanBuyHoneycomb] = useState(false);
   const [canRefineNectar, setCanRefineNectar] = useState(false);
+  const [canAssignBee, setCanAssignBee] = useState(false);
 
   // mutators
   const gatherNectar = () => {
@@ -56,6 +57,12 @@ function App(): JSX.Element {
 
   const gatherRoyalJelly = () => {
     setRoyalJelly((previousRoyalJelly) => previousRoyalJelly + 0.27 * bees);
+  };
+
+  const createPupae = () => {
+    setPupae(
+      (previousPupae) => previousPupae + drones * staticConstants.PUPAE_BY_DRONE
+    );
   };
 
   const incrementNectarClicked = () => {
@@ -132,11 +139,15 @@ function App(): JSX.Element {
   const processTick = () => {
     gatherNectar();
     gatherRoyalJelly();
+    createPupae();
   };
 
-  const beesRemaining = () => {
+  const calcCanAssignBee = () => {
     return bees === 0;
   };
+  useEffect(() => {
+    setCanAssignBee(calcCanAssignBee);
+  }, [bees]);
 
   const beeToDrone = () => {
     if (bees === 0) {
@@ -198,14 +209,14 @@ function App(): JSX.Element {
           <br /> <br />
           <div className="row">
             <div className="column left">
-              <Button disabled={beesRemaining()} onClick={beeToDrone}>
+              <Button disabled={canAssignBee} onClick={beeToDrone}>
                 assign a drone
               </Button>
-              drones: {drones} <br />
-              pupae: {pupae} <br />
+              drones: {drones} <br /> <br />
+              pupae: {pupae.toFixed()}
             </div>
             <div className="column right">
-              <Button disabled={beesRemaining()} onClick={beeToWorker}>
+              <Button disabled={canAssignBee} onClick={beeToWorker}>
                 assign a worker
               </Button>
               workers: {workers} <br />

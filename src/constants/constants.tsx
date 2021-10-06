@@ -18,7 +18,8 @@ const variableDefaults = {
 const staticConstants = {
   NECTAR_BY_BEE: 3,
   NECTAR_TO_HONEY_COST: 5,
-  HONEY_TO_HONEYCOMB_COST: 5
+  HONEY_TO_HONEYCOMB_COST: 5,
+  PUPAE_BY_DRONE: 0.1
 };
 
 export { variableDefaults, staticConstants };
