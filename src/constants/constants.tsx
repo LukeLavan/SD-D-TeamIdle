@@ -5,6 +5,8 @@
 const variableDefaults = {
   honey: 0,
   bees: 0,
+  drones: 0,
+  workers: 0,
   costOfNextBeeHoney: 1,
   costOfNextBeeRoyalJelly: 0,
   nectar: 0,

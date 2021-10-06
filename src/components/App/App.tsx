@@ -26,6 +26,14 @@ function App(): JSX.Element {
     'honeycomb',
     variableDefaults.honeycomb
   );
+  const [drones, setDrones] = usePersistentState(
+    'drones',
+    variableDefaults.bees
+  );
+  const [workers, setWorkers] = usePersistentState(
+    'workers',
+    variableDefaults.bees
+  );
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
@@ -125,6 +133,25 @@ function App(): JSX.Element {
     gatherRoyalJelly();
   };
 
+  const beesRemaining = () => {
+    return bees === 0;
+  };
+
+  const beeToDrone = () => {
+    if (bees === 0) {
+      return;
+    }
+    setBees((previousBees) => previousBees - 1);
+    setDrones((previousDrone) => previousDrone + 1);
+  };
+
+  const beeToWorker = () => {
+    if (bees === 0) {
+      return;
+    }
+    setBees((previousBees) => previousBees - 1);
+    setWorkers((previousWorker) => previousWorker + 1);
+  };
   // process a tick every 1 second
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
@@ -138,6 +165,8 @@ function App(): JSX.Element {
     setNectar(variableDefaults.nectar);
     setRoyalJelly(variableDefaults.royalJelly);
     setHoneycomb(variableDefaults.honeycomb);
+    setDrones(variableDefaults.drones);
+    setWorkers(variableDefaults.workers);
   };
 
   return (
@@ -164,7 +193,18 @@ function App(): JSX.Element {
           </Button>
           cost of next bee: {costOfNextBeeHoney} honey,{' '}
           {costOfNextBeeRoyalJelly.toFixed(2)} royal jelly
-          <br /> <br /> <br />
+          <br /> <br />
+          <div>
+            <Button disabled={beesRemaining()} onClick={beeToDrone}>
+              assign a drone
+            </Button>
+            drones: {drones} <br /> <br />
+            <Button disabled={beesRemaining()} onClick={beeToWorker}>
+              assign a worker
+            </Button>
+            workers: {workers} <br />
+          </div>
+          <br /> <br />
           royal jelly: {royalJelly.toFixed(2)}
         </div>
         <div className="column right">
