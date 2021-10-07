@@ -26,6 +26,7 @@ function App(): JSX.Element {
     'honeycomb',
     variableDefaults.honeycomb
   );
+  const [timeStamp, setTimeStamp] = usePersistentState('timeStamp', Date.now());
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
@@ -123,6 +124,7 @@ function App(): JSX.Element {
   const processTick = () => {
     gatherNectar();
     gatherRoyalJelly();
+    setTimeStamp(Date.now());
   };
 
   // process a tick every 1 second
@@ -130,6 +132,17 @@ function App(): JSX.Element {
     const timer = setInterval(processTick, 1000);
     return () => clearInterval(timer);
   }, [bees]); // TODO: come up with a better way to do this
+
+  // process for offline progression ticks
+  useEffect(() => {
+    if (Date.now() - timeStamp >= 1000) {
+      const amountOfTicks = Math.floor((Date.now() - timeStamp) / 1000);
+      console.log('This amount of ticks: ' + amountOfTicks); //prints out tick amount so we know this is working ;P
+      for (let i = 0; i < amountOfTicks; i++) {
+        processTick();
+      }
+    }
+  }, []);
 
   // reset the state and clear local storage
   const reset = () => {
