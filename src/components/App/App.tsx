@@ -46,7 +46,10 @@ function App(): JSX.Element {
   };
 
   const gatherRoyalJelly = () => {
-    setRoyalJelly((previousRoyalJelly) => previousRoyalJelly + 0.27 * bees);
+    setRoyalJelly(
+      (previousRoyalJelly) =>
+        previousRoyalJelly + staticConstants.ROYAL_JELLY_BY_BEE * bees
+    );
   };
 
   const incrementNectarClicked = () => {
