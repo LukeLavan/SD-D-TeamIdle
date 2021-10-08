@@ -93,10 +93,14 @@ function App(): JSX.Element {
     }
   };
 
+  const get_total_bees = () => {
+    return bees + drones + workers;
+  };
+
   // calculate new bee cost when bee count updates
   const calcCostOfNextBee = () => {
-    setCostOfNextBeeHoney((bees + 1) ** 2);
-    setCostOfNextBeeRoyalJelly(1.3 ** bees - 1);
+    setCostOfNextBeeHoney((get_total_bees() + 1) ** 2);
+    setCostOfNextBeeRoyalJelly(1.3 ** get_total_bees() - 1);
   };
   useEffect(() => {
     calcCostOfNextBee();
