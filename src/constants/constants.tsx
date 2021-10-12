@@ -14,6 +14,7 @@ const variableDefaults = {
 
 const staticConstants = {
   NECTAR_BY_BEE: 3,
+  ROYAL_JELLY_BY_BEE: 0.27,
   NECTAR_TO_HONEY_COST: 5,
   HONEY_TO_HONEYCOMB_COST: 5
 };
