@@ -112,7 +112,7 @@ function App(): JSX.Element {
   };
   useEffect(() => {
     setCanBuyNextBee(calcCanBuyNextBee());
-  }, [honey, bees, royalJelly]);
+  }, [honey, bees, royalJelly, costOfNextBeeHoney, costOfNextBeeRoyalJelly]);
 
   // re-evaluate if we can buy honeycomb when relevant vars change
   const calcCanBuyHoneycomb = () => {
