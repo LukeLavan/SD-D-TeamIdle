@@ -34,6 +34,10 @@ function App(): JSX.Element {
     'workers',
     variableDefaults.bees
   );
+  const [larvae, setLarvae] = usePersistentState(
+    'larvae',
+    variableDefaults.larvae
+  );
   const [pupae, setPupae] = usePersistentState('pupae', variableDefaults.pupae);
 
   // non-persistent varaibles (can be recalculated on page load)
@@ -47,6 +51,8 @@ function App(): JSX.Element {
   const [canBuyHoneycomb, setCanBuyHoneycomb] = useState(false);
   const [canRefineNectar, setCanRefineNectar] = useState(false);
   const [canAssignBee, setCanAssignBee] = useState(false);
+  const [canUpgradePupaeToLarvae, setCanUpgradePupaeToLarvae] = useState(false);
+  const [canUpgradeLarvaeToBee, setCanUpgradeLarvaeToBee] = useState(false);
 
   // mutators
   const gatherNectar = () => {
@@ -79,6 +85,28 @@ function App(): JSX.Element {
       setHoney(
         (previousHoney) =>
           previousHoney - staticConstants.HONEY_TO_HONEYCOMB_COST
+      );
+    }
+  };
+
+  const upgradePupaeToLarvae = () => {
+    if (canUpgradePupaeToLarvae) {
+      setLarvae((previousLarvae) => previousLarvae + 1);
+      setPupae((previousPupae) => previousPupae - 1);
+      setRoyalJelly(
+        (previousRoyalJelly) =>
+          previousRoyalJelly - staticConstants.PUPAE_TO_LARVAE_COST
+      );
+    }
+  };
+
+  const upgradeLarvaeToBee = () => {
+    if (canUpgradeLarvaeToBee) {
+      setBees((previousBee) => previousBee + 1);
+      setLarvae((previousLarvae) => previousLarvae - 1);
+      setRoyalJelly(
+        (previousRoyalJelly) =>
+          previousRoyalJelly - staticConstants.LARVAE_TO_BEE_COST
       );
     }
   };
@@ -139,6 +167,20 @@ function App(): JSX.Element {
     setCanBuyHoneycomb(calcCanBuyHoneycomb());
   }, [honey]);
 
+  const calcCanUpgradePupaeToLarvae = () => {
+    return royalJelly >= staticConstants.PUPAE_TO_LARVAE_COST && pupae >= 1.0;
+  };
+  useEffect(() => {
+    setCanUpgradePupaeToLarvae(calcCanUpgradePupaeToLarvae());
+  }, [royalJelly, pupae, larvae]);
+
+  const calcCanUpgradeLarvaeToBee = () => {
+    return royalJelly >= staticConstants.LARVAE_TO_BEE_COST && larvae >= 1.0;
+  };
+  useEffect(() => {
+    setCanUpgradeLarvaeToBee(calcCanUpgradeLarvaeToBee());
+  }, [royalJelly, larvae, bees]);
+
   // handle the logic for one tick
   const processTick = () => {
     gatherNectar();
@@ -184,6 +226,7 @@ function App(): JSX.Element {
     setDrones(variableDefaults.drones);
     setWorkers(variableDefaults.workers);
     setPupae(variableDefaults.pupae);
+    setLarvae(variableDefaults.larvae);
   };
 
   return (
@@ -239,6 +282,28 @@ function App(): JSX.Element {
             make some honeycombs!
           </Button>
           cost of honeycombs: {staticConstants.HONEY_TO_HONEYCOMB_COST} honey
+          <br />
+          <br />
+          larvae: {larvae} <br />
+          <Button
+            disabled={!canUpgradePupaeToLarvae}
+            onClick={upgradePupaeToLarvae}
+            color="blue"
+          >
+            upgrade pupae to larvae!
+          </Button>
+          cost of upgrade: {staticConstants.PUPAE_TO_LARVAE_COST} royal jelly
+          <br />
+          <br />
+          bees: {bees} <br />
+          <Button
+            disabled={!canUpgradeLarvaeToBee}
+            onClick={upgradeLarvaeToBee}
+            color="green"
+          >
+            upgrade larvae to bee!
+          </Button>
+          cost of upgrade: {staticConstants.LARVAE_TO_BEE_COST} royal jelly
           <br />
         </div>
       </div>
