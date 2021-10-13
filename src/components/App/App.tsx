@@ -176,14 +176,14 @@ function App(): JSX.Element {
           </Button>
           <br />
           <br />
-          honey: {honey} <br />
+          honey: {honey} / {honeyCap} <br />
           <Button disabled={!canRefineNectar} onClick={refineNectar}>
             refine that nectar!
           </Button>
           cost of honey: {staticConstants.NECTAR_TO_HONEY_COST} nectar <br />
         </div>
         <div className="column middle">
-          bees: {bees} <br />
+          bees: {bees} / {beeCap} <br />
           <Button disabled={!canBuyNextBee} onClick={buyNextBee}>
             gain a bee!
           </Button>
@@ -193,7 +193,7 @@ function App(): JSX.Element {
           royal jelly: {royalJelly.toFixed(2)}
         </div>
         <div className="column right">
-          honeycombs: {honeycomb} <br />
+          honeycombs: {honeycomb} / {honeycombCap} <br />
           <Button
             disabled={!canBuyHoneycomb}
             onClick={buyHoneycomb}
