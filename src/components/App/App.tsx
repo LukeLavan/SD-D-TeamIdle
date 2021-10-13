@@ -31,13 +31,15 @@ function App(): JSX.Element {
     variableDefaults.honeycomb
   );
 
-  //When tech is added that can increase capacities, setter functions can be included
-  const [honeyCap] = usePersistentState(
+  const [honeyCap, setHoneyCap] = usePersistentState(
     'honeyCap',
     resourceCapacities.honeyCap
   );
-  const [beeCap] = usePersistentState('beeCap', resourceCapacities.beeCap);
-  const [honeycombCap] = usePersistentState(
+  const [beeCap, setBeeCap] = usePersistentState(
+    'beeCap',
+    resourceCapacities.beeCap
+  );
+  const [honeycombCap, setHoneycombCap] = usePersistentState(
     'honeycombCap',
     resourceCapacities.honeycombCap
   );
@@ -163,6 +165,9 @@ function App(): JSX.Element {
     setNectar(variableDefaults.nectar);
     setRoyalJelly(variableDefaults.royalJelly);
     setHoneycomb(variableDefaults.honeycomb);
+    setHoneyCap(resourceCapacities.honeyCap);
+    setBeeCap(resourceCapacities.beeCap);
+    setHoneycombCap(resourceCapacities.honeycombCap);
   };
 
   return (
