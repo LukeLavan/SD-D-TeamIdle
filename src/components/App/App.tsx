@@ -8,6 +8,8 @@ import { variableDefaults, staticConstants } from '../../constants/constants';
 
 import Button from '../Button/Button';
 
+import DanceFloor from '../structures/DanceFloor/DanceFloor';
+
 import './App.css';
 
 function App(): JSX.Element {
@@ -50,10 +52,6 @@ function App(): JSX.Element {
       (previousRoyalJelly) =>
         previousRoyalJelly + staticConstants.ROYAL_JELLY_BY_BEE * bees
     );
-  };
-
-  const incrementNectarClicked = () => {
-    setNectar((previousNectar) => previousNectar + 1);
   };
 
   const incrementHoney = () => {
@@ -148,10 +146,7 @@ function App(): JSX.Element {
       <h1>bee game</h1>
       <div className="row">
         <div className="column left">
-          nectar: {nectar} <br />
-          <Button onClick={incrementNectarClicked} color="yellow">
-            buzz buzz buzz
-          </Button>
+          <DanceFloor nectar={nectar} setNectar={setNectar} />
           <br />
           <br />
           honey: {honey} <br />

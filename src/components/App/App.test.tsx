@@ -2,18 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {
-  cleanup,
   Matcher,
   render,
   SelectorMatcherOptions
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { staticConstants } from '../../constants/constants';
-import { stat } from 'fs';
 
 jest.useFakeTimers();
 
