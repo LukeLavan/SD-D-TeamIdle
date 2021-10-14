@@ -9,9 +9,10 @@ import { variableDefaults, staticConstants } from '../../constants/constants';
 import Button from '../Button/Button';
 
 import DanceFloor from '../structures/DanceFloor/DanceFloor';
+import Refinery from '../structures/Refinery/Refinery';
+import Hatchery from '../structures/Hatchery/Hatchery';
 
 import './App.css';
-import Refinery from '../structures/Refinery/Refinery';
 
 function App(): JSX.Element {
   // persistent variables
@@ -61,16 +62,6 @@ function App(): JSX.Element {
       setHoney(
         (previousHoney) =>
           previousHoney - staticConstants.HONEY_TO_HONEYCOMB_COST
-      );
-    }
-  };
-
-  const buyNextBee = () => {
-    if (canBuyNextBee) {
-      setBees((previousBees) => previousBees + 1);
-      setHoney((previousHoney) => previousHoney - costOfNextBeeHoney);
-      setRoyalJelly(
-        (previousRoyalJelly) => previousRoyalJelly - costOfNextBeeRoyalJelly
       );
     }
   };
@@ -145,14 +136,18 @@ function App(): JSX.Element {
           />
         </div>
         <div className="column middle">
-          bees: {bees} <br />
-          <Button disabled={!canBuyNextBee} onClick={buyNextBee}>
-            gain a bee!
-          </Button>
-          cost of next bee: {costOfNextBeeHoney} honey,{' '}
-          {costOfNextBeeRoyalJelly.toFixed(2)} royal jelly
-          <br /> <br /> <br />
-          royal jelly: {royalJelly.toFixed(2)}
+          <Hatchery
+            bees={bees}
+            canBuyNextBee={canBuyNextBee}
+            costOfNextBeeHoney={costOfNextBeeHoney}
+            setCostOfNextBeeHoney={setCostOfNextBeeHoney}
+            costOfNextBeeRoyalJelly={costOfNextBeeRoyalJelly}
+            setCostOfNextBeeRoyalJelly={setCostOfNextBeeRoyalJelly}
+            royalJelly={royalJelly}
+            setRoyalJelly={setRoyalJelly}
+            setBees={setBees}
+            setHoney={setHoney}
+          />
         </div>
         <div className="column right">
           honeycombs: {honeycomb} <br />
