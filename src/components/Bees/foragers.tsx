@@ -36,12 +36,12 @@ function Foragers(): JSX.Element {
           <td className="ForagerId">/MAX</td>
           <td className="ForagerIdButtons">
             <button className="plusButton" onClick={gainAForager}>
-              <BsPatchPlusFill size="2em" style={{ color: '#f0d264' }} />
+              <BsPatchPlusFill className="ButtonIcon" size="3em" />
             </button>
           </td>
           <td className="ForagerIdButtons">
             <button className="minusButton" onClick={lossAForager}>
-              <BsPatchMinusFill size="2em" style={{ color: '#f0d264' }} />
+              <BsPatchMinusFill className="ButtonIcon" size="3em" />
             </button>
           </td>
         </tr>

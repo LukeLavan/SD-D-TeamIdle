@@ -21,7 +21,7 @@
 }
 
 .ForagerIdButtons {
-  width: 70px;
+  width: 100px;
   text-align: right;
 }
 
@@ -45,6 +45,14 @@
 }
 
 .RefinerIdButtons {
-  width: 70px;
+  width: 100px;
   text-align: right;
+}
+
+.ButtonIcon {
+  color: #f0d264;
+}
+
+.ButtonIcon:hover {
+  color: #cb99c5;
 }

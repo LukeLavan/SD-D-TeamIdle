@@ -36,12 +36,12 @@ function Refiners(): JSX.Element {
           <td className="RefinerId">/MAX</td>
           <td className="RefinerIdButtons">
             <button className="plusButton" onClick={gainARefiner}>
-              <BsPatchPlusFill size="2em" style={{ color: '#f0d264' }} />
+              <BsPatchPlusFill className="ButtonIcon" size="3em" />
             </button>
           </td>
           <td className="RefinerIdButtons">
             <button className="minusButton" onClick={lossARefiner}>
-              <BsPatchMinusFill size="2em" style={{ color: '#f0d264' }} />
+              <BsPatchMinusFill className="ButtonIcon" size="3em" />
             </button>
           </td>
         </tr>

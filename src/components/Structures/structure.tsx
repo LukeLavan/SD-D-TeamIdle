@@ -25,9 +25,10 @@ function Structures(): JSX.Element {
         items={ITEMS}
         renderItem={(item) => (
           <Hexagon className={item}>
-            <div className="imageText">{item}</div>
-            <div className="imageTextAmount">0</div>
-            <div className="backgroundHex"></div>
+            <div className="backgroundHex">
+              <div className="imageText">{item}</div>
+              <div className="imageTextAmount">0</div>
+            </div>
           </Hexagon>
         )}
       />
