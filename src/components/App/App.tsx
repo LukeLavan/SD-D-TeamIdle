@@ -127,13 +127,6 @@ function App(): JSX.Element {
     createPupae();
   };
 
-  const calcCanAssignBee = () => {
-    return bees === 0;
-  };
-  useEffect(() => {
-    setCanAssignBee(calcCanAssignBee);
-  }, [bees]);
-
   // process a tick every 1 second
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
@@ -198,6 +191,7 @@ function App(): JSX.Element {
             pupae={pupae}
             setPupae={setPupae}
             canAssignBee={canAssignBee}
+            setCanAssignBee={setCanAssignBee}
             canUpgradePupaeToLarvae={canUpgradePupaeToLarvae}
             setCanUpgradePupaeToLarvae={setCanUpgradePupaeToLarvae}
             larvae={larvae}

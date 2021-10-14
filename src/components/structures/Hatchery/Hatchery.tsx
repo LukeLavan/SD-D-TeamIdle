@@ -28,6 +28,7 @@ interface Props {
   workers: number;
   setWorkers: React.Dispatch<React.SetStateAction<number>>;
   canAssignBee: boolean;
+  setCanAssignBee: React.Dispatch<React.SetStateAction<boolean>>;
   larvae: number;
   setLarvae: React.Dispatch<React.SetStateAction<number>>;
   canUpgradePupaeToLarvae: boolean;
@@ -105,6 +106,13 @@ function Hatchery(props: Props): JSX.Element {
   useEffect(() => {
     props.setCanUpgradeLarvaeToBee(calcCanUpgradeLarvaeToBee());
   }, [props.royalJelly, props.larvae, props.bees]);
+
+  const calcCanAssignBee = () => {
+    return props.bees === 0;
+  };
+  useEffect(() => {
+    props.setCanAssignBee(calcCanAssignBee);
+  }, [props.bees]);
 
   const upgradePupaeToLarvae = () => {
     if (props.canUpgradePupaeToLarvae) {
