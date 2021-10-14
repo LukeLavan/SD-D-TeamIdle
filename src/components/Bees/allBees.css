@@ -1,0 +1,50 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+#BeesTable {
+  margin: 20px;
+}
+
+.BeeTd {
+  width: 100px;
+  text-align: right;
+}
+
+#ForagersTable {
+  margin: 20px;
+}
+
+.ForagerId {
+  width: 100px;
+  text-align: right;
+}
+
+.ForagerIdButtons {
+  width: 70px;
+  text-align: right;
+}
+
+.plusButton {
+  background-color: Transparent;
+  border-color: Transparent;
+}
+
+.minusButton {
+  background-color: Transparent;
+  border-color: Transparent;
+}
+
+#RefinersTable {
+  margin: 20px;
+}
+
+.RefinerId {
+  width: 100px;
+  text-align: right;
+}
+
+.RefinerIdButtons {
+  width: 70px;
+  text-align: right;
+}

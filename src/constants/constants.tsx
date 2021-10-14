@@ -9,7 +9,9 @@ const variableDefaults = {
   costOfNextBeeRoyalJelly: 0,
   nectar: 0,
   royalJelly: 0,
-  honeycomb: 0
+  honeycomb: 0,
+  foragers: 0,
+  refiners: 0
 };
 
 const staticConstants = {

@@ -5,11 +5,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/App';
+import Beehive from './components/Main_Page/FrontPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Beehive />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,25 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+#Left_Side_Beehive {
+  margin-top: 20px;
+  float: left;
+  width: 40%;
+  text-align: left;
+}
+
+#Right_Side_Beehive {
+  position: absolute;
+  right: 5%;
+  width: 50%;
+  overflow: hidden;
+}
+
+#ResourceTable {
+  margin-top: 20px;
+}
+
+#BeeTypeTable {
+  margin-top: 200px;
+}
