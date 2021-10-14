@@ -43,27 +43,72 @@ function Schedule(props: Props): JSX.Element {
     }
   };
 
+  const canAssignRefinery = () =>
+    props.workersAssignedRefinery < props.levelRefinery && props.workers > 0;
+  const assignRefinery = () => {
+    if (canAssignRefinery()) {
+      props.setWorkers((previousWorkers) => previousWorkers - 1);
+      props.setWorkersAssignedRefinery(
+        (previousWorkers) => previousWorkers + 1
+      );
+    }
+  };
+  const canUnassignRefinery = () => props.workersAssignedRefinery > 0;
+  const unassignRefinery = () => {
+    if (canUnassignRefinery()) {
+      props.setWorkersAssignedRefinery(
+        (previousWorkers) => previousWorkers - 1
+      );
+      props.setWorkers((previousWorkers) => previousWorkers + 1);
+    }
+  };
+
   return (
     <div className="Schedule">
-      workers assigned to Dance Floor: {props.workersAssignedDanceFloor}
-      <div className="row">
-        <div className="column left">
-          <Button
-            onClick={assignDanceFloor}
-            disabled={!canAssignDanceFloor()}
-            size="small"
-          >
-            +
-          </Button>
+      <div className="Schedule DanceFloor">
+        workers assigned to Dance Floor: {props.workersAssignedDanceFloor}
+        <div className="row">
+          <div className="column left">
+            <Button
+              onClick={assignDanceFloor}
+              disabled={!canAssignDanceFloor()}
+              size="small"
+            >
+              +
+            </Button>
+          </div>
+          <div className="column right">
+            <Button
+              onClick={unassignDanceFloor}
+              disabled={!canUnassignDanceFloor()}
+              size="small"
+            >
+              -
+            </Button>
+          </div>
         </div>
-        <div className="column right">
-          <Button
-            onClick={unassignDanceFloor}
-            disabled={!canUnassignDanceFloor()}
-            size="small"
-          >
-            -
-          </Button>
+      </div>
+      <div className="Schedule Refinery">
+        workers assigned to Refinery: {props.workersAssignedRefinery}
+        <div className="row">
+          <div className="column left">
+            <Button
+              onClick={assignRefinery}
+              disabled={!canAssignRefinery()}
+              size="small"
+            >
+              +
+            </Button>
+          </div>
+          <div className="column right">
+            <Button
+              onClick={unassignRefinery}
+              disabled={!canUnassignRefinery()}
+              size="small"
+            >
+              -
+            </Button>
+          </div>
         </div>
       </div>
     </div>

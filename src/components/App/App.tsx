@@ -110,6 +110,16 @@ function App(): JSX.Element {
     );
   };
 
+  const refineNectar = () => {
+    if (canRefineNectar) {
+      setNectar(
+        (previousNectar) =>
+          previousNectar - staticConstants.NECTAR_TO_HONEY_COST
+      );
+      setHoney((previousHoney) => previousHoney + 1);
+    }
+  };
+
   const gatherRoyalJelly = () => {
     setRoyalJelly(
       (previousRoyalJelly) =>
@@ -135,6 +145,7 @@ function App(): JSX.Element {
   // handle the logic for one tick
   const processTick = () => {
     gatherNectar();
+    for (let i = 0; i < workersAssignedRefinery; ++i) refineNectar();
     gatherRoyalJelly();
     createPupae();
   };
@@ -160,6 +171,13 @@ function App(): JSX.Element {
     setWorkers(variableDefaults.workers);
     setPupae(variableDefaults.pupae);
     setLarvae(variableDefaults.larvae);
+    setWorkersAssignedDanceFloor(variableDefaults.assignedWorkers.DanceFloor);
+    setWorkersAssignedRefinery(variableDefaults.assignedWorkers.Refinery);
+    setWorkersAssignedHatchery(variableDefaults.assignedWorkers.Hatchery);
+    setWorkersAssignedFactory(variableDefaults.assignedWorkers.Factory);
+
+    setCostOfNextBeeHoney(variableDefaults.costOfNextBeeHoney);
+    setCostOfNextBeeRoyalJelly(variableDefaults.costOfNextBeeRoyalJelly);
   };
 
   return (
@@ -172,6 +190,7 @@ function App(): JSX.Element {
             setNectar={setNectar}
             levelDanceFloor={levelDanceFloor}
             workersAssignedDanceFloor={workersAssignedDanceFloor}
+            workersAssignedRefinery={workersAssignedRefinery}
           />
           <br />
           <Refinery
