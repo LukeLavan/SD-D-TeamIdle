@@ -7,11 +7,14 @@ import Button from '../../Button/Button';
 interface Props {
   nectar: number;
   setNectar: React.Dispatch<React.SetStateAction<number>>;
+  levelDanceFloor: number;
 }
 
 function DanceFloor(props: Props): JSX.Element {
   const incrementNectarClicked = () => {
-    props.setNectar((previousNectar: number) => previousNectar + 1);
+    props.setNectar(
+      (previousNectar: number) => previousNectar + props.levelDanceFloor
+    );
   };
 
   return (
@@ -20,6 +23,7 @@ function DanceFloor(props: Props): JSX.Element {
       <Button onClick={incrementNectarClicked} color="yellow">
         buzz buzz buzz
       </Button>
+      <br />
     </div>
   );
 }

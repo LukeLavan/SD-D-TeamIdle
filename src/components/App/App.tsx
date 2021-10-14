@@ -108,8 +108,11 @@ function App(): JSX.Element {
       <h1>bee game</h1>
       <div className="row">
         <div className="column left">
-          <DanceFloor nectar={nectar} setNectar={setNectar} />
-          <br />
+          <DanceFloor
+            nectar={nectar}
+            setNectar={setNectar}
+            levelDanceFloor={levelDanceFloor}
+          />
           <br />
           <Refinery
             honey={honey}
