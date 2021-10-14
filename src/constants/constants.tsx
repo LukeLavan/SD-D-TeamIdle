@@ -5,6 +5,10 @@
 const variableDefaults = {
   honey: 0,
   bees: 0,
+  drones: 0,
+  workers: 0,
+  pupae: 0,
+  larvae: 0,
   costOfNextBeeHoney: 1,
   costOfNextBeeRoyalJelly: 0,
   nectar: 0,
@@ -46,7 +50,10 @@ const staticConstants = {
       initial: 5,
       scaling: 1.1
     }
-  }
+  },
+  PUPAE_BY_DRONE: 0.1,
+  PUPAE_TO_LARVAE_COST: 5,
+  LARVAE_TO_BEE_COST: 5
 };
 
 export { variableDefaults, staticConstants };

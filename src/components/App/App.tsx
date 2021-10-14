@@ -68,7 +68,19 @@ function App(): JSX.Element {
       'workersAssignedFactory',
       variableDefaults.assignedWorkers.Factory
     );
-  // TODO: merge the give-bees-jobs branch and use workers instead of bees
+  const [drones, setDrones] = usePersistentState(
+    'drones',
+    variableDefaults.bees
+  );
+  const [workers, setWorkers] = usePersistentState(
+    'workers',
+    variableDefaults.bees
+  );
+  const [larvae, setLarvae] = usePersistentState(
+    'larvae',
+    variableDefaults.larvae
+  );
+  const [pupae, setPupae] = usePersistentState('pupae', variableDefaults.pupae);
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
@@ -84,6 +96,9 @@ function App(): JSX.Element {
   const [canUpgradeRefinery, setCanUpgradeRefinery] = useState(false);
   const [canUpgradeHatchery, setCanUpgradeHatchery] = useState(false);
   const [canUpgradeFactory, setCanUpgradeFactory] = useState(false);
+  const [canAssignBee, setCanAssignBee] = useState(false);
+  const [canUpgradePupaeToLarvae, setCanUpgradePupaeToLarvae] = useState(false);
+  const [canUpgradeLarvaeToBee, setCanUpgradeLarvaeToBee] = useState(false);
 
   // mutators
   const gatherNectar = () => {
@@ -99,11 +114,25 @@ function App(): JSX.Element {
     );
   };
 
+  const createPupae = () => {
+    setPupae(
+      (previousPupae) => previousPupae + drones * staticConstants.PUPAE_BY_DRONE
+    );
+  };
+
   // handle the logic for one tick
   const processTick = () => {
     gatherNectar();
     gatherRoyalJelly();
+    createPupae();
   };
+
+  const calcCanAssignBee = () => {
+    return bees === 0;
+  };
+  useEffect(() => {
+    setCanAssignBee(calcCanAssignBee);
+  }, [bees]);
 
   // process a tick every 1 second
   useEffect(() => {
@@ -122,6 +151,10 @@ function App(): JSX.Element {
     setLevelRefinery(variableDefaults.structureLevels.Refinery);
     setLevelHatchery(variableDefaults.structureLevels.Hatchery);
     setLevelFactory(variableDefaults.structureLevels.Factory);
+    setDrones(variableDefaults.drones);
+    setWorkers(variableDefaults.workers);
+    setPupae(variableDefaults.pupae);
+    setLarvae(variableDefaults.larvae);
   };
 
   return (
@@ -147,6 +180,7 @@ function App(): JSX.Element {
         <div className="column middle">
           <Hatchery
             bees={bees}
+            setBees={setBees}
             canBuyNextBee={canBuyNextBee}
             setCanBuyNextBee={setCanBuyNextBee}
             costOfNextBeeHoney={costOfNextBeeHoney}
@@ -155,9 +189,21 @@ function App(): JSX.Element {
             setCostOfNextBeeRoyalJelly={setCostOfNextBeeRoyalJelly}
             royalJelly={royalJelly}
             setRoyalJelly={setRoyalJelly}
-            setBees={setBees}
             honey={honey}
             setHoney={setHoney}
+            workers={workers}
+            setWorkers={setWorkers}
+            drones={drones}
+            setDrones={setDrones}
+            pupae={pupae}
+            setPupae={setPupae}
+            canAssignBee={canAssignBee}
+            canUpgradePupaeToLarvae={canUpgradePupaeToLarvae}
+            setCanUpgradePupaeToLarvae={setCanUpgradePupaeToLarvae}
+            larvae={larvae}
+            setLarvae={setLarvae}
+            canUpgradeLarvaeToBee={canUpgradeLarvaeToBee}
+            setCanUpgradeLarvaeToBee={setCanUpgradeLarvaeToBee}
           />
         </div>
         <div className="column right">
@@ -169,6 +215,7 @@ function App(): JSX.Element {
             setCanBuyHoneycomb={setCanBuyHoneycomb}
             honey={honey}
           />
+          <br />
           <br />
         </div>
       </div>
@@ -197,6 +244,7 @@ function App(): JSX.Element {
           />
         </div>
         <div className="column middle">
+          <br /> <br /> <br />
           <Button onClick={reset} color={'red'} size={'small'}>
             reset
           </Button>
