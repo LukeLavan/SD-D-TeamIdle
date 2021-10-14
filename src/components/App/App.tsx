@@ -11,6 +11,7 @@ import Button from '../Button/Button';
 import DanceFloor from '../structures/DanceFloor/DanceFloor';
 
 import './App.css';
+import Refinery from '../structures/Refinery/Refinery';
 
 function App(): JSX.Element {
   // persistent variables
@@ -54,10 +55,6 @@ function App(): JSX.Element {
     );
   };
 
-  const incrementHoney = () => {
-    setHoney((previousHoney) => previousHoney + 1);
-  };
-
   const buyHoneycomb = () => {
     if (canBuyHoneycomb) {
       setHoneycomb((previousHoneycomb) => previousHoneycomb + 1);
@@ -87,15 +84,6 @@ function App(): JSX.Element {
     calcCostOfNextBee();
   }, [bees]);
 
-  const refineNectar = () => {
-    if (canRefineNectar) {
-      setNectar(
-        (previousNectar) =>
-          previousNectar - staticConstants.NECTAR_TO_HONEY_COST
-      );
-      incrementHoney();
-    }
-  };
   // re-evaluate if we can refine nectar to honey when relevant vars change
   const calcCanRefineNectar = () => {
     return nectar >= staticConstants.NECTAR_TO_HONEY_COST;
@@ -149,11 +137,12 @@ function App(): JSX.Element {
           <DanceFloor nectar={nectar} setNectar={setNectar} />
           <br />
           <br />
-          honey: {honey} <br />
-          <Button disabled={!canRefineNectar} onClick={refineNectar}>
-            refine that nectar!
-          </Button>
-          cost of honey: {staticConstants.NECTAR_TO_HONEY_COST} nectar <br />
+          <Refinery
+            honey={honey}
+            setHoney={setHoney}
+            canRefineNectar={canRefineNectar}
+            setNectar={setNectar}
+          />
         </div>
         <div className="column middle">
           bees: {bees} <br />
