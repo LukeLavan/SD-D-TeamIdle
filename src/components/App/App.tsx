@@ -13,6 +13,7 @@ import Refinery from '../structures/Refinery/Refinery';
 import Hatchery from '../structures/Hatchery/Hatchery';
 
 import './App.css';
+import Factory from '../structures/Factory/Factory';
 
 function App(): JSX.Element {
   // persistent variables
@@ -54,16 +55,6 @@ function App(): JSX.Element {
       (previousRoyalJelly) =>
         previousRoyalJelly + staticConstants.ROYAL_JELLY_BY_BEE * bees
     );
-  };
-
-  const buyHoneycomb = () => {
-    if (canBuyHoneycomb) {
-      setHoneycomb((previousHoneycomb) => previousHoneycomb + 1);
-      setHoney(
-        (previousHoney) =>
-          previousHoney - staticConstants.HONEY_TO_HONEYCOMB_COST
-      );
-    }
   };
 
   // calculate new bee cost when bee count updates
@@ -150,15 +141,12 @@ function App(): JSX.Element {
           />
         </div>
         <div className="column right">
-          honeycombs: {honeycomb} <br />
-          <Button
-            disabled={!canBuyHoneycomb}
-            onClick={buyHoneycomb}
-            color="yellow"
-          >
-            make some honeycombs!
-          </Button>
-          cost of honeycombs: {staticConstants.HONEY_TO_HONEYCOMB_COST} honey
+          <Factory
+            honeycomb={honeycomb}
+            setHoneycomb={setHoneycomb}
+            canBuyHoneycomb={canBuyHoneycomb}
+            setHoney={setHoney}
+          />
           <br />
         </div>
       </div>
