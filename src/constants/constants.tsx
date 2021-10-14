@@ -15,6 +15,12 @@ const variableDefaults = {
     Refinery: 1,
     Hatchery: 0,
     Factory: 1
+  },
+  assignedWorkers: {
+    DanceFloor: 0,
+    Refinery: 0,
+    Hatchery: 0,
+    Factory: 0
   }
 };
 

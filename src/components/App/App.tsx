@@ -48,6 +48,27 @@ function App(): JSX.Element {
     'levelFactory',
     variableDefaults.structureLevels.Factory
   );
+  const [workersAssignedDanceFloor, setWorkersAssignedDanceFloor] =
+    usePersistentState(
+      'workersAssignedDanceFloor',
+      variableDefaults.assignedWorkers.DanceFloor
+    );
+  const [workersAssignedRefinery, setWorkersAssignedRefinery] =
+    usePersistentState(
+      'workersAssignedRefinery',
+      variableDefaults.assignedWorkers.Refinery
+    );
+  const [workersAssignedHatchery, setWorkersAssignedHatchery] =
+    usePersistentState(
+      'workersAssignedHatchery',
+      variableDefaults.assignedWorkers.Hatchery
+    );
+  const [workersAssignedFactory, setWorkersAssignedFactory] =
+    usePersistentState(
+      'workersAssignedFactory',
+      variableDefaults.assignedWorkers.Factory
+    );
+  // TODO: merge the give-bees-jobs branch and use workers instead of bees
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
