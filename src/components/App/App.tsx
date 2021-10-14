@@ -101,6 +101,8 @@ function App(): JSX.Element {
   const [canUpgradePupaeToLarvae, setCanUpgradePupaeToLarvae] = useState(false);
   const [canUpgradeLarvaeToBee, setCanUpgradeLarvaeToBee] = useState(false);
 
+  const [restartTimer, setRestartTimer] = useState(false);
+
   // mutators
   const gatherNectar = () => {
     setNectar(
@@ -148,13 +150,17 @@ function App(): JSX.Element {
     for (let i = 0; i < workersAssignedRefinery; ++i) refineNectar();
     gatherRoyalJelly();
     createPupae();
+    setRestartTimer(true);
   };
 
   // process a tick every 1 second
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
-    return () => clearInterval(timer);
-  }, [workersAssignedDanceFloor]); // TODO: come up with a better way to do this
+    return () => {
+      clearInterval(timer);
+      setRestartTimer(false);
+    };
+  }, [restartTimer]);
 
   // reset the state and clear local storage
   const reset = () => {
