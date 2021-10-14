@@ -57,39 +57,6 @@ function App(): JSX.Element {
     );
   };
 
-  // calculate new bee cost when bee count updates
-  const calcCostOfNextBee = () => {
-    setCostOfNextBeeHoney((bees + 1) ** 2);
-    setCostOfNextBeeRoyalJelly(1.3 ** bees - 1);
-  };
-  useEffect(() => {
-    calcCostOfNextBee();
-  }, [bees]);
-
-  // re-evaluate if we can refine nectar to honey when relevant vars change
-  const calcCanRefineNectar = () => {
-    return nectar >= staticConstants.NECTAR_TO_HONEY_COST;
-  };
-  useEffect(() => {
-    setCanRefineNectar(calcCanRefineNectar());
-  }, [honey, nectar]);
-
-  // re-evaluate if we can buy next bee when relevant vars change
-  const calcCanBuyNextBee = () => {
-    return honey >= costOfNextBeeHoney && royalJelly >= costOfNextBeeRoyalJelly;
-  };
-  useEffect(() => {
-    setCanBuyNextBee(calcCanBuyNextBee());
-  }, [honey, bees, royalJelly]);
-
-  // re-evaluate if we can buy honeycomb when relevant vars change
-  const calcCanBuyHoneycomb = () => {
-    return honey >= staticConstants.HONEY_TO_HONEYCOMB_COST;
-  };
-  useEffect(() => {
-    setCanBuyHoneycomb(calcCanBuyHoneycomb());
-  }, [honey]);
-
   // handle the logic for one tick
   const processTick = () => {
     gatherNectar();
@@ -123,6 +90,8 @@ function App(): JSX.Element {
             honey={honey}
             setHoney={setHoney}
             canRefineNectar={canRefineNectar}
+            setCanRefineNectar={setCanRefineNectar}
+            nectar={nectar}
             setNectar={setNectar}
           />
         </div>
@@ -130,6 +99,7 @@ function App(): JSX.Element {
           <Hatchery
             bees={bees}
             canBuyNextBee={canBuyNextBee}
+            setCanBuyNextBee={setCanBuyNextBee}
             costOfNextBeeHoney={costOfNextBeeHoney}
             setCostOfNextBeeHoney={setCostOfNextBeeHoney}
             costOfNextBeeRoyalJelly={costOfNextBeeRoyalJelly}
@@ -137,6 +107,7 @@ function App(): JSX.Element {
             royalJelly={royalJelly}
             setRoyalJelly={setRoyalJelly}
             setBees={setBees}
+            honey={honey}
             setHoney={setHoney}
           />
         </div>
@@ -146,6 +117,8 @@ function App(): JSX.Element {
             setHoneycomb={setHoneycomb}
             canBuyHoneycomb={canBuyHoneycomb}
             setHoney={setHoney}
+            setCanBuyHoneycomb={setCanBuyHoneycomb}
+            honey={honey}
           />
           <br />
         </div>
