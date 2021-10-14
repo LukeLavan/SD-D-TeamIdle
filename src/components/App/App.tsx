@@ -11,9 +11,10 @@ import Button from '../Button/Button';
 import DanceFloor from '../structures/DanceFloor/DanceFloor';
 import Refinery from '../structures/Refinery/Refinery';
 import Hatchery from '../structures/Hatchery/Hatchery';
+import Factory from '../structures/Factory/Factory';
+import Construction from '../Construction/Construction';
 
 import './App.css';
-import Factory from '../structures/Factory/Factory';
 
 function App(): JSX.Element {
   // persistent variables
@@ -31,6 +32,22 @@ function App(): JSX.Element {
     'honeycomb',
     variableDefaults.honeycomb
   );
+  const [levelDanceFloor, setLevelDanceFloor] = usePersistentState(
+    'levelDanceFloor',
+    variableDefaults.structureLevels.DanceFloor
+  );
+  const [levelRefinery, setLevelRefinery] = usePersistentState(
+    'levelRefinery',
+    variableDefaults.structureLevels.Refinery
+  );
+  const [levelHatchery, setLevelHatchery] = usePersistentState(
+    'levelHatchery',
+    variableDefaults.structureLevels.Hatchery
+  );
+  const [levelFactory, setLevelFactory] = usePersistentState(
+    'levelFactory',
+    variableDefaults.structureLevels.Factory
+  );
 
   // non-persistent varaibles (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
@@ -42,6 +59,10 @@ function App(): JSX.Element {
   const [canBuyNextBee, setCanBuyNextBee] = useState(false);
   const [canBuyHoneycomb, setCanBuyHoneycomb] = useState(false);
   const [canRefineNectar, setCanRefineNectar] = useState(false);
+  const [canUpgradeDanceFloor, setCanUpgradeDanceFloor] = useState(false);
+  const [canUpgradeRefinery, setCanUpgradeRefinery] = useState(false);
+  const [canUpgradeHatchery, setCanUpgradeHatchery] = useState(false);
+  const [canUpgradeFactory, setCanUpgradeFactory] = useState(false);
 
   // mutators
   const gatherNectar = () => {
@@ -76,6 +97,10 @@ function App(): JSX.Element {
     setNectar(variableDefaults.nectar);
     setRoyalJelly(variableDefaults.royalJelly);
     setHoneycomb(variableDefaults.honeycomb);
+    setLevelDanceFloor(variableDefaults.structureLevels.DanceFloor);
+    setLevelRefinery(variableDefaults.structureLevels.Refinery);
+    setLevelHatchery(variableDefaults.structureLevels.Hatchery);
+    setLevelFactory(variableDefaults.structureLevels.Factory);
   };
 
   return (
@@ -125,7 +150,28 @@ function App(): JSX.Element {
       </div>
       <br />
       <div className="row">
-        <div className="column left"></div>
+        <div className="column left">
+          <Construction
+            honeycomb={honeycomb}
+            setHoneycomb={setHoneycomb}
+            levelDanceFloor={levelDanceFloor}
+            setLevelDanceFloor={setLevelDanceFloor}
+            canUpgradeDanceFloor={canUpgradeDanceFloor}
+            setCanUpgradeDanceFloor={setCanUpgradeDanceFloor}
+            levelRefinery={levelRefinery}
+            setLevelRefinery={setLevelRefinery}
+            canUpgradeRefinery={canUpgradeRefinery}
+            setCanUpgradeRefinery={setCanUpgradeRefinery}
+            levelHatchery={levelHatchery}
+            setLevelHatchery={setLevelHatchery}
+            canUpgradeHatchery={canUpgradeHatchery}
+            setCanUpgradeHatchery={setCanUpgradeHatchery}
+            levelFactory={levelFactory}
+            setLevelFactory={setLevelFactory}
+            canUpgradeFactory={canUpgradeFactory}
+            setCanUpgradeFactory={setCanUpgradeFactory}
+          />
+        </div>
         <div className="column middle">
           <Button onClick={reset} color={'red'} size={'small'}>
             reset
