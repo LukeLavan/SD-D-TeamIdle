@@ -4,7 +4,11 @@
 
 import { usePersistentState } from '../../PersistentState';
 import { useState, useEffect } from 'react';
-import { variableDefaults, staticConstants } from '../../constants/constants';
+import {
+  variableDefaults,
+  staticConstants,
+  resourceCapacities
+} from '../../constants/constants';
 
 import Button from '../Button/Button';
 
@@ -27,7 +31,20 @@ function App(): JSX.Element {
     variableDefaults.honeycomb
   );
 
-  // non-persistent varaibles (can be recalculated on page load)
+  const [honeyCap, setHoneyCap] = usePersistentState(
+    'honeyCap',
+    resourceCapacities.honeyCap
+  );
+  const [beeCap, setBeeCap] = usePersistentState(
+    'beeCap',
+    resourceCapacities.beeCap
+  );
+  const [honeycombCap, setHoneycombCap] = usePersistentState(
+    'honeycombCap',
+    resourceCapacities.honeycombCap
+  );
+
+  // non-persistent variables (can be recalculated on page load)
   const [costOfNextBeeHoney, setCostOfNextBeeHoney] = useState(
     variableDefaults.costOfNextBeeHoney
   );
@@ -100,7 +117,7 @@ function App(): JSX.Element {
   };
   // re-evaluate if we can refine nectar to honey when relevant vars change
   const calcCanRefineNectar = () => {
-    return nectar >= staticConstants.NECTAR_TO_HONEY_COST;
+    return nectar >= staticConstants.NECTAR_TO_HONEY_COST && honey < honeyCap;
   };
   useEffect(() => {
     setCanRefineNectar(calcCanRefineNectar());
@@ -108,19 +125,26 @@ function App(): JSX.Element {
 
   // re-evaluate if we can buy next bee when relevant vars change
   const calcCanBuyNextBee = () => {
-    return honey >= costOfNextBeeHoney && royalJelly >= costOfNextBeeRoyalJelly;
+    return (
+      honey >= costOfNextBeeHoney &&
+      royalJelly >= costOfNextBeeRoyalJelly &&
+      bees < beeCap
+    );
   };
   useEffect(() => {
     setCanBuyNextBee(calcCanBuyNextBee());
-  }, [honey, bees, royalJelly]);
+  }, [honey, bees, royalJelly, costOfNextBeeHoney, costOfNextBeeRoyalJelly]);
 
   // re-evaluate if we can buy honeycomb when relevant vars change
   const calcCanBuyHoneycomb = () => {
-    return honey >= staticConstants.HONEY_TO_HONEYCOMB_COST;
+    return (
+      honey >= staticConstants.HONEY_TO_HONEYCOMB_COST &&
+      honeycomb < honeycombCap
+    );
   };
   useEffect(() => {
     setCanBuyHoneycomb(calcCanBuyHoneycomb());
-  }, [honey]);
+  }, [honey, honeycomb]);
 
   // handle the logic for one tick
   const processTick = () => {
@@ -141,6 +165,9 @@ function App(): JSX.Element {
     setNectar(variableDefaults.nectar);
     setRoyalJelly(variableDefaults.royalJelly);
     setHoneycomb(variableDefaults.honeycomb);
+    setHoneyCap(resourceCapacities.honeyCap);
+    setBeeCap(resourceCapacities.beeCap);
+    setHoneycombCap(resourceCapacities.honeycombCap);
   };
 
   return (
@@ -154,14 +181,14 @@ function App(): JSX.Element {
           </Button>
           <br />
           <br />
-          honey: {honey} <br />
+          honey: {honey} / {honeyCap} <br />
           <Button disabled={!canRefineNectar} onClick={refineNectar}>
             refine that nectar!
           </Button>
           cost of honey: {staticConstants.NECTAR_TO_HONEY_COST} nectar <br />
         </div>
         <div className="column middle">
-          bees: {bees} <br />
+          bees: {bees} / {beeCap} <br />
           <Button disabled={!canBuyNextBee} onClick={buyNextBee}>
             gain a bee!
           </Button>
@@ -171,7 +198,7 @@ function App(): JSX.Element {
           royal jelly: {royalJelly.toFixed(2)}
         </div>
         <div className="column right">
-          honeycombs: {honeycomb} <br />
+          honeycombs: {honeycomb} / {honeycombCap} <br />
           <Button
             disabled={!canBuyHoneycomb}
             onClick={buyHoneycomb}

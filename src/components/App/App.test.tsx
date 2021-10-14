@@ -169,3 +169,24 @@ test('Multiple bees automatically harvest nectar and royal jelly', () => {
 
   userEvent.click(getByText('reset'));
 });
+
+test('Honey cannot be incremented beyond the honeyCap', () => {
+  const { getByText } = render(<App />);
+  checkInitialValues(getByText);
+
+  gatherResources(600, 110, 0, getByText);
+  expect(getByText(/nectar: /i)).toHaveTextContent('nectar: 100');
+  expect(getByText(/honey: /i)).toHaveTextContent('honey: 100');
+});
+
+test('Clicking bee button extremely fast does not cause honey value to become negative', () => {
+  const { getByText } = render(<App />);
+  checkInitialValues(getByText);
+
+  gatherResources(10, 2, 0, getByText);
+  userEvent.click(getByText('gain a bee!'));
+  userEvent.click(getByText('gain a bee!'));
+
+  expect(getByText(/honey: /i)).toHaveTextContent('honey: 1');
+  expect(getByText(/bees: /i)).toHaveTextContent('bees: 1');
+});
