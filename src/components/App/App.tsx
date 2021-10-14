@@ -13,6 +13,7 @@ import Refinery from '../structures/Refinery/Refinery';
 import Hatchery from '../structures/Hatchery/Hatchery';
 import Factory from '../structures/Factory/Factory';
 import Construction from '../Construction/Construction';
+import Schedule from '../Schedule/Schedule';
 
 import './App.css';
 
@@ -103,7 +104,9 @@ function App(): JSX.Element {
   // mutators
   const gatherNectar = () => {
     setNectar(
-      (previousNectar) => previousNectar + bees * staticConstants.NECTAR_BY_BEE
+      (previousNectar) =>
+        previousNectar +
+        workersAssignedDanceFloor * staticConstants.NECTAR_BY_BEE
     );
   };
 
@@ -120,6 +123,15 @@ function App(): JSX.Element {
     );
   };
 
+  const getTotalBees = () =>
+    bees +
+    drones +
+    workers +
+    workersAssignedDanceFloor +
+    workersAssignedRefinery +
+    workersAssignedHatchery +
+    workersAssignedFactory;
+
   // handle the logic for one tick
   const processTick = () => {
     gatherNectar();
@@ -131,7 +143,7 @@ function App(): JSX.Element {
   useEffect(() => {
     const timer = setInterval(processTick, 1000);
     return () => clearInterval(timer);
-  }, [bees]); // TODO: come up with a better way to do this
+  }, [workersAssignedDanceFloor]); // TODO: come up with a better way to do this
 
   // reset the state and clear local storage
   const reset = () => {
@@ -159,6 +171,7 @@ function App(): JSX.Element {
             nectar={nectar}
             setNectar={setNectar}
             levelDanceFloor={levelDanceFloor}
+            workersAssignedDanceFloor={workersAssignedDanceFloor}
           />
           <br />
           <Refinery
@@ -174,6 +187,7 @@ function App(): JSX.Element {
           <Hatchery
             bees={bees}
             setBees={setBees}
+            getTotalBees={getTotalBees}
             canBuyNextBee={canBuyNextBee}
             setCanBuyNextBee={setCanBuyNextBee}
             costOfNextBeeHoney={costOfNextBeeHoney}
@@ -243,7 +257,24 @@ function App(): JSX.Element {
             reset
           </Button>
         </div>
-        <div className="column right"></div>
+        <div className="column right">
+          <Schedule
+            workers={workers}
+            setWorkers={setWorkers}
+            workersAssignedDanceFloor={workersAssignedDanceFloor}
+            setWorkersAssignedDanceFloor={setWorkersAssignedDanceFloor}
+            workersAssignedRefinery={workersAssignedRefinery}
+            setWorkersAssignedRefinery={setWorkersAssignedRefinery}
+            workersAssignedHatchery={workersAssignedHatchery}
+            setWorkersAssignedHatchery={setWorkersAssignedHatchery}
+            workersAssignedFactory={workersAssignedFactory}
+            setWorkersAssignedFactory={setWorkersAssignedFactory}
+            levelDanceFloor={levelDanceFloor}
+            levelRefinery={levelRefinery}
+            levelHatchery={levelHatchery}
+            levelFactory={levelFactory}
+          />
+        </div>
       </div>
     </div>
   );

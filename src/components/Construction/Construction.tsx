@@ -106,7 +106,10 @@ function Construction(props: Props): JSX.Element {
     <div className="Construction">
       <div className="Construction DanceFloor">
         Dance Floor level: {props.levelDanceFloor} <br />
-        <Button onClick={upgradeDanceFloor} disabled={!props.canUpgradeFactory}>
+        <Button
+          onClick={upgradeDanceFloor}
+          disabled={!props.canUpgradeDanceFloor}
+        >
           upgrade Dance Floor
         </Button>
         cost of next upgrade: {calcCostDanceFloorUpgrade()}

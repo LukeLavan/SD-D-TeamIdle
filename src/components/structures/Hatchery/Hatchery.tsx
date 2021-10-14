@@ -11,6 +11,7 @@ import { staticConstants } from '../../../constants/constants';
 interface Props {
   bees: number;
   setBees: React.Dispatch<React.SetStateAction<number>>;
+  getTotalBees: () => number;
   canBuyNextBee: boolean;
   setCanBuyNextBee: React.Dispatch<React.SetStateAction<boolean>>;
   costOfNextBeeHoney: number;
@@ -64,8 +65,8 @@ function Hatchery(props: Props): JSX.Element {
 
   // calculate new bee cost when bee count updates
   const calcCostOfNextBee = () => {
-    props.setCostOfNextBeeHoney((props.bees + 1) ** 2);
-    props.setCostOfNextBeeRoyalJelly(1.3 ** props.bees - 1);
+    props.setCostOfNextBeeHoney((props.getTotalBees() + 1) ** 2);
+    props.setCostOfNextBeeRoyalJelly(1.3 ** props.getTotalBees() - 1);
   };
   useEffect(() => {
     calcCostOfNextBee();
@@ -138,13 +139,15 @@ function Hatchery(props: Props): JSX.Element {
 
   return (
     <div className="Hatchery">
-      bees: {props.bees} <br />
+      bees: {props.getTotalBees()} <br />
       <Button disabled={!props.canBuyNextBee} onClick={buyNextBee}>
         gain a bee!
       </Button>
       cost of next bee: {props.costOfNextBeeHoney} honey,{' '}
       {props.costOfNextBeeRoyalJelly.toFixed(2)} royal jelly
-      <br /> <br />
+      <br />
+      {props.bees > 0 && <>bees ready to be assigned: {props.bees}</>}
+      <br />
       <div className="row">
         <div className="column left">
           <Button disabled={props.canAssignBee} onClick={beeToDrone}>
@@ -157,7 +160,7 @@ function Hatchery(props: Props): JSX.Element {
           <Button disabled={props.canAssignBee} onClick={beeToWorker}>
             assign a worker
           </Button>
-          workers: {props.workers} <br />
+          idle workers: {props.workers} <br />
         </div>
       </div>
       <br />

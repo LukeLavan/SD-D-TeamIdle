@@ -4,10 +4,13 @@
 
 import Button from '../../Button/Button';
 
+import { staticConstants } from '../../../constants/constants';
+
 interface Props {
   nectar: number;
   setNectar: React.Dispatch<React.SetStateAction<number>>;
   levelDanceFloor: number;
+  workersAssignedDanceFloor: number;
 }
 
 function DanceFloor(props: Props): JSX.Element {
@@ -23,7 +26,14 @@ function DanceFloor(props: Props): JSX.Element {
       <Button onClick={incrementNectarClicked} color="yellow">
         buzz buzz buzz
       </Button>
-      <br />
+      {props.workersAssignedDanceFloor > 0 ? (
+        <>
+          nectar per second:{' '}
+          {props.workersAssignedDanceFloor * staticConstants.NECTAR_BY_BEE}
+        </>
+      ) : (
+        <br />
+      )}
     </div>
   );
 }
