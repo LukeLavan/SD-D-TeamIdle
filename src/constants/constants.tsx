@@ -19,4 +19,12 @@ const staticConstants = {
   HONEY_TO_HONEYCOMB_COST: 5
 };
 
-export { variableDefaults, staticConstants };
+const resourceCapacities = {
+  // nectarCap: 100,
+  honeyCap: 100,
+  beeCap: 10,
+  honeycombCap: 100
+  // royalJellyCap: 100
+};
+
+export { variableDefaults, staticConstants, resourceCapacities };
