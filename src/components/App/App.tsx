@@ -218,6 +218,7 @@ function App(): JSX.Element {
             setCanRefineNectar={setCanRefineNectar}
             nectar={nectar}
             setNectar={setNectar}
+            workersAssignedRefinery={workersAssignedRefinery}
           />
         </div>
         <div className="column middle">

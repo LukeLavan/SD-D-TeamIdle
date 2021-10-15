@@ -15,6 +15,7 @@ interface Props {
   setNectar: React.Dispatch<React.SetStateAction<number>>;
   canRefineNectar: boolean;
   setCanRefineNectar: React.Dispatch<React.SetStateAction<boolean>>;
+  workersAssignedRefinery: number;
 }
 
 function Refinery(props: Props): JSX.Element {
@@ -39,6 +40,11 @@ function Refinery(props: Props): JSX.Element {
     props.setCanRefineNectar(calcCanRefineNectar());
   }, [props.honey, props.nectar]);
 
+  const calcHoneyPerSecond = () => {
+    if (props.nectar < staticConstants.NECTAR_TO_HONEY_COST) return 0;
+    return props.workersAssignedRefinery;
+  };
+
   return (
     <div className="Refinery">
       honey: {props.honey} <br />
@@ -46,6 +52,9 @@ function Refinery(props: Props): JSX.Element {
         refine that nectar!
       </Button>
       cost of honey: {staticConstants.NECTAR_TO_HONEY_COST} nectar <br />
+      {props.workersAssignedRefinery > 0 && (
+        <>honey per second: {calcHoneyPerSecond()} </>
+      )}
     </div>
   );
 }
