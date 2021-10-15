@@ -14,6 +14,7 @@ interface Props {
   setCanBuyHoneycomb: React.Dispatch<React.SetStateAction<boolean>>;
   honey: number;
   setHoney: React.Dispatch<React.SetStateAction<number>>;
+  workersAssignedFactory: number;
 }
 
 function Factory(props: Props): JSX.Element {
@@ -35,6 +36,11 @@ function Factory(props: Props): JSX.Element {
     props.setCanBuyHoneycomb(calcCanBuyHoneycomb());
   }, [props.honey]);
 
+  const calcHoneycombPerSecond = () => {
+    if (props.honey < staticConstants.HONEY_TO_HONEYCOMB_COST) return 0;
+    return props.workersAssignedFactory;
+  };
+
   return (
     <div className="Factory">
       honeycombs: {props.honeycomb} <br />
@@ -45,7 +51,10 @@ function Factory(props: Props): JSX.Element {
       >
         make some honeycombs!
       </Button>
-      cost of honeycombs: {staticConstants.HONEY_TO_HONEYCOMB_COST} honey
+      cost of honeycombs: {staticConstants.HONEY_TO_HONEYCOMB_COST} honey <br />
+      {props.workersAssignedFactory > 0 && (
+        <>honeycomb per second: {calcHoneycombPerSecond()}</>
+      )}
     </div>
   );
 }

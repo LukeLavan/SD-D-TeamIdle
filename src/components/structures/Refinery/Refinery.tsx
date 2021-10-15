@@ -16,6 +16,7 @@ interface Props {
   canRefineNectar: boolean;
   setCanRefineNectar: React.Dispatch<React.SetStateAction<boolean>>;
   workersAssignedRefinery: number;
+  workersAssignedFactory: number;
 }
 
 function Refinery(props: Props): JSX.Element {
@@ -42,7 +43,10 @@ function Refinery(props: Props): JSX.Element {
 
   const calcHoneyPerSecond = () => {
     if (props.nectar < staticConstants.NECTAR_TO_HONEY_COST) return 0;
-    return props.workersAssignedRefinery;
+    return (
+      props.workersAssignedRefinery -
+      props.workersAssignedFactory * staticConstants.HONEY_TO_HONEYCOMB_COST
+    );
   };
 
   return (

@@ -219,6 +219,7 @@ function App(): JSX.Element {
             nectar={nectar}
             setNectar={setNectar}
             workersAssignedRefinery={workersAssignedRefinery}
+            workersAssignedFactory={workersAssignedFactory}
           />
         </div>
         <div className="column middle">
@@ -260,6 +261,7 @@ function App(): JSX.Element {
             setHoney={setHoney}
             setCanBuyHoneycomb={setCanBuyHoneycomb}
             honey={honey}
+            workersAssignedFactory={workersAssignedFactory}
           />
           <br />
           <br />
