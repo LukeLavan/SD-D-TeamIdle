@@ -21,6 +21,14 @@ function DanceFloor(props: Props): JSX.Element {
     );
   };
 
+  const calcNectarPerSecond = () => {
+    const nps =
+      props.workersAssignedDanceFloor * staticConstants.NECTAR_BY_BEE -
+      props.workersAssignedRefinery * staticConstants.NECTAR_TO_HONEY_COST;
+    if (nps < 0 && -nps > props.nectar) return 0;
+    return nps;
+  };
+
   return (
     <div className="DanceFloor">
       nectar: {props.nectar} <br />
@@ -29,12 +37,7 @@ function DanceFloor(props: Props): JSX.Element {
       </Button>
       {props.workersAssignedDanceFloor > 0 ||
       props.workersAssignedRefinery > 0 ? (
-        <>
-          nectar per second:{' '}
-          {props.workersAssignedDanceFloor * staticConstants.NECTAR_BY_BEE -
-            props.workersAssignedRefinery *
-              staticConstants.NECTAR_TO_HONEY_COST}
-        </>
+        <>nectar per second: {calcNectarPerSecond()}</>
       ) : (
         <br />
       )}
