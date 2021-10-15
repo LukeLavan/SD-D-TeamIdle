@@ -28,11 +28,11 @@ function App(): JSX.Element {
   );
   const [drones, setDrones] = usePersistentState(
     'drones',
-    variableDefaults.bees
+    variableDefaults.drones
   );
   const [workers, setWorkers] = usePersistentState(
     'workers',
-    variableDefaults.bees
+    variableDefaults.workers
   );
   const [larvae, setLarvae] = usePersistentState(
     'larvae',
