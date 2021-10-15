@@ -125,7 +125,8 @@ function App(): JSX.Element {
   const gatherRoyalJelly = () => {
     setRoyalJelly(
       (previousRoyalJelly) =>
-        previousRoyalJelly + staticConstants.ROYAL_JELLY_BY_BEE * bees
+        previousRoyalJelly +
+        staticConstants.ROYAL_JELLY_BY_BEE * workersAssignedHatchery
     );
   };
 

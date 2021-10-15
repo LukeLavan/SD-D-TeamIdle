@@ -63,6 +63,29 @@ function Schedule(props: Props): JSX.Element {
     }
   };
 
+  const canAssignHatchery = () =>
+    props.workersAssignedHatchery < props.levelHatchery && props.workers > 0;
+  const assignHatchery = () => {
+    if (canAssignHatchery()) {
+      props.setWorkers((previousWorkers) => previousWorkers - 1);
+      props.setWorkersAssignedHatchery(
+        (previousWorkers) => previousWorkers + 1
+      );
+    }
+  };
+  const canUnassignHatchery = () => props.workersAssignedHatchery > 0;
+  const unassignHatchery = () => {
+    if (canUnassignHatchery()) {
+      props.setWorkersAssignedHatchery(
+        (previousWorkers) => previousWorkers - 1
+      );
+      props.setWorkers((previousWorkers) => previousWorkers + 1);
+    }
+  };
+
+  // TODO: hatchery
+  // TODO: factory
+
   return (
     <div className="Schedule">
       <div className="Schedule DanceFloor">
@@ -104,6 +127,29 @@ function Schedule(props: Props): JSX.Element {
             <Button
               onClick={unassignRefinery}
               disabled={!canUnassignRefinery()}
+              size="small"
+            >
+              -
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className="Schedule Hatchery">
+        workers assigned to Hatchery: {props.workersAssignedHatchery}
+        <div className="row">
+          <div className="column left">
+            <Button
+              onClick={assignHatchery}
+              disabled={!canAssignHatchery()}
+              size="small"
+            >
+              +
+            </Button>
+          </div>
+          <div className="column right">
+            <Button
+              onClick={unassignHatchery}
+              disabled={!canUnassignHatchery()}
               size="small"
             >
               -
