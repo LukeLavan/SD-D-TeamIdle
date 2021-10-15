@@ -93,14 +93,14 @@ function App(): JSX.Element {
     }
   };
 
-  const get_total_bees = () => {
+  const getTotalBees = () => {
     return bees + drones + workers;
   };
 
   // calculate new bee cost when bee count updates
   const calcCostOfNextBee = () => {
-    setCostOfNextBeeHoney((get_total_bees() + 1) ** 2);
-    setCostOfNextBeeRoyalJelly(1.3 ** get_total_bees() - 1);
+    setCostOfNextBeeHoney((getTotalBees() + 1) ** 2);
+    setCostOfNextBeeRoyalJelly(1.3 ** getTotalBees() - 1);
   };
   useEffect(() => {
     calcCostOfNextBee();
@@ -154,7 +154,7 @@ function App(): JSX.Element {
   }, [bees]);
 
   const beeToDrone = () => {
-    if (bees === 0) {
+    if (calcCanAssignBee()) {
       return;
     }
     setBees((previousBees) => previousBees - 1);
@@ -162,7 +162,7 @@ function App(): JSX.Element {
   };
 
   const beeToWorker = () => {
-    if (bees === 0) {
+    if (calcCanAssignBee()) {
       return;
     }
     setBees((previousBees) => previousBees - 1);
