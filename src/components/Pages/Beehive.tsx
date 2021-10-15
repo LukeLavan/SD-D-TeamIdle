@@ -4,6 +4,9 @@
 
 import './Beehive.css';
 
+import { useBetween } from 'use-between';
+import CustomResourceHook from '../Resources/resourceHook';
+
 import Honey from '../Resources/Honey/honey';
 import Nectar from '../Resources/Nectar/nectar';
 import Honeycomb from '../Resources/Honeycomb/honeycomb';
@@ -13,9 +16,16 @@ import Bees from '../Bees/bees';
 import Foragers from '../Bees/foragers';
 import Refiners from '../Bees/refiners';
 
+import Button from '../Button/Button';
 import Structures from '../Structures/structure';
 
 function Beehive(): JSX.Element {
+  const { setNectar } = useBetween(CustomResourceHook);
+
+  const incrementNectarClicked = () => {
+    setNectar((previousNectar) => previousNectar + 1);
+  };
+
   return (
     <div>
       <div id="Left_Side_Beehive">
@@ -36,6 +46,11 @@ function Beehive(): JSX.Element {
         </div>
       </div>
       <div id="Right_Side_Beehive">
+        <div id="buzzBuzzBuzzButton">
+          <Button onClick={incrementNectarClicked} color="yellow">
+            Buzz Buzz Buzz
+          </Button>
+        </div>
         <Structures></Structures>
       </div>
     </div>

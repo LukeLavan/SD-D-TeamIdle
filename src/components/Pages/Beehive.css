@@ -11,9 +11,8 @@
 
 #Right_Side_Beehive {
   position: absolute;
-  right: 5%;
+  right: 0%;
   width: 50%;
-  overflow: hidden;
 }
 
 #ResourceTable {
@@ -22,4 +21,10 @@
 
 #BeeTypeTable {
   margin-top: 200px;
+}
+
+#buzzBuzzBuzzButton {
+  text-align: right;
+  margin: auto;
+  width: 100%;
 }
