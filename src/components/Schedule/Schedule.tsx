@@ -83,6 +83,22 @@ function Schedule(props: Props): JSX.Element {
     }
   };
 
+  const canAssignFactory = () =>
+    props.workersAssignedFactory < props.levelFactory && props.workers > 0;
+  const assignFactory = () => {
+    if (canAssignFactory()) {
+      props.setWorkers((previousWorkers) => previousWorkers - 1);
+      props.setWorkersAssignedFactory((previousWorkers) => previousWorkers + 1);
+    }
+  };
+  const canUnassignFactory = () => props.workersAssignedFactory > 0;
+  const unassignFactory = () => {
+    if (canUnassignFactory()) {
+      props.setWorkersAssignedFactory((previousWorkers) => previousWorkers - 1);
+      props.setWorkers((previousWorkers) => previousWorkers + 1);
+    }
+  };
+
   // TODO: hatchery
   // TODO: factory
 
@@ -150,6 +166,29 @@ function Schedule(props: Props): JSX.Element {
             <Button
               onClick={unassignHatchery}
               disabled={!canUnassignHatchery()}
+              size="small"
+            >
+              -
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className="Schedule Factory">
+        workers assigned to Factory: {props.workersAssignedFactory}
+        <div className="row">
+          <div className="column left">
+            <Button
+              onClick={assignFactory}
+              disabled={!canAssignFactory()}
+              size="small"
+            >
+              +
+            </Button>
+          </div>
+          <div className="column right">
+            <Button
+              onClick={unassignFactory}
+              disabled={!canUnassignFactory()}
               size="small"
             >
               -

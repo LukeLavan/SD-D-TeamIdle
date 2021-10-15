@@ -136,6 +136,16 @@ function App(): JSX.Element {
     );
   };
 
+  const createHoneycomb = () => {
+    if (canBuyHoneycomb) {
+      setHoney(
+        (previousHoney) =>
+          previousHoney - staticConstants.HONEY_TO_HONEYCOMB_COST
+      );
+      setHoneycomb((previousHoneycomb) => previousHoneycomb + 1);
+    }
+  };
+
   const getTotalBees = () =>
     bees +
     drones +
@@ -151,6 +161,7 @@ function App(): JSX.Element {
     for (let i = 0; i < workersAssignedRefinery; ++i) refineNectar();
     gatherRoyalJelly();
     createPupae();
+    for (let i = 0; i < workersAssignedFactory; ++i) createHoneycomb();
     setRestartTimer(true);
   };
 
