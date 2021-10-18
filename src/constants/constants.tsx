@@ -5,8 +5,8 @@
 const variableDefaults = {
   honey: 0,
   bees: 0,
-  drones: 0,
-  workers: 0,
+  drones: 1,
+  idleWorkers: 0,
   pupae: 0,
   larvae: 0,
   costOfNextBeeHoney: 1,
@@ -15,16 +15,34 @@ const variableDefaults = {
   royalJelly: 0,
   honeycomb: 0,
   structureLevels: {
-    DanceFloor: 1,
+    DanceFloor: 0,
     Refinery: 1,
+    Homes: 2,
     Hatchery: 0,
-    Factory: 1
+    Factory: 1,
+    Library: 0,
+    Storage: 1
+  },
+  structureCosts: {
+    DanceFloor: 2,
+    Refinery: 2,
+    Homes: 2,
+    Hatchery: 2,
+    Factory: 2,
+    Library: 2,
+    Storage: 2
   },
   assignedWorkers: {
     DanceFloor: 0,
-    Refinery: 0,
+    Refinery: 1,
     Hatchery: 0,
     Factory: 0
+  },
+  capacities: {
+    nectar: 20,
+    honey: 10,
+    honeycomb: 5,
+    royalJelly: 10
   }
 };
 
@@ -33,27 +51,18 @@ const staticConstants = {
   ROYAL_JELLY_BY_BEE: 0.27,
   NECTAR_TO_HONEY_COST: 5,
   HONEY_TO_HONEYCOMB_COST: 5,
-  STRUCTURE_COST: {
-    DANCEFLOOR: {
-      initial: 5,
-      scaling: 1.1
-    },
-    REFINERY: {
-      initial: 5,
-      scaling: 1.1
-    },
-    HATCHERY: {
-      initial: 5,
-      scaling: 1.1
-    },
-    FACTORY: {
-      initial: 5,
-      scaling: 1.1
-    }
-  },
   PUPAE_BY_DRONE: 0.1,
   PUPAE_TO_LARVAE_COST: 5,
-  LARVAE_TO_BEE_COST: 5
+  LARVAE_TO_BEE_COST: 5,
+  STRUCTURE_SCALING: {
+    DanceFloor: 2,
+    Refinery: 2,
+    Homes: 2,
+    Hatchery: 2,
+    Factory: 2,
+    Library: 2,
+    Storage: 2
+  }
 };
 
 export { variableDefaults, staticConstants };
