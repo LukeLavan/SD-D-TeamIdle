@@ -1,0 +1,29 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+#page1 {
+  display: block;
+  background-color: #FFFFFF;
+  overflow: hidden; /* stretches div height to actually contain its contents */
+}
+
+#page2 {
+  display: none;
+}
+
+#page3 {
+  display: none;
+}
+
+#page4 {
+  display: none;
+}
+
+#page5 {
+  display: none;
+}
+
+#page6 {
+  display: none;
+}

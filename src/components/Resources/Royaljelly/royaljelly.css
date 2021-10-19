@@ -2,10 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import * as ReactDOM from 'react-dom';
-import App from './App';
+#RoyalJellyTable {
+  margin: 20px;
+  table-layout: fixed;
+  width: 100px;
+}
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
+.royaljellytd {
+  width: 150px;
+  text-align: left;
+  overflow: hidden;
+  table-layout: fixed;
+}
