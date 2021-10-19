@@ -34,6 +34,10 @@ function Settings(): JSX.Element {
     resourceData.setHoneycomb(variableDefaults.honeycomb);
     resourceData.setNectar(variableDefaults.nectar);
     resourceData.setRoyalJelly(variableDefaults.royalJelly);
+    resourceData.setMaxNectar(variableDefaults.capacities.nectar);
+    resourceData.setMaxHoney(variableDefaults.capacities.honey);
+    resourceData.setMaxHoneycomb(variableDefaults.capacities.honeycomb);
+    resourceData.setMaxRoyalJelly(variableDefaults.capacities.royalJelly);
 
     structureData.setLevelDanceFloor(
       variableDefaults.structureLevels.DanceFloor

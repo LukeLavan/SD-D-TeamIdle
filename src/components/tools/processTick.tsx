@@ -6,11 +6,13 @@ import { staticConstants } from '../../constants/constants';
 import CustomBeeHook from './CustomBeeHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
+import CustomTimerHook from './CustomTimerHook';
 
 const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,
   beeData: ReturnType<typeof CustomBeeHook>,
-  hatcheryData: ReturnType<typeof CustomHatcheryHook>
+  hatcheryData: ReturnType<typeof CustomHatcheryHook>,
+  timerData: ReturnType<typeof CustomTimerHook>
 ): void => {
   // forage for nectar
   for (let i = 0; i < beeData.workersAssignedDanceFloor; ++i) {
@@ -82,6 +84,9 @@ const processTick = (
       (previousPupae) => previousPupae + staticConstants.PUPAE_BY_DRONE
     );
   }
+
+  // setting timeStamp to be the current time each ticks
+  timerData.setTimeStamp(Date.now());
 };
 
 export default processTick;

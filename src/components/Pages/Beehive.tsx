@@ -17,7 +17,7 @@ import Foragers from '../Bees/foragers';
 import Refiners from '../Bees/refiners';
 
 import Button from '../Button/Button';
-import Structures from '../structures/structure';
+import Structures from '../Structures/structure';
 import Architects from '../Bees/architects';
 import Nurses from '../Bees/nurses';
 
