@@ -17,9 +17,11 @@ import Foragers from '../Bees/foragers';
 import Refiners from '../Bees/refiners';
 
 import Button from '../Button/Button';
-import Structures from '../structures/structure';
+import Structures from '../Structures/structure';
 import Architects from '../Bees/architects';
 import Nurses from '../Bees/nurses';
+
+import Weather from '../Weather/weather';
 
 function Beehive(): JSX.Element {
   const { setNectar, maxNectar } = useBetween(CustomResourceHook);
@@ -54,6 +56,9 @@ function Beehive(): JSX.Element {
         </div>
       </div>
       <div id="Right_Side_Beehive">
+        <div id="Weather">
+          <Weather />
+        </div>
         <div id="buzzBuzzBuzzButton">
           <Button onClick={incrementNectarClicked} color="yellow">
             Buzz Buzz Buzz

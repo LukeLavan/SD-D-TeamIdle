@@ -6,16 +6,25 @@ import { staticConstants } from '../../constants/constants';
 import CustomBeeHook from './CustomBeeHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
+import CustomWeatherHook from './CustomWeatherHook';
+
+import { processWeatherTick } from '../Weather/weather';
 
 const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,
   beeData: ReturnType<typeof CustomBeeHook>,
-  hatcheryData: ReturnType<typeof CustomHatcheryHook>
+  hatcheryData: ReturnType<typeof CustomHatcheryHook>,
+  weatherData: ReturnType<typeof CustomWeatherHook>
 ): void => {
   // forage for nectar
   for (let i = 0; i < beeData.workersAssignedDanceFloor; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setNectar((previousNectar): number => {
-      const nextNectar = previousNectar + staticConstants.NECTAR_BY_BEE;
+      const nextNectar =
+        previousNectar +
+        staticConstants.NECTAR_BY_BEE * weatherData.nectarBonus;
       if (nextNectar > resourceData.maxNectar) return resourceData.maxNectar;
       return nextNectar;
     });
@@ -23,6 +32,9 @@ const processTick = (
 
   // refine nectar into honey
   for (let i = 0; i < beeData.workersAssignedRefinery; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setHoney((previousHoney): number => {
       if (previousHoney >= resourceData.maxHoney) return resourceData.maxHoney;
       const nextHoney = previousHoney + 1;
@@ -44,6 +56,9 @@ const processTick = (
 
   // refine honey into honeycomb
   for (let i = 0; i < beeData.workersAssignedFactory; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setHoneycomb((previousHoneycomb): number => {
       if (previousHoneycomb >= resourceData.maxHoneycomb)
         return resourceData.maxHoneycomb;
@@ -68,8 +83,13 @@ const processTick = (
 
   // nurses secrete royal jelly
   for (let i = 0; i < beeData.workersAssignedHatchery; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setRoyalJelly((previousJelly): number => {
-      const nextJelly = previousJelly + staticConstants.ROYAL_JELLY_BY_BEE;
+      const nextJelly =
+        previousJelly +
+        staticConstants.ROYAL_JELLY_BY_BEE * weatherData.royalJellyBonus;
       if (nextJelly > resourceData.maxRoyalJelly)
         return resourceData.maxRoyalJelly;
       return nextJelly;
@@ -82,6 +102,9 @@ const processTick = (
       (previousPupae) => previousPupae + staticConstants.PUPAE_BY_DRONE
     );
   }
+
+  // Weather ticks
+  processWeatherTick(weatherData);
 };
 
 export default processTick;

@@ -7,6 +7,7 @@ import { useBetween } from 'use-between';
 import CustomBeeHook from './CustomBeeHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
+import CustomWeatherHook from './CustomWeatherHook';
 import processTick from './processTick';
 
 const timer = (): void => {
@@ -14,9 +15,10 @@ const timer = (): void => {
   const beeData = useBetween(CustomBeeHook);
   const resourceData = useBetween(CustomResourceHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
+  const weatherData = useBetween(CustomWeatherHook);
   useEffect(() => {
     const interval = setInterval(() => {
-      processTick(resourceData, beeData, hatcheryData);
+      processTick(resourceData, beeData, hatcheryData, weatherData);
       // signals that the timer should re-initialize
       setTimerFlip((p) => !p);
     }, 1000);
