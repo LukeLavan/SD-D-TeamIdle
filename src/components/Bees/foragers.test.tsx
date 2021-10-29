@@ -2,18 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
 import Foragers from './foragers';
 import Bees from './bees';
-import {
-  cleanup,
-  Matcher,
-  render,
-  SelectorMatcherOptions
-} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { staticConstants } from '../../constants/constants';
 
 test('clicking plus button increases the number of foragers', () => {
   localStorage.levelDanceFloor = '3';

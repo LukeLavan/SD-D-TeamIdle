@@ -40,15 +40,25 @@ function Refiners(): JSX.Element {
         <tbody>
           <tr>
             <td className="RefinerId">{NAME}</td>
-            <td className="RefinerId">{workersAssignedRefinery}</td>
+            <td id="refinersAssignedDanceFloor" className="RefinerId">
+              {workersAssignedRefinery}
+            </td>
             <td className="RefinerId">/{levelRefinery}</td>
             <td className="RefinerIdButtons">
-              <button className="plusButton" onClick={assignRefiner}>
+              <button
+                id="refinerPlusButton"
+                className="plusButton"
+                onClick={assignRefiner}
+              >
                 <BsPatchPlusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
             <td className="RefinerIdButtons">
-              <button className="minusButton" onClick={unassignRefiner}>
+              <button
+                id="refinerMinusButton"
+                className="minusButton"
+                onClick={unassignRefiner}
+              >
                 <BsPatchMinusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
