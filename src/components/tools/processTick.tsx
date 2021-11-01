@@ -2,17 +2,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import { staticConstants } from '../../constants/constants';
+import { staticConstants, variableDefaults } from '../../constants/constants';
 import CustomBeeHook from './CustomBeeHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
 import CustomTimerHook from './CustomTimerHook';
+import CustomStructureHook from './CustomStructureHook';
 
 const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,
   beeData: ReturnType<typeof CustomBeeHook>,
   hatcheryData: ReturnType<typeof CustomHatcheryHook>,
-  timerData: ReturnType<typeof CustomTimerHook>
+  timerData: ReturnType<typeof CustomTimerHook>,
+  structureData: ReturnType<typeof CustomStructureHook>
 ): void => {
   // forage for nectar
   for (let i = 0; i < beeData.workersAssignedDanceFloor; ++i) {
@@ -87,6 +89,20 @@ const processTick = (
 
   // setting timeStamp to be the current time each ticks
   timerData.setTimeStamp(Date.now());
+
+  // make storage do something
+  resourceData.setMaxHoney(
+    () => structureData.levelStorage * variableDefaults.capacities.honey
+  );
+  resourceData.setMaxNectar(
+    () => structureData.levelStorage * variableDefaults.capacities.nectar
+  );
+  resourceData.setMaxRoyalJelly(
+    () => structureData.levelStorage * variableDefaults.capacities.royalJelly
+  );
+  resourceData.setMaxHoneycomb(
+    () => structureData.levelStorage * variableDefaults.capacities.honeycomb
+  );
 };
 
 export default processTick;

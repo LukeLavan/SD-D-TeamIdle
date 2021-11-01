@@ -16,6 +16,7 @@ import CustomBeeHook from '../tools/CustomBeeHook';
 import CustomHatcheryHook from '../tools/CustomHatcheryHook';
 import CustomResourceHook from '../tools/CustomResourceHook';
 import CustomTimerHook from '../tools/CustomTimerHook';
+import CustomStructureHook from '../tools/CustomStructureHook';
 
 function FrontPage(): JSX.Element {
   // process for offline progression ticks
@@ -23,6 +24,7 @@ function FrontPage(): JSX.Element {
   const resourceData = useBetween(CustomResourceHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
   const timerData = useBetween(CustomTimerHook);
+  const structureData = useBetween(CustomStructureHook);
   useEffect(() => {
     if (Date.now() - timerData.timeStamp >= 1000) {
       const amountOfTicks = Math.floor(
@@ -30,7 +32,13 @@ function FrontPage(): JSX.Element {
       );
       console.log('This amount of ticks: ' + amountOfTicks); //prints out tick amount so we know this is working ;P
       for (let i = 0; i < amountOfTicks; i++) {
-        processTick(resourceData, beeData, hatcheryData, timerData);
+        processTick(
+          resourceData,
+          beeData,
+          hatcheryData,
+          timerData,
+          structureData
+        );
       }
     }
   }, []);
