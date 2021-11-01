@@ -16,7 +16,7 @@ test('clicking plus button increases the number of refiners', () => {
   const refinerPlusButton =
     refinerDom.container.querySelector('#refinerPlusButton');
   const refinerNumber = refinerDom.container.querySelector(
-    '#refinersAssignedDanceFloor'
+    '#refinersAssignedRefinery'
   );
 
   const beesDom = render(<Bees />);
@@ -43,7 +43,7 @@ test('clicking minus button decreases the number of refiners', () => {
     '#refinerMinusButton'
   );
   const refinerNumber = refinerDom.container.querySelector(
-    '#refinersAssignedDanceFloor'
+    '#refinersAssignedRefinery'
   );
 
   const beesDom = render(<Bees />);
@@ -68,7 +68,7 @@ test('make sure refiners stay below capacity', () => {
   const refinerPlusButton =
     refinerDom.container.querySelector('#refinerPlusButton');
   const refinerNumber = refinerDom.container.querySelector(
-    '#refinersAssignedDanceFloor'
+    '#refinersAssignedRefinery'
   );
 
   expect(refinerNumber.innerHTML).toBe('3');
@@ -86,7 +86,7 @@ test('make sure refiners cannot go below zero', () => {
     '#refinerMinusButton'
   );
   const refinerNumber = refinerDom.container.querySelector(
-    '#refinersAssignedDanceFloor'
+    '#refinersAssignedRefinery'
   );
 
   expect(refinerNumber.innerHTML).toBe('0');
@@ -105,7 +105,7 @@ test('make sure refiners cannot increase if no workers', () => {
   const refinerPlusButton =
     refinerDom.container.querySelector('#refinerPlusButton');
   const refinerNumber = refinerDom.container.querySelector(
-    '#refinersAssignedDanceFloor'
+    '#refinersAssignedRefinery'
   );
 
   expect(refinerNumber.innerHTML).toBe('0');

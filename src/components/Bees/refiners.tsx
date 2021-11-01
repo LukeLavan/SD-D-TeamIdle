@@ -40,7 +40,7 @@ function Refiners(): JSX.Element {
         <tbody>
           <tr>
             <td className="RefinerId">{NAME}</td>
-            <td id="refinersAssignedDanceFloor" className="RefinerId">
+            <td id="refinersAssignedRefinery" className="RefinerId">
               {workersAssignedRefinery}
             </td>
             <td className="RefinerId">/{levelRefinery}</td>

@@ -40,15 +40,25 @@ function Architects(): JSX.Element {
         <tbody>
           <tr>
             <td className="ArchitectId">{NAME}</td>
-            <td className="ArchitectId">{workersAssignedFactory}</td>
+            <td id="architectsAssignedFactory" className="ArchitectId">
+              {workersAssignedFactory}
+            </td>
             <td className="ArchitectId">/{levelFactory}</td>
             <td className="ArchitectIdButtons">
-              <button className="plusButton" onClick={assignArchitect}>
+              <button
+                id="architectsPlusButton"
+                className="plusButton"
+                onClick={assignArchitect}
+              >
                 <BsPatchPlusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
             <td className="ArchitectIdButtons">
-              <button className="minusButton" onClick={unassignArchitect}>
+              <button
+                id="architectsMinusButton"
+                className="minusButton"
+                onClick={unassignArchitect}
+              >
                 <BsPatchMinusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
