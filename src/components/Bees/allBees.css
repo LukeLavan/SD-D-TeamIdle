@@ -84,3 +84,17 @@
   width: 100px;
   text-align: right;
 }
+
+#ResearchersTable {
+  margin: 20px;
+}
+
+.ResearcherId {
+  width: 100px;
+  text-align: right;
+}
+
+.ResearcherIdButtons {
+  width: 100px;
+  text-align: right;
+}

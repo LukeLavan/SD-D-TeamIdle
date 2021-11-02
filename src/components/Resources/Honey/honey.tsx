@@ -7,6 +7,7 @@ import './honey.css';
 import { useBetween } from 'use-between';
 import CustomResourceHook from '../../tools/CustomResourceHook';
 import CustomBeeHook from '../../tools/CustomBeeHook';
+import CustomTechHook from '../../tools/CustomTechHook';
 import { staticConstants } from '../../../constants/constants';
 
 function Honey(): JSX.Element {
@@ -14,6 +15,7 @@ function Honey(): JSX.Element {
     useBetween(CustomResourceHook);
   const { workersAssignedRefinery, workersAssignedFactory } =
     useBetween(CustomBeeHook);
+  const TechData = useBetween(CustomTechHook);
   const NAME = 'Honey';
 
   let honeyPerSecond = 0;
@@ -21,7 +23,9 @@ function Honey(): JSX.Element {
     honeyPerSecond += workersAssignedRefinery;
   if (honeycomb !== maxHoneycomb)
     honeyPerSecond -=
-      workersAssignedFactory * staticConstants.HONEY_TO_HONEYCOMB_COST;
+      workersAssignedFactory *
+      (staticConstants.HONEY_TO_HONEYCOMB_COST -
+        TechData.techHoneyConversionReducer);
 
   return (
     <div>

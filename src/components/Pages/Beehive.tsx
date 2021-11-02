@@ -20,6 +20,7 @@ import Button from '../Button/Button';
 import Structures from '../Structures/structure';
 import Architects from '../Bees/architects';
 import Nurses from '../Bees/nurses';
+import Researchers from '../Bees/researchers';
 
 function Beehive(): JSX.Element {
   const { setNectar, maxNectar } = useBetween(CustomResourceHook);
@@ -50,6 +51,7 @@ function Beehive(): JSX.Element {
             <Refiners />
             <Architects />
             <Nurses />
+            <Researchers />
           </div>
         </div>
       </div>

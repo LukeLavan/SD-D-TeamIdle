@@ -1,0 +1,38 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  .tracker{
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .multipliers{
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .one {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .two {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  .three {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  .four {
+    grid-column: 3;
+    grid-row: 3;
+  }
+  .five {
+    grid-column: 4;
+    grid-row: 3;
+  }
+  .six {
+    grid-column: 4;
+    grid-row: 2;
+  }
