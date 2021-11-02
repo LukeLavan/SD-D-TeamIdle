@@ -6,6 +6,10 @@ import ReactDOM from 'react-dom';
 import FrontPage from './FrontPage';
 
 it('renders without crashing', () => {
+  // set nectar to 0 and make sure nothing else is changing it
+  localStorage.nectar = 0;
+  localStorage.workersAssignedDanceFloor = 0;
+  localStorage.workersAssignedRefinery = 0;
   const div = document.createElement('div');
   ReactDOM.render(<FrontPage />, div);
 });

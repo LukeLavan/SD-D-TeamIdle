@@ -44,11 +44,11 @@ const CustomBeeHook = (): {
     );
   const [drones, setDrones] = usePersistentState(
     'drones',
-    variableDefaults.bees
+    variableDefaults.drones
   );
   const [idleWorkers, setIdleWorkers] = usePersistentState(
-    'workers',
-    variableDefaults.bees
+    'idleWorkers',
+    variableDefaults.idleWorkers
   );
 
   return {
