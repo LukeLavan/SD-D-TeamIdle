@@ -18,7 +18,7 @@ button {
 }
 
 /* Active state for button */
-button:active {
+button:active:not(:disabled) {
   top: 1px;
   border-color: rgba(0, 0, 0, 0.34) rgba(0, 0, 0, 0.21) rgba(0, 0, 0, 0.21);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.89), 0 1px rgba(0, 0, 0, 0.05) inset;
@@ -40,7 +40,7 @@ button:disabled {
 .red {
   background: #fa5a5a;
 }
-.red:active {
+.red:active:not(:disabled) {
   /* Active state coloring for red */
   box-shadow: 0 0 #ff4c4b;
   background-color: #ff4c4b;
@@ -48,7 +48,7 @@ button:disabled {
 .yellow {
   background: #f0d264;
 }
-.yellow:active {
+.yellow:active:not(:disabled) {
   /* Active state coloring for yellow */
   box-shadow: 0 0 #ff4c4b;
   background-color: #d6bb59;
@@ -56,7 +56,7 @@ button:disabled {
 .green {
   background: #82c8a0;
 }
-.green:active {
+.green:active:not(:disabled) {
   /* Active state coloring for green */
   box-shadow: 0 0 #87a86f;
   background-color: #87a86f;
@@ -64,7 +64,7 @@ button:disabled {
 .cyan {
   background: #7fccde;
 }
-.cyan:active {
+.cyan:active:not(:disabled) {
   /* Active state coloring for cyan */
   box-shadow: 0 0 #73b9c9;
   background-color: #70b4c4;
@@ -72,7 +72,7 @@ button:disabled {
 .blue {
   background: #6698cb;
 }
-.blue:active {
+.blue:active:not(:disabled) {
   /* Active state coloring for blue */
   box-shadow: 0 0 #74a3b0;
   background-color: #709ca8;
@@ -80,7 +80,7 @@ button:disabled {
 .purple {
   background: #cb99c5;
 }
-.purple:active {
+.purple:active:not(:disabled) {
   /* Active state coloring for purple */
   box-shadow: 0 0 #ba8cb5;
   background-color: #ba8cb5;
