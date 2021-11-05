@@ -36,11 +36,21 @@ function Hatchery(): JSX.Element {
   return (
     <div id="Hatchery">
       Hatchery <br />
-      level: {structureData.levelHatchery} <br />
-      cost of next level: {structureData.costNextLevelHatchery} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="hatcheryLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelHatchery}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="hatcheryNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelHatchery}
+      </div>
+      <br />
+      <div id="upgradeHatcheryButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }

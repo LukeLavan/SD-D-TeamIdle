@@ -36,11 +36,21 @@ function Library(): JSX.Element {
   return (
     <div id="Library">
       Library <br />
-      level: {structureData.levelLibrary} <br />
-      cost of next level: {structureData.costNextLevelLibrary} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="libraryLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelLibrary}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="libraryNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelLibrary}
+      </div>
+      <br />
+      <div id="upgradeLibraryButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }

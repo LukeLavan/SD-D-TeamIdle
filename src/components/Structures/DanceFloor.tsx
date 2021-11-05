@@ -36,11 +36,21 @@ function DanceFloor(): JSX.Element {
   return (
     <div id="DanceFloor">
       Dance Floor <br />
-      level: {structureData.levelDanceFloor} <br />
-      cost of next level: {structureData.costNextLevelDanceFloor} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="danceFloorLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelDanceFloor}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="danceFloorNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelDanceFloor}
+      </div>
+      <br />
+      <div id="upgradeDanceFloorButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }
