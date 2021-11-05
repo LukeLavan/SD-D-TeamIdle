@@ -36,11 +36,21 @@ function Storage(): JSX.Element {
   return (
     <div id="Storage">
       Storage <br />
-      level: {structureData.levelStorage} <br />
-      cost of next level: {structureData.costNextLevelStorage} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="storageLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelStorage}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="storageNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelStorage}
+      </div>
+      <br />
+      <div id="upgradeStorageButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }

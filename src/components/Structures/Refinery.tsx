@@ -36,11 +36,21 @@ function Refinery(): JSX.Element {
   return (
     <div id="Refinery">
       Refinery <br />
-      level: {structureData.levelRefinery} <br />
-      cost of next level: {structureData.costNextLevelRefinery} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="refineryLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelRefinery}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="refineryNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelRefinery}
+      </div>
+      <br />
+      <div id="upgradeRefineryButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }

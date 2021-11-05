@@ -35,11 +35,21 @@ function Homes(): JSX.Element {
   return (
     <div id="Homes">
       Homes <br />
-      level: {structureData.levelHomes} <br />
-      cost of next level: {structureData.costNextLevelHomes} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="homesLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelHomes}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="homesNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelHomes}
+      </div>
+      <br />
+      <div id="upgradeHomesButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }
