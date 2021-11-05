@@ -4,45 +4,16 @@
 
 import MenuBar from '../tools/menu';
 import Beehive from '../Pages/Beehive';
-import { useEffect } from 'react';
-import { useBetween } from 'use-between';
 
 import './FrontPage.css';
 import Settings from '../Pages/Settings';
-import timer from '../tools/timer';
 import Hatchery from '../Pages/Hatchery';
-import processTick from '../tools/processTick';
-import CustomBeeHook from '../tools/CustomBeeHook';
-import CustomHatcheryHook from '../tools/CustomHatcheryHook';
-import CustomResourceHook from '../tools/CustomResourceHook';
-import CustomTimerHook from '../tools/CustomTimerHook';
-import CustomStructureHook from '../tools/CustomStructureHook';
+
+import timer from '../tools/timer';
+import offlineProgression from '../tools/offlineProgression';
 
 function FrontPage(): JSX.Element {
-  // process for offline progression ticks
-  const beeData = useBetween(CustomBeeHook);
-  const resourceData = useBetween(CustomResourceHook);
-  const hatcheryData = useBetween(CustomHatcheryHook);
-  const timerData = useBetween(CustomTimerHook);
-  const structureData = useBetween(CustomStructureHook);
-  useEffect(() => {
-    if (Date.now() - timerData.timeStamp >= 1000) {
-      const amountOfTicks = Math.floor(
-        (Date.now() - timerData.timeStamp) / 1000
-      );
-      console.log('This amount of ticks: ' + amountOfTicks); //prints out tick amount so we know this is working ;P
-      for (let i = 0; i < amountOfTicks; i++) {
-        processTick(
-          resourceData,
-          beeData,
-          hatcheryData,
-          timerData,
-          structureData
-        );
-      }
-    }
-  }, []);
-
+  offlineProgression();
   timer();
   return (
     <div>
