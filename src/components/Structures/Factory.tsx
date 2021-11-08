@@ -36,11 +36,21 @@ function Factory(): JSX.Element {
   return (
     <div id="Factory">
       Factory <br />
-      level: {structureData.levelFactory} <br />
-      cost of next level: {structureData.costNextLevelFactory} <br />
-      <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
-        upgrade
-      </Button>
+      level:{' '}
+      <div id="factoryLevel" style={{ display: 'inline-block' }}>
+        {structureData.levelFactory}
+      </div>
+      <br />
+      cost of next level:{' '}
+      <div id="factoryNextLevelCost" style={{ display: 'inline-block' }}>
+        {structureData.costNextLevelFactory}
+      </div>
+      <br />
+      <div id="upgradeFactoryButton">
+        <Button onClick={upgrade} disabled={!canUpgrade()} size="small">
+          upgrade
+        </Button>
+      </div>
     </div>
   );
 }
