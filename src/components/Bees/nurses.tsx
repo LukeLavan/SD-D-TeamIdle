@@ -40,15 +40,25 @@ function Nurses(): JSX.Element {
         <tbody>
           <tr>
             <td className="NurseId">{NAME}</td>
-            <td className="NurseId">{workersAssignedHatchery}</td>
+            <td id="nursesAssignedHatchery" className="NurseId">
+              {workersAssignedHatchery}
+            </td>
             <td className="NurseId">/{levelHatchery}</td>
             <td className="NurseIdButtons">
-              <button className="plusButton" onClick={assignNurse}>
+              <button
+                id="nursesPlusButton"
+                className="plusButton"
+                onClick={assignNurse}
+              >
                 <BsPatchPlusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
             <td className="NurseIdButtons">
-              <button className="minusButton" onClick={unassignNurse}>
+              <button
+                id="nursesMinusButton"
+                className="minusButton"
+                onClick={unassignNurse}
+              >
                 <BsPatchMinusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
