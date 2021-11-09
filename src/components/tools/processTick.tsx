@@ -15,8 +15,8 @@ const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,
   beeData: ReturnType<typeof CustomBeeHook>,
   hatcheryData: ReturnType<typeof CustomHatcheryHook>,
-  timerData: ReturnType<typeof CustomTimerHook>,
-  techData: ReturnType<typeof CustomTechHook>
+  techData: ReturnType<typeof CustomTechHook>,
+  timerData: ReturnType<typeof CustomTimerHook>
 ): void => {
   // forage for nectar
   for (let i = 0; i < beeData.workersAssignedDanceFloor; ++i) {

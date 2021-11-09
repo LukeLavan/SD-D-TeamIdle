@@ -30,7 +30,9 @@ function Nectar(): JSX.Element {
         <tbody>
           <tr>
             <td className="nectartd">{NAME}</td>
-            <td className="nectartd">{nectar}</td>
+            <td className="nectartd" id="numNectar">
+              {nectar}
+            </td>
             <td className="nectartd">/{maxNectar}</td>
             <td className="nectartd">
               {nectarPerSecond > 0 ? '+' : ''}

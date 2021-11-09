@@ -20,7 +20,7 @@ const timer = (): void => {
   const techData = useBetween(CustomTechHook);
   useEffect(() => {
     const interval = setInterval(() => {
-      processTick(resourceData, beeData, hatcheryData, timerData, techData);
+      processTick(resourceData, beeData, hatcheryData, techData, timerData);
       // signals that the timer should re-initialize
       setTimerFlip((p) => !p);
     }, 1000);

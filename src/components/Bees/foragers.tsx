@@ -40,15 +40,25 @@ function Foragers(): JSX.Element {
         <tbody>
           <tr>
             <td className="ForagerId">{NAME}</td>
-            <td className="ForagerId">{workersAssignedDanceFloor}</td>
+            <td id="foragersAssignedDanceFloor" className="ForagerId">
+              {workersAssignedDanceFloor}
+            </td>
             <td className="ForagerId">/{levelDanceFloor}</td>
             <td className="ForagerIdButtons">
-              <button className="plusButton" onClick={assignForager}>
+              <button
+                id="foragerPlusButton"
+                className="plusButton"
+                onClick={assignForager}
+              >
                 <BsPatchPlusFill className="ButtonIcon" size="2em" />
               </button>
             </td>
             <td className="ForagerIdButtons">
-              <button className="minusButton" onClick={unassignForager}>
+              <button
+                id="foragerMinusButton"
+                className="minusButton"
+                onClick={unassignForager}
+              >
                 <BsPatchMinusFill className="ButtonIcon" size="2em" />
               </button>
             </td>

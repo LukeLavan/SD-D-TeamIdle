@@ -91,9 +91,11 @@ function Settings(): JSX.Element {
   };
   return (
     <div className="Settings">
-      <Button onClick={reset} size={'small'} color={'red'}>
-        reset
-      </Button>
+      <div id="reset">
+        <Button onClick={reset} size={'small'} color={'red'}>
+          reset
+        </Button>
+      </div>
     </div>
   );
 }

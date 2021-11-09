@@ -97,4 +97,13 @@ const staticConstants = {
   }
 };
 
-export { variableDefaults, staticConstants };
+const pageIds = {
+  BEEHIVE_ID: 1,
+  HATCHERY_ID: 2,
+  UPGRADE_ID: 3,
+  TECH_TREE_ID: 4,
+  STATISTICS_ID: 5,
+  SETTINGS_ID: 6
+};
+
+export { variableDefaults, staticConstants, pageIds };
