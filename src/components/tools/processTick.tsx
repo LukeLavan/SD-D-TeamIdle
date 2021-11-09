@@ -7,17 +7,23 @@ import CustomBeeHook from './CustomBeeHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
 import CustomTimerHook from './CustomTimerHook';
+import CustomTechHook from './CustomTechHook';
+
+import { doneResearch } from '../Pages/Tech';
 
 const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,
   beeData: ReturnType<typeof CustomBeeHook>,
   hatcheryData: ReturnType<typeof CustomHatcheryHook>,
+  techData: ReturnType<typeof CustomTechHook>,
   timerData: ReturnType<typeof CustomTimerHook>
 ): void => {
   // forage for nectar
   for (let i = 0; i < beeData.workersAssignedDanceFloor; ++i) {
     resourceData.setNectar((previousNectar): number => {
-      const nextNectar = previousNectar + staticConstants.NECTAR_BY_BEE;
+      const nextNectar =
+        previousNectar +
+        techData.techHoneyMultiplier * staticConstants.NECTAR_BY_BEE;
       if (nextNectar > resourceData.maxNectar) return resourceData.maxNectar;
       return nextNectar;
     });
@@ -52,10 +58,16 @@ const processTick = (
       const nextHoneycomb = previousHoneycomb + 1;
       let canFactor = false;
       resourceData.setHoney((previousHoney): number => {
-        if (previousHoney < staticConstants.HONEY_TO_HONEYCOMB_COST)
+        if (
+          previousHoney <
+          staticConstants.HONEY_TO_HONEYCOMB_COST -
+            techData.techHoneyConversionReducer
+        )
           return previousHoney;
         const nextHoney =
-          previousHoney - staticConstants.HONEY_TO_HONEYCOMB_COST;
+          previousHoney -
+          (staticConstants.HONEY_TO_HONEYCOMB_COST -
+            techData.techHoneyConversionReducer);
         canFactor = true;
         return nextHoney;
       });
@@ -71,7 +83,9 @@ const processTick = (
   // nurses secrete royal jelly
   for (let i = 0; i < beeData.workersAssignedHatchery; ++i) {
     resourceData.setRoyalJelly((previousJelly): number => {
-      const nextJelly = previousJelly + staticConstants.ROYAL_JELLY_BY_BEE;
+      const nextJelly =
+        previousJelly +
+        techData.techNurseMultiplier * staticConstants.ROYAL_JELLY_BY_BEE;
       if (nextJelly > resourceData.maxRoyalJelly)
         return resourceData.maxRoyalJelly;
       return nextJelly;
@@ -81,8 +95,25 @@ const processTick = (
   // drones produce pupae
   for (let i = 0; i < beeData.drones; ++i) {
     hatcheryData.setPupae(
-      (previousPupae) => previousPupae + staticConstants.PUPAE_BY_DRONE
+      (previousPupae) =>
+        previousPupae +
+        techData.techDroneMultiplier * staticConstants.PUPAE_BY_DRONE
     );
+  }
+
+  // librarians research technology
+  if (techData.currentResearch != 'none') {
+    for (let i = 0; i < beeData.workersAssignedLibrary; ++i) {
+      techData.setResearchProgress((previousResearchProgress): number => {
+        const nextResearchProgress = previousResearchProgress + 1;
+        if (nextResearchProgress > techData.researchMax)
+          return techData.researchMax;
+        return nextResearchProgress;
+      });
+    }
+
+    //check if research is finished
+    doneResearch(techData);
   }
 
   // setting timeStamp to be the current time each ticks

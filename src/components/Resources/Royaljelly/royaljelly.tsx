@@ -6,15 +6,21 @@ import './royaljelly.css';
 import { useBetween } from 'use-between';
 import CustomResourceHook from '../../tools/CustomResourceHook';
 import CustomBeeHook from '../../tools/CustomBeeHook';
+import CustomTechHook from '../../tools/CustomTechHook';
 import { staticConstants } from '../../../constants/constants';
 
 function Royaljelly(): JSX.Element {
   const { royalJelly, maxRoyalJelly } = useBetween(CustomResourceHook);
   const { workersAssignedHatchery } = useBetween(CustomBeeHook);
+  const techData = useBetween(CustomTechHook);
   const NAME = 'Royaljelly';
 
   const calcRoyalJellyPerSecond = () => {
-    return workersAssignedHatchery * staticConstants.ROYAL_JELLY_BY_BEE;
+    return (
+      techData.techNurseMultiplier *
+      workersAssignedHatchery *
+      staticConstants.ROYAL_JELLY_BY_BEE
+    );
   };
 
   return (

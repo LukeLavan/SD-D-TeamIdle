@@ -6,16 +6,20 @@ import './nectar.css';
 import { useBetween } from 'use-between';
 import CustomResourceHook from '../../tools/CustomResourceHook';
 import CustomBeeHook from '../../tools/CustomBeeHook';
+import CustomTechHook from '../../tools/CustomTechHook';
 import { staticConstants } from '../../../constants/constants';
 
 function Nectar(): JSX.Element {
   const { nectar, maxNectar, honey, maxHoney } = useBetween(CustomResourceHook);
   const { workersAssignedDanceFloor, workersAssignedRefinery } =
     useBetween(CustomBeeHook);
+  const techData = useBetween(CustomTechHook);
   const NAME = 'Nectar';
 
   const nectarPerSecond =
-    workersAssignedDanceFloor * staticConstants.NECTAR_BY_BEE -
+    techData.techHoneyMultiplier *
+      workersAssignedDanceFloor *
+      staticConstants.NECTAR_BY_BEE -
     (honey !== maxHoney
       ? workersAssignedRefinery * staticConstants.NECTAR_TO_HONEY_COST
       : 0);

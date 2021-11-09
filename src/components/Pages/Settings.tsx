@@ -9,12 +9,14 @@ import Button from '../Button/Button';
 import CustomResourceHook from '../tools/CustomResourceHook';
 import CustomStructureHook from '../tools/CustomStructureHook';
 import CustomHatcheryHook from '../tools/CustomHatcheryHook';
+import CustomTechHook from '../tools/CustomTechHook';
 
 function Settings(): JSX.Element {
   const beeData = useBetween(CustomBeeHook);
   const resourceData = useBetween(CustomResourceHook);
   const structureData = useBetween(CustomStructureHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
+  const techData = useBetween(CustomTechHook);
   const reset = (): void => {
     beeData.setBees(variableDefaults.bees);
     beeData.setDrones(variableDefaults.drones);
@@ -70,6 +72,22 @@ function Settings(): JSX.Element {
 
     hatcheryData.setLarvae(variableDefaults.larvae);
     hatcheryData.setPupae(variableDefaults.pupae);
+
+    techData.setCurrentResearch(variableDefaults.currentResearch);
+    techData.setResearchProgress(variableDefaults.researchProgress);
+    techData.setResearchMax(variableDefaults.researchMax);
+    techData.setHoney1(variableDefaults.techEnabled.honey1);
+    techData.setHoney2(variableDefaults.techEnabled.honey2);
+    techData.setHoney3(variableDefaults.techEnabled.honey3);
+    techData.setDrone(variableDefaults.techEnabled.drone);
+    techData.setNurse(variableDefaults.techEnabled.nurse);
+    techData.setHoneyConversion(variableDefaults.techEnabled.honeyConversion);
+    techData.setTechHoneyMultiplier(variableDefaults.techHoneyMultiplier);
+    techData.setTechDroneMultiplier(variableDefaults.techDroneMultiplier);
+    techData.setTechNurseMultiplier(variableDefaults.techNurseMultiplier);
+    techData.setTechHoneyConversionReducer(
+      variableDefaults.techHoneyConversionReducer
+    );
   };
   return (
     <div className="Settings">

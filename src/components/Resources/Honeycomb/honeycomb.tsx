@@ -8,14 +8,18 @@ import { useBetween } from 'use-between';
 import CustomResourceHook from '../../tools/CustomResourceHook';
 import { staticConstants } from '../../../constants/constants';
 import CustomBeeHook from '../../tools/CustomBeeHook';
+import CustomTechHook from '../../tools/CustomTechHook';
 
 function Honeycomb(): JSX.Element {
   const { honey, honeycomb, maxHoneycomb } = useBetween(CustomResourceHook);
   const { workersAssignedFactory } = useBetween(CustomBeeHook);
+  const techData = useBetween(CustomTechHook);
   const NAME = 'Honeycomb';
 
   const honeycombPerSecond =
-    honey > staticConstants.HONEY_TO_HONEYCOMB_COST
+    honey >
+    staticConstants.HONEY_TO_HONEYCOMB_COST -
+      techData.techHoneyConversionReducer
       ? workersAssignedFactory
       : 0;
 

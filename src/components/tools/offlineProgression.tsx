@@ -8,6 +8,7 @@ import { useBetween } from 'use-between';
 import CustomBeeHook from './CustomBeeHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
+import CustomTechHook from './CustomTechHook';
 import CustomTimerHook from './CustomTimerHook';
 
 import processTick from './processTick';
@@ -20,6 +21,7 @@ function offlineProgression(): void {
   const beeData = useBetween(CustomBeeHook);
   const resourceData = useBetween(CustomResourceHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
+  const techData = useBetween(CustomTechHook);
   const timerData = useBetween(CustomTimerHook);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function offlineProgression(): void {
       );
       console.log('This amount of ticks: ' + amountOfTicks); //prints out tick amount so we know this is working ;P
       for (let i = 0; i < amountOfTicks; i++) {
-        processTick(resourceData, beeData, hatcheryData, timerData);
+        processTick(resourceData, beeData, hatcheryData, techData, timerData);
       }
     }
   }, []);

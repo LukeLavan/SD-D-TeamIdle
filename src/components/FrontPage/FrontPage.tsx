@@ -8,6 +8,7 @@ import Beehive from '../Pages/Beehive';
 import './FrontPage.css';
 import Settings from '../Pages/Settings';
 import Hatchery from '../Pages/Hatchery';
+import Tech from '../Pages/Tech';
 
 import timer from '../tools/timer';
 import offlineProgression from '../tools/offlineProgression';
@@ -27,7 +28,9 @@ function FrontPage(): JSX.Element {
         <Hatchery />
       </div>
       <div id="page3">Upgrade page</div>
-      <div id="page4">Tech tree page</div>
+      <div id="page4">
+        <Tech />
+      </div>
       <div id="page5">Statistics page</div>
       <div id="page6">
         <Settings />
