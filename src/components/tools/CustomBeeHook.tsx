@@ -16,6 +16,8 @@ const CustomBeeHook = (): {
   setWorkersAssignedHatchery: React.Dispatch<React.SetStateAction<number>>;
   workersAssignedFactory: number;
   setWorkersAssignedFactory: React.Dispatch<React.SetStateAction<number>>;
+  workersAssignedLibrary: number;
+  setWorkersAssignedLibrary: React.Dispatch<React.SetStateAction<number>>;
   drones: number;
   setDrones: React.Dispatch<React.SetStateAction<number>>;
   idleWorkers: number;
@@ -42,6 +44,11 @@ const CustomBeeHook = (): {
       'workersAssignedFactory',
       variableDefaults.assignedWorkers.Factory
     );
+  const [workersAssignedLibrary, setWorkersAssignedLibrary] =
+    usePersistentState(
+      'workersAssignedLibrary',
+      variableDefaults.assignedWorkers.Library
+    );
   const [drones, setDrones] = usePersistentState(
     'drones',
     variableDefaults.drones
@@ -62,6 +69,8 @@ const CustomBeeHook = (): {
     setWorkersAssignedHatchery,
     workersAssignedFactory,
     setWorkersAssignedFactory,
+    workersAssignedLibrary,
+    setWorkersAssignedLibrary,
     drones,
     setDrones,
     idleWorkers,

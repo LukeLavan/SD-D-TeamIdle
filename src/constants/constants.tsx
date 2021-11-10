@@ -36,14 +36,30 @@ const variableDefaults = {
     DanceFloor: 0,
     Refinery: 1,
     Hatchery: 0,
-    Factory: 0
+    Factory: 0,
+    Library: 0
   },
   capacities: {
     nectar: 20,
     honey: 10,
     honeycomb: 5,
     royalJelly: 10
-  }
+  },
+  techEnabled: {
+    honey1: false,
+    honey2: false,
+    honey3: false,
+    drone: false,
+    nurse: false,
+    honeyConversion: false
+  },
+  currentResearch: 'none',
+  researchProgress: 0,
+  researchMax: 0,
+  techHoneyMultiplier: 1,
+  techDroneMultiplier: 1,
+  techNurseMultiplier: 1,
+  techHoneyConversionReducer: 0
 };
 
 const staticConstants = {
@@ -62,7 +78,32 @@ const staticConstants = {
     Factory: 2,
     Library: 2,
     Storage: 2
+  },
+  TECH_VALUE: {
+    honey1: 1,
+    honey2: 2,
+    honey3: 4,
+    drone: 1,
+    nurse: 1,
+    honeyConversion: 1
+  },
+  TECH_COST: {
+    honey1: 500,
+    honey2: 1000,
+    honey3: 2000,
+    drone: 1000,
+    nurse: 2000,
+    honeyConversion: 2000
   }
 };
 
-export { variableDefaults, staticConstants };
+const pageIds = {
+  BEEHIVE_ID: 1,
+  HATCHERY_ID: 2,
+  UPGRADE_ID: 3,
+  TECH_TREE_ID: 4,
+  STATISTICS_ID: 5,
+  SETTINGS_ID: 6
+};
+
+export { variableDefaults, staticConstants, pageIds };
