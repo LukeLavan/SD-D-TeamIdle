@@ -3,16 +3,20 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import MenuBar from '../tools/menu';
-import Beehive from '../Pages/Beehive';
-
-import './FrontPage.css';
-import Settings from '../Pages/Settings';
-import Hatchery from '../Pages/Hatchery';
-import Tech from '../Pages/Tech';
+import Beehive from '../Pages/Beehive/Beehive';
+import Hatchery from '../Pages/Hatchery/Hatchery';
+import Tech from '../Pages/Tech/Tech';
+import Settings from '../Pages/Settings/Settings';
 
 import timer from '../tools/timer';
 import offlineProgression from '../tools/offlineProgression';
 
+import './FrontPage.css';
+
+/**
+ * entry point - calculates offline progression and starts global clock
+ * @returns component containing MenuBar and all Pages
+ */
 function FrontPage(): JSX.Element {
   offlineProgression();
   timer();

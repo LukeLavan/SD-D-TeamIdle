@@ -1,16 +1,17 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
-import './allBees.css';
+import './bees.css';
 
 import CustomBeeHook from '../tools/CustomBeeHook';
-import { useBetween } from 'use-between';
 import CustomStructureHook from '../tools/CustomStructureHook';
+import { useBetween } from 'use-between';
+
+import BeeTableRow from './BeeTableRow/BeeTableRow';
 
 function Bees(): JSX.Element {
-  const NAME = 'Total Adults';
   const beeData = useBetween(CustomBeeHook);
-  const { levelHomes } = useBetween(CustomStructureHook);
+  const structureData = useBetween(CustomStructureHook);
 
   // TODO: move this somewhere more convenient?
   const calcTotalAdults = () => {
@@ -21,7 +22,8 @@ function Bees(): JSX.Element {
       beeData.workersAssignedDanceFloor +
       beeData.workersAssignedFactory +
       beeData.workersAssignedHatchery +
-      beeData.workersAssignedRefinery
+      beeData.workersAssignedRefinery +
+      beeData.workersAssignedLibrary
     );
   };
 
@@ -30,19 +32,54 @@ function Bees(): JSX.Element {
       <div>
         <table id="BeesTable">
           <tbody>
-            <tr>
-              <td className="BeeTd">{NAME}</td>
-              <td id="numOfBees" className="BeeTd">
-                {calcTotalAdults()}
-              </td>
-              <td className="BeeTd">/{levelHomes}</td>
-            </tr>
-            <tr>
-              <td className="BeeTd">Idle Workers</td>
-              <td id="numOfWorkers" className="BeeTd">
-                {beeData.idleWorkers}
-              </td>
-            </tr>
+            <BeeTableRow
+              name="total adults"
+              workersAssigned={calcTotalAdults()}
+              setWorkersAssigned={undefined}
+              levelStructure={structureData.levelHomes}
+            />
+            <BeeTableRow
+              name="drones"
+              workersAssigned={beeData.drones}
+              setWorkersAssigned={undefined}
+              levelStructure={undefined}
+            />
+            <BeeTableRow
+              name="idle workers"
+              workersAssigned={beeData.idleWorkers}
+              setWorkersAssigned={undefined}
+              levelStructure={undefined}
+            />
+            <BeeTableRow
+              name="foragers"
+              workersAssigned={beeData.workersAssignedDanceFloor}
+              setWorkersAssigned={beeData.setWorkersAssignedDanceFloor}
+              levelStructure={structureData.levelDanceFloor}
+            />
+            <BeeTableRow
+              name="refiners"
+              workersAssigned={beeData.workersAssignedRefinery}
+              setWorkersAssigned={beeData.setWorkersAssignedRefinery}
+              levelStructure={structureData.levelRefinery}
+            />
+            <BeeTableRow
+              name="architects"
+              workersAssigned={beeData.workersAssignedFactory}
+              setWorkersAssigned={beeData.setWorkersAssignedFactory}
+              levelStructure={structureData.levelFactory}
+            />
+            <BeeTableRow
+              name="nurses"
+              workersAssigned={beeData.workersAssignedHatchery}
+              setWorkersAssigned={beeData.setWorkersAssignedHatchery}
+              levelStructure={structureData.levelHatchery}
+            />
+            <BeeTableRow
+              name="scientists"
+              workersAssigned={beeData.workersAssignedLibrary}
+              setWorkersAssigned={beeData.setWorkersAssignedLibrary}
+              levelStructure={structureData.levelLibrary}
+            />
           </tbody>
         </table>
       </div>
