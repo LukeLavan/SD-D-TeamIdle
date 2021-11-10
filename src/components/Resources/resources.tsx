@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import ResourceRow from './ResourceRow.tsx/ResourceRow';
+import ResourceTableRow from './ResourceTableRow.tsx/ResourceTableRow';
 
 import { useBetween } from 'use-between';
 import { staticConstants } from '../../constants/constants';
@@ -52,25 +52,25 @@ function resources(): JSX.Element {
   };
   return (
     <div>
-      <ResourceRow
+      <ResourceTableRow
         name="nectar"
         value={ResourceData.nectar}
         max={ResourceData.maxNectar}
         rate={calcNectarRate()}
       />
-      <ResourceRow
+      <ResourceTableRow
         name="honey"
         value={ResourceData.honey}
         max={ResourceData.maxHoney}
         rate={calcHoneyRate()}
       />
-      <ResourceRow
+      <ResourceTableRow
         name="honeycomb"
         value={ResourceData.honeycomb}
         max={ResourceData.maxHoneycomb}
         rate={calcHoneycombRate()}
       />
-      <ResourceRow
+      <ResourceTableRow
         name="royal jelly"
         value={ResourceData.royalJelly}
         max={ResourceData.maxRoyalJelly}
