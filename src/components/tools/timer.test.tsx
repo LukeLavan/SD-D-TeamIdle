@@ -2,12 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import ReactDOM from 'react-dom';
 import FrontPage from '../FrontPage/FrontPage';
 import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { staticConstants, variableDefaults } from '../../constants/constants';
-import { stat } from 'fs';
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -20,7 +18,7 @@ afterEach(() => {
 it('increments nectar linearly with dance floor bees', () => {
   localStorage.workersAssignedRefinery = '0';
   localStorage.levelDanceFloor = '2';
-  localStorage.workers = '3';
+  localStorage.idleWorkers = '3';
   localStorage.workersAssignedDanceFloor = '2';
 
   const frontPageDom = render(<FrontPage />);
@@ -38,7 +36,7 @@ it('increments nectar linearly with dance floor bees', () => {
 it('never increments nectar past the current capacity', () => {
   localStorage.workersAssignedRefinery = '0';
   localStorage.levelDanceFloor = '2';
-  localStorage.workers = '3';
+  localStorage.idleWorkers = '3';
   localStorage.workersAssignedDanceFloor = '2';
 
   const frontPageDom = render(<FrontPage />);
@@ -57,7 +55,7 @@ it('increments honey linearly with dance floor bees', () => {
   localStorage.levelRefinery = '2';
   localStorage.workersAssignedRefinery = '2';
   localStorage.levelDanceFloor = '2';
-  localStorage.workers = '4';
+  localStorage.idleWorkers = '4';
   localStorage.workersAssignedDanceFloor = '2';
 
   const frontPageDom = render(<FrontPage />);
@@ -80,7 +78,7 @@ it('never increments honey past the current capacity', () => {
   localStorage.levelRefinery = '2';
   localStorage.workersAssignedRefinery = '2';
   localStorage.levelDanceFloor = '2';
-  localStorage.workers = '4';
+  localStorage.idleWorkers = '4';
   localStorage.workersAssignedDanceFloor = '2';
 
   const frontPageDom = render(<FrontPage />);
@@ -100,7 +98,7 @@ it('never increments honey if there is no nectar', () => {
   localStorage.levelRefinery = '2';
   localStorage.workersAssignedRefinery = '2';
   localStorage.levelDanceFloor = '0';
-  localStorage.workers = '2';
+  localStorage.idleWorkers = '2';
   localStorage.workersAssignedDanceFloor = '0';
 
   const frontPageDom = render(<FrontPage />);
@@ -119,7 +117,7 @@ it('increments honeycombs linearly with factory bees', () => {
   localStorage.levelFactory = '2';
   localStorage.workersAssignedFactory = '2';
   localStorage.honey = '10';
-  localStorage.workers = '3';
+  localStorage.idleWorkers = '3';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
@@ -139,7 +137,7 @@ it('never increments honeycombs past the current capacity', () => {
   localStorage.workersAssignedDanceFloor = '2';
   localStorage.levelFactory = '2';
   localStorage.workersAssignedFactory = '2';
-  localStorage.workers = '6';
+  localStorage.idleWorkers = '6';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
@@ -163,7 +161,7 @@ it('never increments honeycombs if there is no honey', () => {
   localStorage.levelFactory = '2';
   localStorage.workersAssignedFactory = '2';
   localStorage.honey = '0';
-  localStorage.workers = '3';
+  localStorage.idleWorkers = '3';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
@@ -179,7 +177,7 @@ it('never increments honeycombs if there is no honey', () => {
 it('increments royal jelly linearly with hatchery bees', () => {
   localStorage.workersAssignedRefinery = '0';
   localStorage.levelHatchery = '2';
-  localStorage.workers = '3';
+  localStorage.idleWorkers = '3';
   localStorage.workersAssignedHatchery = '2';
 
   const frontPageDom = render(<FrontPage />);
@@ -197,7 +195,7 @@ it('increments royal jelly linearly with hatchery bees', () => {
 it('never increments royal jelly beyond the capacity', () => {
   localStorage.workersAssignedRefinery = '0';
   localStorage.levelHatchery = '2';
-  localStorage.workers = '3';
+  localStorage.idleWorkers = '3';
   localStorage.workersAssignedHatchery = '2';
 
   const frontPageDom = render(<FrontPage />);

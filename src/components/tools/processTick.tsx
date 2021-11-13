@@ -9,7 +9,7 @@ import CustomResourceHook from './CustomResourceHook';
 import CustomTimerHook from './CustomTimerHook';
 import CustomTechHook from './CustomTechHook';
 
-import { doneResearch } from '../Pages/Tech';
+import { doneResearch } from '../Pages/Tech/Tech';
 
 const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,

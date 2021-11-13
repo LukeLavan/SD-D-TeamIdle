@@ -3,10 +3,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { render } from '@testing-library/react';
-import Structures from './structure';
+import Structures from './structures';
 
 // test that the honeycomb structures are rendered correctly
 it('renders without crashing', () => {
   const structuresDom = render(<Structures />);
   expect(structuresDom);
 });
+
+// StructureHex is responsible for testing individual structures

@@ -1,0 +1,35 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+#BeesTable {
+    table-layout: fixed;
+    margin: 20px;
+}
+
+#BeesTableMeta {
+    table-layout: fixed;
+    margin: 20px;
+}
+
+.BeeTd {
+    width: 150px;
+}
+
+.PlusButton {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.MinusButton {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.ButtonIcon {
+    color: #f0d264;
+}
+
+.ButtonIcon:hover {
+    color: #cb99c5;
+}
