@@ -4,6 +4,12 @@
 
 import CustomWeatherHook from '../tools/CustomWeatherHook';
 import { useBetween } from 'use-between';
+import './weather.css';
+
+import autumn from './img/seasons/autumn.png';
+import spring from './img/seasons/spring.png';
+import summer from './img/seasons/summer.png';
+import winter from './img/seasons/winter.png';
 
 const SECONDS_PER_DAY = 10;
 const MONTH_NAMES = [
@@ -128,15 +134,35 @@ export const processWeatherTick = (
   }
 };
 
+const getWeatherImage = (season: string) => {
+  switch (season) {
+    case 'autumn':
+      return autumn;
+    case 'summer':
+      return summer;
+    case 'winter':
+      return winter;
+    case 'spring':
+      return spring;
+  }
+};
+
 function Weather(): JSX.Element {
   const { month, day, weather, season } = useBetween(CustomWeatherHook);
   return (
     <div>
-      <div>
+      <div id="monthAndDate">
         {MONTH_NAMES[month]} {day}
       </div>
-      <div>{season.toUpperCase()}</div>
-      <div>{weather}</div>
+      <div id="season">
+        <img
+          src={getWeatherImage(season)}
+          width="100"
+          height="100"
+          alt="season icon"
+        ></img>
+      </div>
+      <div id="weather">{weather.toLowerCase()}</div>
     </div>
   );
 }
