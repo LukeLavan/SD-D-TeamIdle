@@ -40,11 +40,50 @@ const variableDefaults = {
     Library: 0
   },
   capacities: {
-    nectar: 20,
-    honey: 10,
+    nectar: 10,
+    honey: 20,
     honeycomb: 5,
-    royalJelly: 10
+    royalJelly: 5
   },
+  ticksNextEgg: -1,
+  eggReady: false,
+  broodcells: [
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    },
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    },
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    },
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    },
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    },
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    },
+    {
+      type: 'none',
+      destiny: 'none',
+      ticksLeft: -1
+    }
+  ],
   techEnabled: {
     honey1: false,
     honey2: false,
@@ -58,18 +97,16 @@ const variableDefaults = {
   researchMax: 0,
   techHoneyMultiplier: 1,
   techDroneMultiplier: 1,
-  techNurseMultiplier: 1,
+  techRoyalJellyMultiplier: 1,
   techHoneyConversionReducer: 0
 };
 
 const staticConstants = {
   NECTAR_BY_BEE: 3,
-  ROYAL_JELLY_BY_BEE: 0.27,
+  ROYAL_JELLY_BY_BEE: 0.03,
   NECTAR_TO_HONEY_COST: 5,
   HONEY_TO_HONEYCOMB_COST: 5,
-  PUPAE_BY_DRONE: 0.1,
-  PUPAE_TO_LARVAE_COST: 5,
-  LARVAE_TO_BEE_COST: 5,
+  WORKER_COST_ROYAL_JELLY: 5,
   STRUCTURE_SCALING: {
     DanceFloor: 2,
     Refinery: 2,
@@ -78,6 +115,12 @@ const staticConstants = {
     Factory: 2,
     Library: 2,
     Storage: 2
+  },
+  STORAGE_SCALING: {
+    nectar: variableDefaults.capacities.nectar,
+    honey: variableDefaults.capacities.honey,
+    honeycomb: variableDefaults.capacities.honeycomb,
+    royalJelly: variableDefaults.capacities.royalJelly
   },
   TECH_VALUE: {
     honey1: 1,
@@ -90,10 +133,10 @@ const staticConstants = {
   TECH_COST: {
     honey1: 500,
     honey2: 1000,
-    honey3: 2000,
-    drone: 1000,
-    nurse: 2000,
-    honeyConversion: 2000
+    honey3: 5000,
+    drone: 2000,
+    nurse: 500,
+    honeyConversion: 4000
   }
 };
 

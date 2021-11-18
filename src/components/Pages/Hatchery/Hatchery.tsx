@@ -2,57 +2,61 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import { Hexagon, Honeycomb } from 'react-honeycomb';
+
 import CustomBeeHook from '../../tools/CustomBeeHook';
 import CustomHatcheryHook from '../../tools/CustomHatcheryHook';
-import CustomResourceHook from '../../tools/CustomResourceHook';
-import CustomStructureHook from '../../tools/CustomStructureHook';
 import { useBetween } from 'use-between';
-
-import { staticConstants } from '../../../constants/constants';
-import { Hexagon, Honeycomb } from 'react-honeycomb';
 
 import Bees from '../../Bees/bees';
 import BroodCell from '../../BroodCell/BroodCell';
-import Button from '../../Button/Button';
 
 import './Hatchery.css';
 
 function Hatchery(): JSX.Element {
-  const beeData = useBetween(CustomBeeHook);
-  const hatcheryData = useBetween(CustomHatcheryHook);
-  const resourceData = useBetween(CustomResourceHook);
-  const { levelHomes } = useBetween(CustomStructureHook);
-  const calcTotalAdults = () => {
-    return (
-      beeData.bees +
-      beeData.idleWorkers +
-      beeData.drones +
-      beeData.workersAssignedDanceFloor +
-      beeData.workersAssignedFactory +
-      beeData.workersAssignedHatchery +
-      beeData.workersAssignedRefinery
-    );
-  };
-  const ITEMS = ['1', '2', 'BLANK', '3', '4', '5', '6', '7'];
+  const ITEMS = ['0', '1', 'BLANK', '2', '3', '4', '5', '6'];
+  const HatcheryData = useBetween(CustomHatcheryHook);
+  const { workersAssignedHatchery } = useBetween(CustomBeeHook);
   const renderItem = (item: string): JSX.Element => {
     if (item === 'BLANK') return <>{item}</>;
     const cellNum = parseInt(item);
     return <BroodCell i={cellNum} />;
   };
+  if (HatcheryData.eggReady) {
+    // try getting an empty cell
+    let nextCell = -1;
+    for (
+      let i = 0;
+      i < HatcheryData.broodcells.length && i < workersAssignedHatchery;
+      ++i
+    ) {
+      if (HatcheryData.broodcells[i].type === 'none') {
+        nextCell = i;
+        break;
+      }
+    }
+    if (nextCell != -1) {
+      // assign egg to cell
+      HatcheryData.setBroodcells((previousBroodcells) => {
+        const nextBroodcells = previousBroodcells;
+        nextBroodcells[nextCell].type = 'egg';
+        return nextBroodcells;
+      });
+      HatcheryData.setEggReady(false);
+    }
+  }
   return (
     <div>
       <div id="Hatchery_Left">
         <Bees />
       </div>
       <div id="Hatchery_Right">
-        <div style={{ visibility: 'hidden' }}>
-          <Button
-            onClick={() => {
-              return;
-            }}
-          >
-            Buzz Buzz Buzz
-          </Button>
+        <div id="eggtime">
+          {!HatcheryData.eggReady ? (
+            <> Time to next egg: {HatcheryData.ticksNextEgg} </>
+          ) : (
+            <> awaiting open cell </>
+          )}
         </div>
         <Honeycomb
           columns={3}

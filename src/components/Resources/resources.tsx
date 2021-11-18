@@ -45,8 +45,8 @@ function resources(): JSX.Element {
   };
   const calcRoyalJellyRate = () => {
     return (
-      TechData.techNurseMultiplier *
-      BeeData.workersAssignedHatchery *
+      TechData.techRoyalJellyMultiplier *
+      BeeData.drones *
       staticConstants.ROYAL_JELLY_BY_BEE
     );
   };

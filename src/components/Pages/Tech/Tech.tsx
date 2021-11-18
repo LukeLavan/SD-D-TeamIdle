@@ -83,20 +83,18 @@ function effectHoney3(techData: ReturnType<typeof CustomTechHook>) {
   }
 }
 
+// temporarily changing this
 function effectDrone(techData: ReturnType<typeof CustomTechHook>) {
   if (!techData.droneEnabled) {
     techData.setDrone(true);
-    techData.setTechDroneMultiplier(
-      (oldTechMultiplier: number) =>
-        oldTechMultiplier + staticConstants.TECH_VALUE.drone
-    );
+    techData.setTechHoneycombEfficiency(2);
   }
 }
 
 function effectNurse(techData: ReturnType<typeof CustomTechHook>) {
   if (!techData.nurseEnabled) {
     techData.setNurse(true);
-    techData.setTechNurseMultiplier(
+    techData.setTechRoyalJellyMultiplier(
       (oldTechMultiplier: number) =>
         oldTechMultiplier + staticConstants.TECH_VALUE.nurse
     );
@@ -172,11 +170,11 @@ function Tech(): JSX.Element {
       <div className="multipliers">
         nectar multiplier: {techData.techHoneyMultiplier.toFixed(2)}
         <br />
-        drone multiplier: {techData.techDroneMultiplier.toFixed(2)}
+        factory efficiency: {techData.techHoneyConversionReducer.toFixed(2)}
         <br />
-        nurse multiplier: {techData.techNurseMultiplier.toFixed(2)}
+        royal jelly multiplier: {techData.techRoyalJellyMultiplier.toFixed(2)}
         <br />
-        honeycomb reducer: {techData.techHoneyConversionReducer.toFixed(2)}
+        structure cost reducer: {techData.techDroneMultiplier.toFixed(2)}
       </div>
       <div className="tracker">
         current research: {techData.currentResearch}
@@ -220,25 +218,25 @@ function Tech(): JSX.Element {
       <div className="four">
         <br />
         <Button
-          disabled={!techData.honey1Enabled}
-          onClick={researchDrone}
-          color="purple"
+          disabled={!techData.droneEnabled}
+          onClick={researchNurse}
+          color="red"
         >
-          research drone effciency!
+          research drone fertility!
         </Button>
-        effect: increases rate that drones produce pupae
+        effect: increases rate that drones secrete royal jelly
         <br />
       </div>
       <div className="five">
         <br />
         <Button
-          disabled={!techData.droneEnabled}
-          onClick={researchNurse}
-          color="red"
+          disabled={!techData.honey1Enabled}
+          onClick={researchDrone}
+          color="purple"
         >
-          research nurse effciency!
+          research material efficiency!
         </Button>
-        effect: increases rate that nurses secrete royal jelly
+        effect: decreases honeycomb requirements for structures
         <br />
       </div>
       <div className="six">

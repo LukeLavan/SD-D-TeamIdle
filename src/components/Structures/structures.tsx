@@ -4,10 +4,15 @@
 
 import { Honeycomb, Hexagon } from 'react-honeycomb';
 import StructureHex from './StructureHex/StructureHex';
-import './structures.css';
-import { useBetween } from 'use-between';
+
 import CustomStructureHook from '../tools/CustomStructureHook';
+import CustomResourceHook from '../tools/CustomResourceHook';
+import CustomTechHook from '../tools/CustomTechHook';
+import { useBetween } from 'use-between';
+
 import { staticConstants } from '../../constants/constants';
+
+import './structures.css';
 
 const ITEMS = [
   'Dance Floor',
@@ -22,6 +27,23 @@ const ITEMS = [
 
 function structures(): JSX.Element {
   const StructureData = useBetween(CustomStructureHook);
+  const ResourceData = useBetween(CustomResourceHook);
+  const { techHoneycombEfficiency } = useBetween(CustomTechHook);
+
+  const upgradeStorage = () => {
+    ResourceData.setMaxHoney(
+      (previousMax) => previousMax + staticConstants.STORAGE_SCALING.honey
+    );
+    ResourceData.setMaxNectar(
+      (previousMax) => previousMax + staticConstants.STORAGE_SCALING.nectar
+    );
+    ResourceData.setMaxHoneycomb(
+      (previousMax) => previousMax + staticConstants.STORAGE_SCALING.honeycomb
+    );
+    ResourceData.setMaxRoyalJelly(
+      (previousMax) => previousMax + staticConstants.STORAGE_SCALING.royalJelly
+    );
+  };
   const renderItem = (item: string): JSX.Element => {
     switch (item) {
       case 'Dance Floor':
@@ -30,7 +52,9 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelDanceFloor}
             setLevel={StructureData.setLevelDanceFloor}
-            costNextLevel={StructureData.costNextLevelDanceFloor}
+            costNextLevel={
+              StructureData.costNextLevelDanceFloor / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelDanceFloor}
             costScaling={staticConstants.STRUCTURE_SCALING.DanceFloor}
           />
@@ -41,7 +65,9 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelRefinery}
             setLevel={StructureData.setLevelRefinery}
-            costNextLevel={StructureData.costNextLevelRefinery}
+            costNextLevel={
+              StructureData.costNextLevelRefinery / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelRefinery}
             costScaling={staticConstants.STRUCTURE_SCALING.Refinery}
           />
@@ -52,7 +78,9 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelFactory}
             setLevel={StructureData.setLevelFactory}
-            costNextLevel={StructureData.costNextLevelFactory}
+            costNextLevel={
+              StructureData.costNextLevelFactory / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelFactory}
             costScaling={staticConstants.STRUCTURE_SCALING.Factory}
           />
@@ -63,9 +91,12 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelStorage}
             setLevel={StructureData.setLevelStorage}
-            costNextLevel={StructureData.costNextLevelStorage}
+            costNextLevel={
+              StructureData.costNextLevelStorage / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelStorage}
             costScaling={staticConstants.STRUCTURE_SCALING.Storage}
+            upgradeCallback={upgradeStorage}
           />
         );
       case 'Homes':
@@ -74,7 +105,9 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelHomes}
             setLevel={StructureData.setLevelHomes}
-            costNextLevel={StructureData.costNextLevelHomes}
+            costNextLevel={
+              StructureData.costNextLevelHomes / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelHomes}
             costScaling={staticConstants.STRUCTURE_SCALING.Homes}
           />
@@ -85,7 +118,9 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelHatchery}
             setLevel={StructureData.setLevelHatchery}
-            costNextLevel={StructureData.costNextLevelHatchery}
+            costNextLevel={
+              StructureData.costNextLevelHatchery / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelHatchery}
             costScaling={staticConstants.STRUCTURE_SCALING.Hatchery}
           />
@@ -96,7 +131,9 @@ function structures(): JSX.Element {
             name={item}
             level={StructureData.levelLibrary}
             setLevel={StructureData.setLevelLibrary}
-            costNextLevel={StructureData.costNextLevelLibrary}
+            costNextLevel={
+              StructureData.costNextLevelLibrary / techHoneycombEfficiency
+            }
             setCostNextLevel={StructureData.setCostNextLevelLibrary}
             costScaling={staticConstants.STRUCTURE_SCALING.Library}
           />

@@ -19,10 +19,11 @@
 /* css for hex grid already in beehive.css, so we piggy back off of that */
 /* (we want them to look the same anyway, so any changes there will reflect here too) */
 
-.BroodCell {
+#eggtime {
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 33.33%;
+    width: 160px;
+    height: 70px; /* size of buzz buzz buzz button for consistent spacing */
+    line-height: 70px;
     text-align: center;
 }

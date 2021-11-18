@@ -18,7 +18,10 @@ function Honey(props: Props): JSX.Element {
           <tr>
             <td className="resourcetd">{props.name}</td>
             <td id={'num' + props.name} className="resourcetd">
-              {props.value}
+              {/* truncate to hundredths and remove trailing 0s */}
+              {(+props.value)
+                .toFixed(2)
+                .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
             </td>
             <td className="resourcetd">/{props.max}</td>
             <td className="resourcetd">

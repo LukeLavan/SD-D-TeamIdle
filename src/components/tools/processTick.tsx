@@ -2,18 +2,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import { staticConstants } from '../../constants/constants';
-import CustomBeeHook from './CustomBeeHook';
-import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomResourceHook from './CustomResourceHook';
-import CustomTimerHook from './CustomTimerHook';
+import CustomBeeHook from './CustomBeeHook';
+import CustomStructureHook from './CustomStructureHook';
+import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomTechHook from './CustomTechHook';
+import CustomTimerHook from './CustomTimerHook';
 
 import { doneResearch } from '../Pages/Tech/Tech';
+import { staticConstants } from '../../constants/constants';
 
 const processTick = (
   resourceData: ReturnType<typeof CustomResourceHook>,
   beeData: ReturnType<typeof CustomBeeHook>,
+  structureData: ReturnType<typeof CustomStructureHook>,
   hatcheryData: ReturnType<typeof CustomHatcheryHook>,
   techData: ReturnType<typeof CustomTechHook>,
   timerData: ReturnType<typeof CustomTimerHook>
@@ -80,25 +82,90 @@ const processTick = (
     });
   }
 
-  // nurses secrete royal jelly
-  for (let i = 0; i < beeData.workersAssignedHatchery; ++i) {
+  // drones secrete royal jelly
+  for (let i = 0; i < beeData.drones; ++i) {
     resourceData.setRoyalJelly((previousJelly): number => {
       const nextJelly =
         previousJelly +
-        techData.techNurseMultiplier * staticConstants.ROYAL_JELLY_BY_BEE;
+        techData.techRoyalJellyMultiplier * staticConstants.ROYAL_JELLY_BY_BEE;
       if (nextJelly > resourceData.maxRoyalJelly)
         return resourceData.maxRoyalJelly;
       return nextJelly;
     });
   }
 
-  // drones produce pupae
-  for (let i = 0; i < beeData.drones; ++i) {
-    hatcheryData.setPupae(
-      (previousPupae) =>
-        previousPupae +
-        techData.techDroneMultiplier * staticConstants.PUPAE_BY_DRONE
+  // TODO: move this somewhere more convenient
+  const calcTotalAdults = (): number => {
+    return (
+      beeData.bees +
+      beeData.idleWorkers +
+      beeData.drones +
+      beeData.workersAssignedDanceFloor +
+      beeData.workersAssignedFactory +
+      beeData.workersAssignedHatchery +
+      beeData.workersAssignedRefinery +
+      beeData.workersAssignedLibrary
     );
+  };
+
+  // hatchery egg
+  if (!hatcheryData.eggReady)
+    hatcheryData.setTicksNextEgg((previousTicks) => {
+      const nextTicks = previousTicks - 1;
+      if (nextTicks > 0) return nextTicks;
+      const newEggDuration = Math.floor(60 * Math.random());
+      hatcheryData.setEggReady(true);
+      return newEggDuration;
+    });
+
+  // hatchery babies
+  for (let i = 0; i < hatcheryData.broodcells.length; ++i) {
+    if (hatcheryData.broodcells[i].type === 'larva') {
+      hatcheryData.setBroodcells((previousBroodcells) => {
+        const newBroodcells = [...previousBroodcells];
+        newBroodcells[i].ticksLeft -= 1;
+        return newBroodcells;
+      });
+      if (hatcheryData.broodcells[i].ticksLeft === 0) {
+        if (calcTotalAdults() < structureData.levelHomes) {
+          hatcheryData.setBroodcells((previousBroodcells) => {
+            const newBroodcells = [...previousBroodcells];
+
+            if (newBroodcells[i].destiny === 'worker')
+              beeData.setIdleWorkers(
+                (previousIdleWorkers) => previousIdleWorkers + 1
+              );
+            else if (newBroodcells[i].destiny === 'drone')
+              beeData.setDrones((previousDrones) => previousDrones + 1);
+
+            newBroodcells[i].type = 'none';
+            newBroodcells[i].destiny = 'awaiting egg';
+            newBroodcells[i].ticksLeft = -1;
+
+            return newBroodcells;
+          });
+        } else {
+          hatcheryData.setBroodcells((previousBroodcells) => {
+            const newBroodcells = [...previousBroodcells];
+            newBroodcells[i].type = 'adult';
+            return newBroodcells;
+          });
+        }
+      }
+    } else if (
+      hatcheryData.broodcells[i].type === 'adult' &&
+      calcTotalAdults() < structureData.levelHomes
+    ) {
+      hatcheryData.setBroodcells((previousBroodcells) => {
+        const newBroodcells = [...previousBroodcells];
+        newBroodcells[i].type = 'none';
+        newBroodcells[i].ticksLeft = -1;
+        beeData.setIdleWorkers(
+          (previousIdleWorkers) => previousIdleWorkers + 1
+        );
+        return newBroodcells;
+      });
+    }
   }
 
   // librarians research technology

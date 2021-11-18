@@ -97,6 +97,4 @@ it('has a working reset button', () => {
   expect(localStorage.costNextLevelStorage).toBe(
     variableDefaults.structureCosts.Storage.toString()
   );
-  expect(localStorage.larvae).toBe(variableDefaults.larvae.toString());
-  expect(localStorage.pupae).toBe(variableDefaults.pupae.toString());
 });

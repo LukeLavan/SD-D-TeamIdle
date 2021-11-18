@@ -19,14 +19,14 @@ it('increments nectar linearly with dance floor bees', () => {
   localStorage.workersAssignedRefinery = '0';
   localStorage.levelDanceFloor = '2';
   localStorage.idleWorkers = '3';
-  localStorage.workersAssignedDanceFloor = '2';
+  localStorage.workersAssignedDanceFloor = '1';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
     jest.advanceTimersByTime(3000);
   });
   expect(localStorage.nectar).toBe(
-    (3 * 2 * staticConstants.NECTAR_BY_BEE).toString()
+    (3 * staticConstants.NECTAR_BY_BEE).toString()
   );
 
   userEvent.click(frontPageDom.getByText('Settings'));
@@ -174,18 +174,16 @@ it('never increments honeycombs if there is no honey', () => {
   userEvent.click(frontPageDom.getByText('reset'));
 });
 
-it('increments royal jelly linearly with hatchery bees', () => {
-  localStorage.workersAssignedRefinery = '0';
-  localStorage.levelHatchery = '2';
-  localStorage.idleWorkers = '3';
-  localStorage.workersAssignedHatchery = '2';
+it('increments royal jelly linearly with drones', () => {
+  localStorage.royaljelly = '0';
+  localStorage.drones = '1';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
     jest.advanceTimersByTime(3000);
   });
   expect(localStorage.royalJelly).toBe(
-    (3 * 2 * staticConstants.ROYAL_JELLY_BY_BEE).toString()
+    (3 * staticConstants.ROYAL_JELLY_BY_BEE).toString()
   );
 
   userEvent.click(frontPageDom.getByText('Settings'));
@@ -193,14 +191,11 @@ it('increments royal jelly linearly with hatchery bees', () => {
 });
 
 it('never increments royal jelly beyond the capacity', () => {
-  localStorage.workersAssignedRefinery = '0';
-  localStorage.levelHatchery = '2';
-  localStorage.idleWorkers = '3';
-  localStorage.workersAssignedHatchery = '2';
+  localStorage.drones = '20';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
-    jest.advanceTimersByTime(30000);
+    jest.advanceTimersByTime(10000);
   });
   expect(localStorage.royalJelly).toBe(
     variableDefaults.capacities.royalJelly.toString()
@@ -219,9 +214,6 @@ it('increments pupae linearly with drones', () => {
   act(() => {
     jest.advanceTimersByTime(3000);
   });
-  expect(Number(localStorage.pupae).toFixed(1)).toBe(
-    (3 * 3 * staticConstants.PUPAE_BY_DRONE).toString()
-  );
 
   userEvent.click(frontPageDom.getByText('Settings'));
   userEvent.click(frontPageDom.getByText('reset'));
