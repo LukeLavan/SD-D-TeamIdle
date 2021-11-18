@@ -24,6 +24,11 @@
 #buzzBuzzBuzzButton {
   position: relative;
   left: 33.33%;
-  width:160px;
+  width: 160px;
   text-align: center;
+}
+
+#Weather {
+  position: absolute;
+  right: 5%;
 }
