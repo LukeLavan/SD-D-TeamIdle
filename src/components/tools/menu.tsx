@@ -10,14 +10,33 @@ import { pageIds } from '../../constants/constants';
 function MenuBar(): JSX.Element {
   return (
     <div className="topnave">
-      <a className="active" onClick={() => loadPage(pageIds.BEEHIVE_ID)}>
+      <a
+        id={`linkPage${pageIds.BEEHIVE_ID}`}
+        className="active"
+        onClick={() => loadPage(pageIds.BEEHIVE_ID)}
+      >
         Beehive
       </a>
-      <a onClick={() => loadPage(pageIds.HATCHERY_ID)}>Hatchery</a>
+      <a
+        id={`linkPage${pageIds.HATCHERY_ID}`}
+        onClick={() => loadPage(pageIds.HATCHERY_ID)}
+      >
+        Hatchery
+      </a>
       {/*<a onClick={() => loadPage(pageIds.UPGRADE_ID)}>Upgrade</a>*/}
-      <a onClick={() => loadPage(pageIds.TECH_TREE_ID)}>Tech Tree</a>
+      <a
+        id={`linkPage${pageIds.TECH_TREE_ID}`}
+        onClick={() => loadPage(pageIds.TECH_TREE_ID)}
+      >
+        Tech Tree
+      </a>
       {/*<a onClick={() => loadPage(pageIds.STATISTICS_ID)}>Statistics</a>*/}
-      <a onClick={() => loadPage(pageIds.SETTINGS_ID)}>Settings</a>
+      <a
+        id={`linkPage${pageIds.SETTINGS_ID}`}
+        onClick={() => loadPage(pageIds.SETTINGS_ID)}
+      >
+        Settings
+      </a>
     </div>
   );
 }
