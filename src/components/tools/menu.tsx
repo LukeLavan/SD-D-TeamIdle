@@ -14,9 +14,9 @@ function MenuBar(): JSX.Element {
         Beehive
       </a>
       <a onClick={() => loadPage(pageIds.HATCHERY_ID)}>Hatchery</a>
-      <a onClick={() => loadPage(pageIds.UPGRADE_ID)}>Upgrade</a>
+      {/*<a onClick={() => loadPage(pageIds.UPGRADE_ID)}>Upgrade</a>*/}
       <a onClick={() => loadPage(pageIds.TECH_TREE_ID)}>Tech Tree</a>
-      <a onClick={() => loadPage(pageIds.STATISTICS_ID)}>Statistics</a>
+      {/*<a onClick={() => loadPage(pageIds.STATISTICS_ID)}>Statistics</a>*/}
       <a onClick={() => loadPage(pageIds.SETTINGS_ID)}>Settings</a>
     </div>
   );

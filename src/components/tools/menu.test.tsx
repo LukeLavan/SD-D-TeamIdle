@@ -44,12 +44,12 @@ test('clicking hatchery menu tab makes hatchery visible', () => {
   checkPageVisibility(pageIds.HATCHERY_ID);
 });
 
-test('clicking upgrade menu tab makes upgrade visible', () => {
+/*test('clicking upgrade menu tab makes upgrade visible', () => {
   const { getByText } = render(<FrontPage />);
 
   userEvent.click(getByText('Upgrade'));
   checkPageVisibility(pageIds.UPGRADE_ID);
-});
+});*/
 
 test('clicking tech tree menu tab makes tech tree visible', () => {
   const { getByText } = render(<FrontPage />);
@@ -58,12 +58,12 @@ test('clicking tech tree menu tab makes tech tree visible', () => {
   checkPageVisibility(pageIds.TECH_TREE_ID);
 });
 
-test('clicking statistics menu tab makes statistics visible', () => {
+/*test('clicking statistics menu tab makes statistics visible', () => {
   const { getByText } = render(<FrontPage />);
 
   userEvent.click(getByText('Statistics'));
   checkPageVisibility(pageIds.STATISTICS_ID);
-});
+});*/
 
 test('clicking settings menu tab makes settings visible', () => {
   const { getByText } = render(<FrontPage />);
