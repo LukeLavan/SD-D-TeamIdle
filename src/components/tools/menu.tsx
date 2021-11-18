@@ -5,18 +5,19 @@
 import './menu.css';
 
 import { loadPage } from './loadScreens';
+import { pageIds } from '../../constants/constants';
 
 function MenuBar(): JSX.Element {
   return (
     <div className="topnave">
-      <a className="active" onClick={() => loadPage(1)}>
+      <a className="active" onClick={() => loadPage(pageIds.BEEHIVE_ID)}>
         Beehive
       </a>
-      <a onClick={() => loadPage(2)}>Hatchery</a>
-      <a onClick={() => loadPage(3)}>Upgrade</a>
-      <a onClick={() => loadPage(4)}>Tech Tree</a>
-      <a onClick={() => loadPage(5)}>Statistics</a>
-      <a onClick={() => loadPage(6)}>Settings</a>
+      <a onClick={() => loadPage(pageIds.HATCHERY_ID)}>Hatchery</a>
+      <a onClick={() => loadPage(pageIds.UPGRADE_ID)}>Upgrade</a>
+      <a onClick={() => loadPage(pageIds.TECH_TREE_ID)}>Tech Tree</a>
+      <a onClick={() => loadPage(pageIds.STATISTICS_ID)}>Statistics</a>
+      <a onClick={() => loadPage(pageIds.SETTINGS_ID)}>Settings</a>
     </div>
   );
 }

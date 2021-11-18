@@ -16,6 +16,7 @@ const CustomHatcheryHook = (): {
     variableDefaults.larvae
   );
   const [pupae, setPupae] = usePersistentState('pupae', variableDefaults.pupae);
+  if (pupae === null) setPupae(variableDefaults.pupae);
 
   return { larvae, setLarvae, pupae, setPupae };
 };

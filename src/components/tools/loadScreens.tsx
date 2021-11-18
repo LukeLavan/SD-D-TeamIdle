@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 const unloadAllPages = () => {
-  const NUM_OF_PAGES = 5;
+  const NUM_OF_PAGES = 6;
   for (let i = 1; i < NUM_OF_PAGES + 1; i++) {
     const page = document.getElementById(`page${i}`);
     if (page == null) {
