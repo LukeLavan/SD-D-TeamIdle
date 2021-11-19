@@ -5,12 +5,20 @@
 import { usePersistentState } from '../../PersistentState';
 
 const CustomTimerHook = (): {
+  timerFlip: boolean;
+  setTimerFlip: React.Dispatch<React.SetStateAction<boolean>>;
+  resetTimer: () => void;
   timeStamp: number;
   setTimeStamp: React.Dispatch<React.SetStateAction<number>>;
 } => {
+  const [timerFlip, setTimerFlip] = usePersistentState('timerFlip', false);
   const [timeStamp, setTimeStamp] = usePersistentState('timeStamp', Date.now());
+  const resetTimer = () => setTimerFlip((previous) => !previous);
 
   return {
+    timerFlip,
+    setTimerFlip,
+    resetTimer,
     timeStamp,
     setTimeStamp
   };

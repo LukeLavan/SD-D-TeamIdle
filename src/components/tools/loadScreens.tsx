@@ -6,20 +6,21 @@ const unloadAllPages = () => {
   const NUM_OF_PAGES = 6;
   for (let i = 1; i < NUM_OF_PAGES + 1; i++) {
     const page = document.getElementById(`page${i}`);
-    if (page == null) {
-      return;
-    }
+    if (!page) continue;
     page.style.display = 'none';
+    const link = document.getElementById(`linkPage${i}`);
+    if (!link) continue;
+    link.className = '';
   }
 };
 
 function loadPage(num: number): void {
   unloadAllPages();
-  const page = document.getElementById(`page${num}`);
-  if (page == null) {
-    return;
-  }
+  const page = document.getElementById(`page${num}`) as HTMLElement;
   page.style.display = 'block';
+  // ensure that the link to the loaded page is designated active
+  const link = document.getElementById(`linkPage${num}`) as HTMLElement;
+  link.className = 'active';
 }
 
 export { loadPage };

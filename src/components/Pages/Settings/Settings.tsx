@@ -7,6 +7,8 @@ import CustomResourceHook from '../../tools/CustomResourceHook';
 import CustomStructureHook from '../../tools/CustomStructureHook';
 import CustomHatcheryHook from '../../tools/CustomHatcheryHook';
 import CustomTechHook from '../../tools/CustomTechHook';
+import CustomWeatherHook from '../../tools/CustomWeatherHook';
+import CustomTimerHook from '../../tools/CustomTimerHook';
 import { useBetween } from 'use-between';
 
 import { variableDefaults } from '../../../constants/constants';
@@ -22,6 +24,8 @@ function Settings(): JSX.Element {
   const structureData = useBetween(CustomStructureHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
   const techData = useBetween(CustomTechHook);
+  const weatherData = useBetween(CustomWeatherHook);
+  const timerData = useBetween(CustomTimerHook);
   const reset = (): void => {
     beeData.setBees(variableDefaults.bees);
     beeData.setDrones(variableDefaults.drones);
@@ -36,6 +40,7 @@ function Settings(): JSX.Element {
       variableDefaults.assignedWorkers.Hatchery
     );
     beeData.setWorkersAssignedFactory(variableDefaults.assignedWorkers.Factory);
+    beeData.setWorkersAssignedLibrary(variableDefaults.assignedWorkers.Library);
 
     resourceData.setHoney(variableDefaults.honey);
     resourceData.setHoneycomb(variableDefaults.honeycomb);
@@ -75,8 +80,9 @@ function Settings(): JSX.Element {
       variableDefaults.structureCosts.Storage
     );
 
-    hatcheryData.setLarvae(variableDefaults.larvae);
-    hatcheryData.setPupae(variableDefaults.pupae);
+    hatcheryData.setBroodcells([...variableDefaults.broodcells]);
+    hatcheryData.setEggReady(variableDefaults.eggReady);
+    hatcheryData.setTicksNextEgg(variableDefaults.ticksNextEgg);
 
     techData.setCurrentResearch(variableDefaults.currentResearch);
     techData.setResearchProgress(variableDefaults.researchProgress);
@@ -89,10 +95,24 @@ function Settings(): JSX.Element {
     techData.setHoneyConversion(variableDefaults.techEnabled.honeyConversion);
     techData.setTechHoneyMultiplier(variableDefaults.techHoneyMultiplier);
     techData.setTechDroneMultiplier(variableDefaults.techDroneMultiplier);
-    techData.setTechNurseMultiplier(variableDefaults.techNurseMultiplier);
+    techData.setTechRoyalJellyMultiplier(
+      variableDefaults.techRoyalJellyMultiplier
+    );
     techData.setTechHoneyConversionReducer(
       variableDefaults.techHoneyConversionReducer
     );
+    techData.setTechHoneycombEfficiency(1);
+
+    weatherData.setMonth(variableDefaults.weather.month);
+    weatherData.setDay(variableDefaults.weather.day);
+    weatherData.setCounter(variableDefaults.weather.counter);
+    weatherData.setNectarBonus(variableDefaults.weather.nectarBonus);
+    weatherData.setThunder(variableDefaults.weather.thunder);
+    weatherData.setRoyalJellyBonus(variableDefaults.weather.royalJellyBonus);
+    weatherData.setWeather(variableDefaults.weather.weather);
+    weatherData.setSeason(variableDefaults.weather.season);
+
+    timerData.resetTimer();
   };
   return (
     <div className="Settings">

@@ -6,19 +6,33 @@ import { usePersistentState } from '../../PersistentState';
 import { variableDefaults } from '../../constants/constants';
 
 const CustomHatcheryHook = (): {
-  larvae: number;
-  setLarvae: React.Dispatch<React.SetStateAction<number>>;
-  pupae: number;
-  setPupae: React.Dispatch<React.SetStateAction<number>>;
+  broodcells: typeof variableDefaults.broodcells;
+  setBroodcells: React.Dispatch<React.SetStateAction<typeof broodcells>>;
+  ticksNextEgg: number;
+  setTicksNextEgg: React.Dispatch<React.SetStateAction<number>>;
+  eggReady: boolean;
+  setEggReady: React.Dispatch<React.SetStateAction<boolean>>;
 } => {
-  const [larvae, setLarvae] = usePersistentState(
-    'larvae',
-    variableDefaults.larvae
+  const [broodcells, setBroodcells] = usePersistentState(
+    'broodcells',
+    variableDefaults.broodcells
   );
-  const [pupae, setPupae] = usePersistentState('pupae', variableDefaults.pupae);
-  if (pupae === null) setPupae(variableDefaults.pupae);
-
-  return { larvae, setLarvae, pupae, setPupae };
+  const [ticksNextEgg, setTicksNextEgg] = usePersistentState(
+    'ticksNextEgg',
+    variableDefaults.ticksNextEgg
+  );
+  const [eggReady, setEggReady] = usePersistentState(
+    'eggReady',
+    variableDefaults.eggReady
+  );
+  return {
+    broodcells,
+    setBroodcells,
+    ticksNextEgg,
+    setTicksNextEgg,
+    eggReady,
+    setEggReady
+  };
 };
 
 export default CustomHatcheryHook;

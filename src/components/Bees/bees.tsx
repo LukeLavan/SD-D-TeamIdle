@@ -13,8 +13,8 @@ function Bees(): JSX.Element {
   const beeData = useBetween(CustomBeeHook);
   const structureData = useBetween(CustomStructureHook);
 
-  // TODO: move this somewhere more convenient?
-  const calcTotalAdults = () => {
+  // TODO: move this somewhere more convenient
+  const calcTotalAdults = (): number => {
     return (
       beeData.bees +
       beeData.idleWorkers +

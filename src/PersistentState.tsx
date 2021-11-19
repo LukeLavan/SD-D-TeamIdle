@@ -16,9 +16,17 @@ function usePersistentState<DefaultValueType>(
   // attempt to grab value from localStorage
   const [value, setValue] = useState(() => {
     const PersistentValue = window.localStorage.getItem(key); // TODO: throttle calls?
-    return PersistentValue !== null
-      ? JSON.parse(PersistentValue)
-      : defaultValue;
+    if (PersistentValue) {
+      let parsed;
+      try {
+        parsed = JSON.parse(PersistentValue);
+      } catch (error) {
+        console.log(error);
+        return defaultValue;
+      }
+      return parsed;
+    }
+    return defaultValue;
   });
   // ensure that local storage is updated to reflect any changes
   useEffect(() => {

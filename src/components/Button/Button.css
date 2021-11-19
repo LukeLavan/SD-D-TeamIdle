@@ -36,6 +36,10 @@ button:disabled {
   color: black; /* color of text */
 }
 
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 /* Colors for different buttons */
 .red {
   background: #fa5a5a;

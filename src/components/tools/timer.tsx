@@ -2,20 +2,23 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import { useEffect, useState } from 'react';
-import { useBetween } from 'use-between';
-import CustomBeeHook from './CustomBeeHook';
-import CustomHatcheryHook from './CustomHatcheryHook';
+import { useEffect } from 'react';
+
 import CustomResourceHook from './CustomResourceHook';
-import CustomWeatherHook from './CustomWeatherHook';
-import CustomTimerHook from './CustomTimerHook';
+import CustomBeeHook from './CustomBeeHook';
+import CustomStructureHook from './CustomStructureHook';
+import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomTechHook from './CustomTechHook';
+import CustomTimerHook from './CustomTimerHook';
+import CustomWeatherHook from './CustomWeatherHook';
+import { useBetween } from 'use-between';
+
 import processTick from './processTick';
 
 const timer = (): void => {
-  const [timerFlip, setTimerFlip] = useState(false);
-  const beeData = useBetween(CustomBeeHook);
   const resourceData = useBetween(CustomResourceHook);
+  const beeData = useBetween(CustomBeeHook);
+  const structureData = useBetween(CustomStructureHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
   const weatherData = useBetween(CustomWeatherHook);
   const timerData = useBetween(CustomTimerHook);
@@ -25,16 +28,17 @@ const timer = (): void => {
       processTick(
         resourceData,
         beeData,
+        structureData,
         hatcheryData,
         weatherData,
         techData,
         timerData
       );
       // signals that the timer should re-initialize
-      setTimerFlip((p) => !p);
+      timerData.setTimerFlip((p) => !p);
     }, 1000);
     return () => clearInterval(interval);
-  }, [timerFlip]);
+  }, [timerData.timerFlip]);
 };
 
 export default timer;

@@ -28,10 +28,12 @@ const CustomTechHook = (): {
   setTechHoneyMultiplier: React.Dispatch<React.SetStateAction<number>>;
   techDroneMultiplier: number;
   setTechDroneMultiplier: React.Dispatch<React.SetStateAction<number>>;
-  techNurseMultiplier: number;
-  setTechNurseMultiplier: React.Dispatch<React.SetStateAction<number>>;
+  techRoyalJellyMultiplier: number;
+  setTechRoyalJellyMultiplier: React.Dispatch<React.SetStateAction<number>>;
   techHoneyConversionReducer: number;
   setTechHoneyConversionReducer: React.Dispatch<React.SetStateAction<number>>;
+  techHoneycombEfficiency: number;
+  setTechHoneycombEfficiency: React.Dispatch<React.SetStateAction<number>>;
 } => {
   const [honey1Enabled, setHoney1] = usePersistentState(
     'honey1Enabled',
@@ -77,15 +79,18 @@ const CustomTechHook = (): {
     'techDroneMultiplier',
     variableDefaults.techDroneMultiplier
   );
-  const [techNurseMultiplier, setTechNurseMultiplier] = usePersistentState(
-    'techNurseMultiplier',
-    variableDefaults.techNurseMultiplier
-  );
+  const [techRoyalJellyMultiplier, setTechRoyalJellyMultiplier] =
+    usePersistentState(
+      'techRoyalJellyMultiplier',
+      variableDefaults.techRoyalJellyMultiplier
+    );
   const [techHoneyConversionReducer, setTechHoneyConversionReducer] =
     usePersistentState(
       'techHoneyConversionReducer',
       variableDefaults.techHoneyConversionReducer
     );
+  const [techHoneycombEfficiency, setTechHoneycombEfficiency] =
+    usePersistentState('techHoneycombEfficiency', 1);
 
   return {
     honey1Enabled,
@@ -110,10 +115,12 @@ const CustomTechHook = (): {
     setTechHoneyMultiplier,
     techDroneMultiplier,
     setTechDroneMultiplier,
-    techNurseMultiplier,
-    setTechNurseMultiplier,
+    techRoyalJellyMultiplier,
+    setTechRoyalJellyMultiplier,
     techHoneyConversionReducer,
-    setTechHoneyConversionReducer
+    setTechHoneyConversionReducer,
+    techHoneycombEfficiency,
+    setTechHoneycombEfficiency
   };
 };
 

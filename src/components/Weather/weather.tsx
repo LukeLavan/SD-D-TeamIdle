@@ -6,11 +6,6 @@ import CustomWeatherHook from '../tools/CustomWeatherHook';
 import { useBetween } from 'use-between';
 import './weather.css';
 
-import autumn from './img/seasons/autumn.png';
-import spring from './img/seasons/spring.png';
-import summer from './img/seasons/summer.png';
-import winter from './img/seasons/winter.png';
-
 const SECONDS_PER_DAY = 10;
 const MONTH_NAMES = [
   'January',
@@ -66,7 +61,9 @@ const SEASONS: Record<string, Array<Array<string>>> = {
   ]
 };
 
+/** if month is -1, always return 'CLOUDY'. useful for ensuring lack of weather effect for tests */
 const chooseTheWeather = (month: number) => {
+  if (month === -1) return 'CLOUDY';
   const PROB = 0;
   const SELECTION = 1;
   const randomNumber = Math.random();
@@ -104,11 +101,14 @@ const changeTheWeather = (
 ): void => {
   const weather = chooseTheWeather(weatherData.month);
   weatherData.setWeather(weather);
-  weatherData.setSeason(MONTH_SEASONS[weatherData.month]);
+  if (weatherData.month != -1)
+    weatherData.setSeason(MONTH_SEASONS[weatherData.month]);
   applyWeatherBonus(weatherData, weather);
 };
 
+/** if month is currently -1, prevent incrementing month. useful for ensuring lack of weather effects during tests */
 const addMonth = (weatherData: ReturnType<typeof CustomWeatherHook>): void => {
+  if (weatherData.month === -1) return;
   weatherData.setMonth((previousMonth) => previousMonth + 1);
   if (weatherData.month >= 11) {
     weatherData.setMonth(0);
@@ -117,6 +117,7 @@ const addMonth = (weatherData: ReturnType<typeof CustomWeatherHook>): void => {
 
 const addDay = (weatherData: ReturnType<typeof CustomWeatherHook>): void => {
   weatherData.setDay((previousDay) => previousDay + 1);
+  if (weatherData.month === -1) return;
   if (weatherData.day >= MONTH_DAYS[weatherData.month]) {
     weatherData.setDay(1);
     addMonth(weatherData);
@@ -137,13 +138,13 @@ export const processWeatherTick = (
 const getWeatherImage = (season: string) => {
   switch (season) {
     case 'autumn':
-      return autumn;
+      return '/img/seasons/autumn.png';
     case 'summer':
-      return summer;
+      return '/img/seasons/summer.png';
     case 'winter':
-      return winter;
+      return '/img/seasons/winter.png';
     case 'spring':
-      return spring;
+      return '/img/seasons/spring.png';
   }
 };
 
@@ -152,11 +153,11 @@ function Weather(): JSX.Element {
   return (
     <div>
       <div id="monthAndDate">
-        {MONTH_NAMES[month]} {day}
+        {month != -1 ? MONTH_NAMES[month] : false} {day}
       </div>
       <div id="season">
         <img
-          src={getWeatherImage(season)}
+          src={process.env.PUBLIC_URL + getWeatherImage(season)}
           width="100"
           height="100"
           alt="season icon"

@@ -14,6 +14,7 @@ interface Props {
   costNextLevel: number;
   setCostNextLevel: React.Dispatch<React.SetStateAction<number>>;
   costScaling: number;
+  upgradeCallback?: () => void;
 }
 
 function DanceFloor(props: Props): JSX.Element {
@@ -34,6 +35,7 @@ function DanceFloor(props: Props): JSX.Element {
       props.setCostNextLevel(
         (previousCost) => previousCost * props.costScaling
       );
+      props.upgradeCallback && props.upgradeCallback();
     }
   };
 
