@@ -84,6 +84,16 @@ const variableDefaults = {
       ticksLeft: -1
     }
   ],
+  weather: {
+    month: 0,
+    day: 1,
+    counter: 1,
+    nectarBonus: 1,
+    thunder: false,
+    royalJellyBonus: 1,
+    season: 'winter',
+    weather: 'CLOUDY'
+  },
   techEnabled: {
     honey1: false,
     honey2: false,

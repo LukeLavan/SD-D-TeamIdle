@@ -10,6 +10,7 @@ import CustomStructureHook from './CustomStructureHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomTechHook from './CustomTechHook';
 import CustomTimerHook from './CustomTimerHook';
+import CustomWeatherHook from './CustomWeatherHook';
 import { useBetween } from 'use-between';
 
 import processTick from './processTick';
@@ -19,6 +20,7 @@ const timer = (): void => {
   const beeData = useBetween(CustomBeeHook);
   const structureData = useBetween(CustomStructureHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
+  const weatherData = useBetween(CustomWeatherHook);
   const timerData = useBetween(CustomTimerHook);
   const techData = useBetween(CustomTechHook);
   useEffect(() => {
@@ -28,6 +30,7 @@ const timer = (): void => {
         beeData,
         structureData,
         hatcheryData,
+        weatherData,
         techData,
         timerData
       );

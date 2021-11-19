@@ -7,6 +7,7 @@ import CustomResourceHook from '../../tools/CustomResourceHook';
 import CustomStructureHook from '../../tools/CustomStructureHook';
 import CustomHatcheryHook from '../../tools/CustomHatcheryHook';
 import CustomTechHook from '../../tools/CustomTechHook';
+import CustomWeatherHook from '../../tools/CustomWeatherHook';
 import CustomTimerHook from '../../tools/CustomTimerHook';
 import { useBetween } from 'use-between';
 
@@ -23,6 +24,7 @@ function Settings(): JSX.Element {
   const structureData = useBetween(CustomStructureHook);
   const hatcheryData = useBetween(CustomHatcheryHook);
   const techData = useBetween(CustomTechHook);
+  const weatherData = useBetween(CustomWeatherHook);
   const timerData = useBetween(CustomTimerHook);
   const reset = (): void => {
     beeData.setBees(variableDefaults.bees);
@@ -100,6 +102,15 @@ function Settings(): JSX.Element {
       variableDefaults.techHoneyConversionReducer
     );
     techData.setTechHoneycombEfficiency(1);
+
+    weatherData.setMonth(variableDefaults.weather.month);
+    weatherData.setDay(variableDefaults.weather.day);
+    weatherData.setCounter(variableDefaults.weather.counter);
+    weatherData.setNectarBonus(variableDefaults.weather.nectarBonus);
+    weatherData.setThunder(variableDefaults.weather.thunder);
+    weatherData.setRoyalJellyBonus(variableDefaults.weather.royalJellyBonus);
+    weatherData.setWeather(variableDefaults.weather.weather);
+    weatherData.setSeason(variableDefaults.weather.season);
 
     timerData.resetTimer();
   };

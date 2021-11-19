@@ -10,7 +10,7 @@ import CustomResourceHook from '../../tools/CustomResourceHook';
 import Resources from '../../Resources/resources';
 import Bees from '../../Bees/bees';
 import Structures from '../../Structures/structures';
-
+import Weather from '../../Weather/weather';
 import Button from '../../Button/Button';
 
 /**
@@ -39,6 +39,9 @@ function Beehive(): JSX.Element {
         <Bees />
       </div>
       <div id="Right_Side_Beehive">
+        <div id="Weather">
+          <Weather />
+        </div>
         <div id="buzzBuzzBuzzButton">
           <Button onClick={incrementNectarClicked} color="yellow">
             Buzz Buzz Buzz

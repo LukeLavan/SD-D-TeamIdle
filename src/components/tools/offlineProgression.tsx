@@ -11,6 +11,7 @@ import CustomStructureHook from './CustomStructureHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomTechHook from './CustomTechHook';
 import CustomTimerHook from './CustomTimerHook';
+import CustomWeatherHook from './CustomWeatherHook';
 
 import processTick from './processTick';
 
@@ -25,6 +26,7 @@ function offlineProgression(): void {
   const hatcheryData = useBetween(CustomHatcheryHook);
   const techData = useBetween(CustomTechHook);
   const timerData = useBetween(CustomTimerHook);
+  const weatherData = useBetween(CustomWeatherHook);
 
   useEffect(() => {
     if (Date.now() - timerData.timeStamp >= 1000) {
@@ -38,6 +40,7 @@ function offlineProgression(): void {
           beeData,
           structureData,
           hatcheryData,
+          weatherData,
           techData,
           timerData
         );

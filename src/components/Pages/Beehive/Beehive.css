@@ -28,3 +28,8 @@
   height:70px;
   text-align: center;
 }
+
+#Weather {
+  position: absolute;
+  right: 5%;
+}

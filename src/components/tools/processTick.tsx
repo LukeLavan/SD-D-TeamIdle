@@ -8,7 +8,9 @@ import CustomStructureHook from './CustomStructureHook';
 import CustomHatcheryHook from './CustomHatcheryHook';
 import CustomTechHook from './CustomTechHook';
 import CustomTimerHook from './CustomTimerHook';
+import CustomWeatherHook from './CustomWeatherHook';
 
+import { processWeatherTick } from '../Weather/weather';
 import { doneResearch } from '../Pages/Tech/Tech';
 import { staticConstants } from '../../constants/constants';
 
@@ -17,15 +19,21 @@ const processTick = (
   beeData: ReturnType<typeof CustomBeeHook>,
   structureData: ReturnType<typeof CustomStructureHook>,
   hatcheryData: ReturnType<typeof CustomHatcheryHook>,
+  weatherData: ReturnType<typeof CustomWeatherHook>,
   techData: ReturnType<typeof CustomTechHook>,
   timerData: ReturnType<typeof CustomTimerHook>
 ): void => {
   // forage for nectar
   for (let i = 0; i < beeData.workersAssignedDanceFloor; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setNectar((previousNectar): number => {
       const nextNectar =
         previousNectar +
-        techData.techHoneyMultiplier * staticConstants.NECTAR_BY_BEE;
+        staticConstants.NECTAR_BY_BEE *
+          weatherData.nectarBonus *
+          techData.techHoneyMultiplier;
       if (nextNectar > resourceData.maxNectar) return resourceData.maxNectar;
       return nextNectar;
     });
@@ -33,6 +41,9 @@ const processTick = (
 
   // refine nectar into honey
   for (let i = 0; i < beeData.workersAssignedRefinery; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setHoney((previousHoney): number => {
       if (previousHoney >= resourceData.maxHoney) return resourceData.maxHoney;
       const nextHoney = previousHoney + 1;
@@ -54,6 +65,9 @@ const processTick = (
 
   // refine honey into honeycomb
   for (let i = 0; i < beeData.workersAssignedFactory; ++i) {
+    if (weatherData.thunder) {
+      break;
+    }
     resourceData.setHoneycomb((previousHoneycomb): number => {
       if (previousHoneycomb >= resourceData.maxHoneycomb)
         return resourceData.maxHoneycomb;
@@ -167,6 +181,9 @@ const processTick = (
       });
     }
   }
+
+  // Weather ticks
+  processWeatherTick(weatherData);
 
   // librarians research technology
   if (techData.currentResearch != 'none') {

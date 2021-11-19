@@ -55,13 +55,15 @@ it('increments honey linearly with dance floor bees', () => {
   localStorage.levelRefinery = '2';
   localStorage.workersAssignedRefinery = '2';
   localStorage.levelDanceFloor = '2';
-  localStorage.idleWorkers = '4';
   localStorage.workersAssignedDanceFloor = '2';
+  localStorage.weatherWeather = '"CLOUDY"';
+  localStorage.weatherMonth = '-1';
 
   const frontPageDom = render(<FrontPage />);
   act(() => {
     jest.advanceTimersByTime(3000);
   });
+  //expect(localStorage.weatherWeather).toBe('CLOUDY');
   expect(localStorage.nectar).toBe(
     (
       3 * 2 * staticConstants.NECTAR_BY_BEE -
