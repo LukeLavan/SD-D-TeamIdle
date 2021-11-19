@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/SD-D-TeamIdle/static/css/main.7cb712f7.chunk.css",
-    "main.js": "/SD-D-TeamIdle/static/js/main.7ce8f5dc.chunk.js",
-    "main.js.map": "/SD-D-TeamIdle/static/js/main.7ce8f5dc.chunk.js.map",
+    "main.css": "/SD-D-TeamIdle/static/css/main.bf7b6222.chunk.css",
+    "main.js": "/SD-D-TeamIdle/static/js/main.c2ed0141.chunk.js",
+    "main.js.map": "/SD-D-TeamIdle/static/js/main.c2ed0141.chunk.js.map",
     "runtime-main.js": "/SD-D-TeamIdle/static/js/runtime-main.a4e578b8.js",
     "runtime-main.js.map": "/SD-D-TeamIdle/static/js/runtime-main.a4e578b8.js.map",
-    "static/js/2.827c8379.chunk.js": "/SD-D-TeamIdle/static/js/2.827c8379.chunk.js",
-    "static/js/2.827c8379.chunk.js.map": "/SD-D-TeamIdle/static/js/2.827c8379.chunk.js.map",
+    "static/js/2.ead0d29b.chunk.js": "/SD-D-TeamIdle/static/js/2.ead0d29b.chunk.js",
+    "static/js/2.ead0d29b.chunk.js.map": "/SD-D-TeamIdle/static/js/2.ead0d29b.chunk.js.map",
     "index.html": "/SD-D-TeamIdle/index.html",
-    "static/css/main.7cb712f7.chunk.css.map": "/SD-D-TeamIdle/static/css/main.7cb712f7.chunk.css.map",
-    "static/js/2.827c8379.chunk.js.LICENSE.txt": "/SD-D-TeamIdle/static/js/2.827c8379.chunk.js.LICENSE.txt"
+    "static/css/main.bf7b6222.chunk.css.map": "/SD-D-TeamIdle/static/css/main.bf7b6222.chunk.css.map",
+    "static/js/2.ead0d29b.chunk.js.LICENSE.txt": "/SD-D-TeamIdle/static/js/2.ead0d29b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a4e578b8.js",
-    "static/js/2.827c8379.chunk.js",
-    "static/css/main.7cb712f7.chunk.css",
-    "static/js/main.7ce8f5dc.chunk.js"
+    "static/js/2.ead0d29b.chunk.js",
+    "static/css/main.bf7b6222.chunk.css",
+    "static/js/main.c2ed0141.chunk.js"
   ]
 }
