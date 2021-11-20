@@ -5,13 +5,26 @@ kittens game inspired idle game, but with bees! you're the queen bee in charge o
 - collect nectar and turn it into honey!
 - nurture baby bees into becoming productive workers!
 - allocate workers into jobs as you see fit!
-- make friends (:D) - or enemies (D:) - with the other animals!
 - watch the funny numbers go up!
 
 ## how to play
 
 - go here: https://lukelavan.github.io/SD-D-TeamIdle/
-- figure the rest out lol (wiki to come)
+- buzz buzz buzz to collect nectar
+- refiners turn nectar into honey at the refinery
+- (un)assign worker bee(s) to(/from) vacant job opportunities
+- architects work at the factory to turn honey into honeycomb
+- use honeycomb to build and upgrade structures
+- the number of available jobs at a structure is equal to the upgrade level of the structure
+- construct homes to make room for more bees
+- raise new bees from egg to adulthood (to do your bidding)
+
+## how to build
+
+- clone the repo
+- `cd` into the repo's root directory
+- `yarn` to install dependencies, etc.
+- `yarn start` to build and launch
 
 ## how to contribute
 
