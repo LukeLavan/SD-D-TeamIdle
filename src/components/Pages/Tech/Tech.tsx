@@ -185,69 +185,81 @@ function Tech(): JSX.Element {
       </div>
       <div className="one">
         <br />
-        <Button disabled={false} onClick={researchHoney1} color="green">
-          research nectar effciency 1!
-        </Button>
-        effect: increases rate of gathering nectar by a little
+        <div id="honey1Button">
+          <Button disabled={false} onClick={researchHoney1} color="green">
+            research nectar efficiency 1!
+          </Button>
+          effect: increases rate of gathering nectar by a little
+        </div>
         <br />
       </div>
       <div className="two">
         <br />
-        <Button
-          disabled={!techData.honey1Enabled}
-          onClick={researchHoney2}
-          color="green"
-        >
-          research nectar effciency 2!
-        </Button>
+        <div id="honey2Button">
+          <Button
+            disabled={!techData.honey1Enabled}
+            onClick={researchHoney2}
+            color="green"
+          >
+            research nectar efficiency 2!
+          </Button>
+        </div>
         effect: increases rate of gathering nectar by a decent amount
         <br />
       </div>
       <div className="three">
         <br />
-        <Button
-          disabled={!techData.honey2Enabled}
-          onClick={researchHoney3}
-          color="green"
-        >
-          research nectar effciency 3!
-        </Button>
+        <div id="honey3Button">
+          <Button
+            disabled={!techData.honey2Enabled}
+            onClick={researchHoney3}
+            color="green"
+          >
+            research nectar efficiency 3!
+          </Button>
+        </div>
         effect: increases rate of gathering nectar by a lot
         <br />
       </div>
       <div className="four">
         <br />
-        <Button
-          disabled={!techData.droneEnabled}
-          onClick={researchNurse}
-          color="red"
-        >
-          research drone fertility!
-        </Button>
+        <div id="nurseButton">
+          <Button
+            disabled={!techData.droneEnabled}
+            onClick={researchNurse}
+            color="red"
+          >
+            research drone fertility!
+          </Button>
+        </div>
         effect: increases rate that drones secrete royal jelly
         <br />
       </div>
       <div className="five">
         <br />
-        <Button
-          disabled={!techData.honey1Enabled}
-          onClick={researchDrone}
-          color="purple"
-        >
-          research material efficiency!
-        </Button>
+        <div id="structureButton">
+          <Button
+            disabled={!techData.honey1Enabled}
+            onClick={researchDrone}
+            color="purple"
+          >
+            research material efficiency!
+          </Button>
+        </div>
         effect: decreases honeycomb requirements for structures
         <br />
       </div>
       <div className="six">
         <br />
-        <Button
-          disabled={!techData.honey2Enabled}
-          onClick={researchHoneyConversion}
-          color="blue"
-        >
-          research honey conversion effciency!
-        </Button>
+        <div id="honeyConversionButton">
+          <Button
+            disabled={!techData.honey2Enabled}
+            onClick={researchHoneyConversion}
+            color="blue"
+          >
+            research honey conversion effciency!
+          </Button>
+        </div>
         effect: reduces cost to convert honey to honeycombs
         <br />
       </div>
