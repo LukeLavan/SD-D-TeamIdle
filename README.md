@@ -34,7 +34,9 @@ The large hexagonal icons on the righthand side of the Beehive page are the stru
 - The Hatchery increases the total capacity of nurses
 
 ### The Hatchery
-This page is where you will raise new bees for the colony. In order to raise a new bee, you first need at least one worker assigned to the nurse job. Once you have a nurse, one of the cells on the righthand side will be filled with an egg. You choose now whether the bee will permanently become a drone or a worker. Workers cost 5 royal jelly to grow. Drones cost nothing. Once you have made your decision, some time will pass before the larva matures into a fully-grown bee. Make sure you have enough homes to support your new bees!
+This page is where you will raise new bees for the colony. In order to raise a new bee, you first need at least one worker assigned to the nurse job. Once you have a nurse, one of the cells on the righthand side will be filled with an egg. You choose now whether the bee will permanently become a drone or a worker. Workers cost 5 royal jelly to grow. Drones cost nothing. Once you have made your decision, some time will pass before the larva matures into a fully-grown bee. Make sure you have enough homes to support your new bees! 
+
+Note that you must have nurses assigned at all times during the birthing process. If nurses are unassigned, any growth progress they were working on will be lost.
 
 ### The Tech Tree
 If you have one or more bees assigned to the scientist role, you can begin researching technologies! Technologies cost nothing but time. To begin research, simply click on one of the available options. Note that you must always have at least one active scientist for the research to progress. The more scientists you have, the faster the progress
